@@ -17,6 +17,7 @@
 <style>
   :root{
     --bg: #0B0E13;
+    --bg-rgb: 11,14,19;
     --bg-alt: #10141C;
     --surface: #151B26;
     --line: #232B39;
@@ -30,16 +31,17 @@
     --sans: 'IBM Plex Sans', sans-serif;
   }
   body[data-theme="light"] {
-    --bg: #FAFAFA;
-    --bg-alt: #F1F5F9;
-    --surface: #FFFFFF;
-    --line: #E2E8F0;
-    --text: #0F172A;
-    --muted: #64748B;
+    --bg: #F3F5F8;
+    --bg-rgb: 243,245,248;
+    --bg-alt: #E5E8ED;
+    --surface: #FBFCFD;
+    --line: #C2C9D6;
+    --text: #111827;
+    --muted: #4B5563;
     --amber: #D97706;
-    --cyan: #0D9488;
+    --cyan: #0891B2;
     --amber-dim: rgba(217,119,6,0.12);
-    --cyan-dim: rgba(13,148,136,0.12);
+    --cyan-dim: rgba(8,145,178,0.12);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -71,11 +73,11 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:22px 32px;
     backdrop-filter: blur(10px);
-    background:rgba(11,14,19,0.55);
+    background:rgba(var(--bg-rgb), 0.55);
     border-bottom:1px solid transparent;
     transition:border-color .3s ease, background .3s ease;
   }
-  header.scrolled{ border-color:var(--line); background:rgba(11,14,19,0.85); }
+  header.scrolled{ border-color:var(--line); background:rgba(var(--bg-rgb), 0.85); }
   .logo{
     display:flex; align-items:center; gap:8px; cursor:pointer;
   }
