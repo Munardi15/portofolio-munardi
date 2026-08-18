@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ards — Software Engineer</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32-Czdi-ftP.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16-BCADAobk.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-DL9Hlpn1.png" />
+<link rel="icon" href="/assets/favicon-CBfpUr2T.ico" />
+<meta name="description" content="Munardi — Software Engineer. Building robust backend services, scalable REST APIs, and automating system workflows.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root{
+    --bg: #0B0E13;
+    --bg-alt: #10141C;
+    --surface: #151B26;
+    --line: #232B39;
+    --text: #E7ECF3;
+    --muted: #7C8798;
+    --amber: #E8A33D;
+    --cyan: #3FC6D6;
+    --amber-dim: rgba(232,163,61,0.12);
+    --cyan-dim: rgba(63,198,214,0.12);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+  body[data-theme="light"] {
+    --bg: #FAFAFA;
+    --bg-alt: #F1F5F9;
+    --surface: #FFFFFF;
+    --line: #E2E8F0;
+    --text: #0F172A;
+    --muted: #64748B;
+    --amber: #D97706;
+    --cyan: #0D9488;
+    --amber-dim: rgba(217,119,6,0.12);
+    --cyan-dim: rgba(13,148,136,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--amber); color:#0B0E13; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  /* subtle grid backdrop */
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.18;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 20%, transparent 75%);
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    backdrop-filter: blur(10px);
+    background:rgba(11,14,19,0.55);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{ border-color:var(--line); background:rgba(11,14,19,0.85); }
+  .logo{
+    display:flex; align-items:center; gap:8px; cursor:pointer;
+  }
+  .spin-logo { display:flex; align-items:center; justify-content:center; animation:spin 12s linear infinite; }
+  .spin-logo svg { overflow:visible; }
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  nav.links{ display:flex; gap:36px; font-size:13px; font-family:var(--mono); color:var(--muted); }
+  nav.links a { position:relative; transition:color .25s; padding-bottom:4px; }
+  nav.links a:hover { color:var(--text); }
+  nav.links a::after {
+    content:''; position:absolute; left:0; bottom:0; width:100%; height:1px; background:var(--amber);
+    transform:scaleX(0); transform-origin:right; transition:transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  nav.links a:hover::after { transform:scaleX(1); transform-origin:left; }
+  nav.links a.active { color:var(--amber); }
+  nav.links a.active::after { transform:scaleX(1); background:var(--amber); transform-origin:left; }
+
+  @media (max-width:820px){ nav.links{ display:none; } }
+
+  .header-controls { display:flex; gap:12px; align-items:center; }
+  .ctrl-btn { display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid var(--line); color:var(--text); cursor:pointer; font-family:var(--mono); width:32px; height:32px; border-radius:4px; font-size:12px; font-weight:600; transition:all 0.3s ease; }
+  .ctrl-btn:hover { border-color:var(--amber); color:var(--amber); }
+
+  [data-lang="en"] .lang-id { display: none !important; }
+  [data-lang="id"] .lang-en { display: none !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:140px 32px 80px; text-align:center;
+  }
+  .hero-inner {
+    max-width:1180px; margin:0 auto; width:100%; position:relative; z-index:2; 
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .hero-name {
+    font-family:var(--mono); font-weight:800; letter-spacing:-2px;
+    font-size:clamp(60px, 12vw, 150px); line-height:1; color:var(--text); margin-bottom:24px;
+    opacity:0; transform:translateY(30px);
+  }
+  .hero-divider {
+    width:0px; height:1px; background:var(--line); margin:0 auto 24px;
+  }
+  .hero-role {
+    font-family:var(--mono); font-size:clamp(14px, 3vw, 20px); font-weight:400; color:var(--muted); letter-spacing:8px; text-transform:uppercase;
+    opacity:0; transform:translateY(30px);
+  }
+
+  /* ===== STACK MARQUEE ===== */
+  .marquee-wrap{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; padding:26px 0; background:var(--bg-alt); }
+  .marquee-track{ display:flex; gap:56px; width:max-content; animation:scroll-left 28s linear infinite; }
+  .marquee-track span{ font-family:var(--mono); font-size:14px; color:var(--muted); white-space:nowrap; display:flex; align-items:center; gap:10px; }
+  .marquee-track span::after{ content:'/'; color:var(--line); margin-left:46px; }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ===== SECTION HEADS ===== */
+  .section{ position:relative; padding:150px 0; z-index:2; }
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:64px; flex-wrap:wrap; gap:20px;}
+  .sec-eyebrow{ font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:2px; text-transform:uppercase; }
+  .sec-title{ font-family:var(--mono); font-size:clamp(32px,5vw,52px); font-weight:700; letter-spacing:-1px; margin-top:10px; }
+  .sec-desc{ max-width:440px; color:var(--muted); font-size:14px; line-height:1.7; }
+
+  /* ===== ABOUT ===== */
+  .about-text{ font-size:19px; line-height:1.8; color:var(--muted); font-weight:300; max-width:800px; }
+  .about-text b{ color:var(--text); font-weight:500; }
+  .about-text .accent{ color:var(--amber); }
+
+  /* ===== SKILL GRID ===== */
+  .skill-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; }
+  .skill-card{ padding:24px; border:1px solid var(--line); background:var(--bg-alt); border-radius:4px; }
+  .skill-card-title{ font-family:var(--mono); font-size:13px; color:var(--cyan); margin-bottom:16px; letter-spacing:1px; text-transform:uppercase; }
+  .skill-card-list{ color:var(--text); font-size:15px; line-height:1.6; }
+  .skill-card-list span{ display:inline-block; margin-right:8px; margin-bottom:8px; padding:4px 10px; border:1px solid var(--line); border-radius:2px; font-family:var(--mono); font-size:12px; color:var(--muted); }
+
+  /* ===== EDUCATION ===== */
+  .edu-item{ padding:32px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+  .edu-item:first-child{ border-top:1px solid var(--line); }
+  .edu-main{ max-width:600px; }
+  .edu-degree{ font-size:20px; font-weight:500; color:var(--text); margin-bottom:8px; }
+  .edu-school{ font-family:var(--mono); font-size:14px; color:var(--cyan); }
+  .edu-meta{ text-align:right; }
+  .edu-year{ font-family:var(--mono); font-size:14px; color:var(--amber); margin-bottom:4px; }
+  .edu-gpa{ font-family:var(--mono); font-size:12px; color:var(--muted); }
+  @media (max-width:600px){ .edu-meta{ text-align:left; } }
+
+  /* ===== EXPERIENCE TIMELINE ===== */
+  .timeline{ display:flex; flex-direction:column; gap:60px; position:relative; }
+  .timeline::before{ content:''; position:absolute; left:45px; top:0; bottom:0; width:1px; background:var(--line); z-index:0; }
+  @media (max-width:700px){ .timeline::before{ display:none; } }
+  .exp-block{ position:relative; z-index:1; display:flex; gap:40px; }
+  .exp-left{ width:90px; flex-shrink:0; font-family:var(--mono); font-size:13px; color:var(--muted); padding-top:4px; background:var(--bg); }
+  .exp-right{ flex:1; }
+  .exp-date{ font-family:var(--mono); font-size:12px; color:var(--amber); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; display:block; }
+  .exp-company{ font-family:var(--mono); font-size:clamp(24px, 3vw, 32px); font-weight:700; color:var(--text); margin-bottom:4px; }
+  .exp-role{ font-size:16px; color:var(--cyan); margin-bottom:12px; }
+  
+  .exp-accordion{ border:1px solid var(--line); background:var(--bg-alt); border-radius:4px; overflow:hidden; margin-top:24px; }
+  .acc-head{ display:flex; justify-content:space-between; align-items:center; padding:16px 20px; cursor:pointer; font-family:var(--mono); font-size:13px; font-weight:600; color:var(--text); user-select:none; transition:background .3s; }
+  .acc-head:hover{ background:var(--surface); }
+  .acc-icon{ font-size:18px; line-height:1; transition:transform .3s; color:var(--cyan); }
+  .exp-accordion.open .acc-icon{ transform:rotate(45deg); }
+  
+  .acc-body{ height:0; overflow:hidden; transition:height .4s ease; }
+  .acc-content{ padding:0 20px 20px; border-top:1px solid var(--line); }
+  
+  /* NEW PROJECT FORMAT */
+  .proj-item{ padding:32px 0; border-bottom:1px dashed var(--line); }
+  .proj-item:last-child{ border-bottom:none; padding-bottom:0; }
+  .proj-item:first-child{ padding-top:24px; }
+  .proj-name{ font-family:var(--mono); font-size:18px; font-weight:700; color:var(--text); margin-bottom:16px; }
+  
+  .proj-row{ display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+  .proj-row:last-child{ margin-bottom:0; }
+  .proj-label{ font-family:var(--mono); font-size:11px; font-weight:600; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; }
+  .proj-val{ font-size:14.5px; color:var(--text); line-height:1.6; }
+  .proj-flow{ font-family:var(--mono); font-size:13px; color:var(--amber); background:var(--surface); padding:8px 12px; border-radius:2px; border:1px solid var(--line); display:inline-block; }
+  
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .proj-tags span{ font-family:var(--mono); font-size:11px; color:var(--cyan); border:1px solid var(--cyan-dim); background:var(--cyan-dim); padding:4px 10px; border-radius:2px; letter-spacing:0.5px;}
+  
+  @media (max-width:700px){
+    .exp-block{ flex-direction:column; gap:16px; }
+    .exp-left{ width:100%; padding-top:0; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-inner{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:40px; }
+  .contact-title{ font-family:var(--mono); font-size:clamp(38px,6vw,68px); font-weight:700; letter-spacing:-1.5px; line-height:1.05; }
+  .contact-title .accent{ color:var(--amber); }
+  .contact-text{ color:var(--muted); margin-top:20px; font-size:15px; max-width:480px; margin-left:auto; margin-right:auto; }
+  .contact-links{ display:flex; gap:60px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+  .c-icon{ display:flex; flex-direction:column; align-items:center; gap:12px; color:var(--muted); transition:all .3s ease; }
+  .c-icon svg{ width:36px; height:36px; transition:stroke .3s, transform .3s; stroke:currentColor; stroke-width:1.5; fill:none; }
+  .c-icon span{ font-family:var(--mono); font-size:12px; letter-spacing:1px; opacity:0.8; transition:opacity .3s; }
+  .c-icon:hover{ color:var(--amber); transform:translateY(-5px); }
+  .c-icon:hover svg{ transform:scale(1.1); stroke:var(--amber); }
+  .c-icon:hover span{ opacity:1; }
+
+  /* ===== FOOTER ===== */
+  footer{ border-top:1px solid var(--line); padding:40px 0; }
+  .foot-inner{ display:flex; justify-content:space-between; align-items:center; position:relative; }
+  .foot-col { flex: 1; display:flex; align-items:center; }
+  .foot-left { justify-content: flex-start; font-family:var(--mono); font-size:13px; color:var(--text); font-weight:700; letter-spacing:1px; }
+  .foot-left a:hover { color:var(--cyan); }
+  .foot-center { justify-content: center; position:absolute; left:50%; transform:translateX(-50%); }
+  .foot-right { justify-content: flex-end; }
+  .foot-copy{ font-family:var(--mono); font-size:11px; color:var(--muted); white-space:nowrap; }
+  
+  .to-top-btn { 
+    display:flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:8px; border:1px solid var(--line); 
+    color:var(--muted); transition:all 0.3s ease; background:transparent;
+  }
+  .to-top-btn:hover { color:var(--amber); border-color:var(--amber); cursor:pointer; }
+
+  @media (max-width: 700px) {
+    .foot-inner { flex-direction:column; gap:24px; padding:20px 0; }
+    .foot-center { position:static; transform:none; order:2; }
+    .foot-left { order:1; justify-content:center; }
+    .foot-right { order:3; justify-content:center; }
+    .foot-col { width:100%; justify-content:center; }
+  }
+
+  .reveal{ opacity:0; transform:translateY(40px); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1 !important; transform:none !important; }
+    h1.title span em{ transform:none !important; }
+  }
+
+  /* ===== HERO DECORATIONS ===== */
+  .hero-bg-shapes { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .float-shape { position:absolute; opacity:0; }
+  .shape-circle { width:24px; height:24px; border:1px solid var(--amber); border-radius:50%; top:20%; left:15%; }
+  .shape-square { width:16px; height:16px; border:1px solid var(--cyan); top:70%; right:20%; transform:rotate(15deg); }
+  .shape-line { width:40px; height:1px; background:var(--amber); bottom:30%; left:25%; transform:rotate(45deg); }
+  .shape-dot { width:4px; height:4px; background:var(--cyan); border-radius:50%; top:35%; right:25%; }
+  
+  @keyframes float-anim {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(0, -15px) rotate(10deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  .float-shape.animated { animation: float-anim 6s ease-in-out infinite; }
+  .shape-circle.animated { animation-delay: 0s; }
+  .shape-square.animated { animation-delay: -1.5s; }
+  .shape-line.animated { animation-delay: -3s; }
+  .shape-dot.animated { animation-delay: -4.5s; }
+
+  .hero-scroll {
+    position:absolute; bottom:40px; left:50%; transform:translateX(-50%); opacity:0; cursor:pointer; z-index:10;
+    animation: bounce-arrow 2s infinite ease-in-out;
+  }
+  @keyframes bounce-arrow {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+  }
+
+
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="logo" onclick="window.scrollTo(0,0);" title="Back to top">
+    <div class="spin-logo">
+      <svg viewBox="0 0 100 100" width="44" height="44">
+        <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+        <text font-family="monospace" font-size="13" fill="var(--amber)" font-weight="bold" letter-spacing="2">
+          <textPath href="#circlePath" textLength="220" lengthAdjust="spacingAndGlyphs">ARDS ✦ ARDS ✦ ARDS ✦ </textPath>
+        </text>
+      </svg>
+    </div>
+  </div>
+  <nav class="links">
+    <a href="#about"><span class="lang-en">About</span><span class="lang-id">Tentang</span></a>
+    <a href="#skill"><span class="lang-en">Skill</span><span class="lang-id">Keahlian</span></a>
+    <a href="#experience"><span class="lang-en">Experience</span><span class="lang-id">Pengalaman</span></a>
+    <a href="#education"><span class="lang-en">Education</span><span class="lang-id">Pendidikan</span></a>
+    <a href="#contact"><span class="lang-en">Contact</span><span class="lang-id">Kontak</span></a>
+  </nav>
+  <div class="header-controls">
+    <button id="langToggle" class="ctrl-btn" aria-label="Toggle Language">ID</button>
+    <button id="themeToggle" class="ctrl-btn" aria-label="Toggle Theme">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shapes" id="heroShapes">
+    <div class="float-shape shape-circle" data-speed="0.3"></div>
+    <div class="float-shape shape-square" data-speed="-0.4"></div>
+    <div class="float-shape shape-line" data-speed="0.2"></div>
+    <div class="float-shape shape-dot" data-speed="-0.2"></div>
+  </div>
+  <div class="hero-inner">
+    <h1 class="hero-name">Munardi.</h1>
+    <div class="hero-divider"></div>
+    <div class="hero-role"><span class="lang-en">Software Engineer</span><span class="lang-id">Rekayasa Perangkat Lunak</span></div>
+  </div>
+  <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+</section>
+
+<!-- STACK MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span>TECH AGNOSTIC ENGINEER</span><span>RAPID ADAPTATION</span><span>GOLANG</span><span>NODE.JS</span>
+    <span>PHP</span><span>PYTHON</span><span>LEGACY TO CLOUD MIGRATION</span><span>SQL SERVER</span>
+    <span>TECH AGNOSTIC ENGINEER</span><span>RAPID ADAPTATION</span><span>GOLANG</span><span>NODE.JS</span>
+    <span>PHP</span><span>PYTHON</span><span>LEGACY TO CLOUD MIGRATION</span><span>SQL SERVER</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-eyebrow"><span class="lang-en">// About</span><span class="lang-id">// Tentang</span></div>
+        <div class="sec-title"><span class="lang-en">About Me.</span><span class="lang-id">Tentang Saya.</span></div>
+      </div>
+    </div>
+    <p class="about-text reveal">
+      <span class="lang-en">I don't just write code; <b class="accent">I adapt.</b> Across 5 major financial companies, I've successfully engineered mission-critical systems jumping seamlessly between Node.js, PHP, Golang, and Python.<br><br>My strongest asset isn't a single framework—it's my ability to learn any tech stack rapidly and deliver production-ready solutions regardless of the environment. From modernizing legacy SSIS workflows into Go-based cloud architectures to optimizing deep SQL bottlenecks, my focus is solving the core problem, not just writing syntax.</span>
+      <span class="lang-id">Saya tidak sekadar menulis kode; <b class="accent">Saya beradaptasi.</b> Di 5 perusahaan finansial besar, saya sukses merekayasa sistem kritikal yang melompat mulus antara Node.js, PHP, Golang, dan Python.<br><br>Aset terkuat saya bukan pada satu framework—melainkan kemampuan mempelajari tech stack apapun dengan cepat dan mengirimkan solusi siap-produksi di lingkungan mana pun. Mulai dari modernisasi sistem SSIS usang ke arsitektur cloud Golang hingga optimasi bottleneck SQL, fokus saya adalah memecahkan masalah inti, bukan sekadar menulis sintaks.</span>
+    </p>
+  </div>
+</section>
+
+<!-- SKILL -->
+<section class="section" id="skill">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-eyebrow"><span class="lang-en">// Skill</span><span class="lang-id">// Keahlian</span></div>
+        <div class="sec-title"><span class="lang-en">Technical Expertise.</span><span class="lang-id">Keahlian Teknis.</span></div>
+      </div>
+    </div>
+    <div class="skill-grid reveal">
+      <div class="skill-card">
+        <div class="skill-card-title"><span class="lang-en">Backend & Frontend</span><span class="lang-id">Backend & Frontend</span></div>
+        <div class="skill-card-list">
+          <span>Golang</span><span>Python</span><span>Java</span><span>PHP</span><span>Node.js</span>
+          <span>React.js</span><span>JavaScript</span><span>HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><span class="lang-en">Frameworks & Libraries</span><span class="lang-id">Kerangka Kerja & Pustaka</span></div>
+        <div class="skill-card-list">
+          <span>Fiber</span><span>GORM</span><span>Laravel</span><span>Spring Boot</span><span>Express</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><span class="lang-en">Database</span><span class="lang-id">Basis Data</span></div>
+        <div class="skill-card-list">
+          <span>SQL Server</span><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><span class="lang-en">DevOps & Infra</span><span class="lang-id">DevOps & Infrastruktur</span></div>
+        <div class="skill-card-list">
+          <span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Bamboo CI/CD</span><span>Apache</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><span class="lang-en">Integration & Security</span><span class="lang-id">Integrasi & Keamanan</span></div>
+        <div class="skill-card-list">
+          <span>FTP/SFTP</span><span>MinIO</span><span>AES/GPG</span><span>SMTP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-eyebrow"><span class="lang-en">// Experience</span><span class="lang-id">// Pengalaman</span></div>
+        <div class="sec-title"><span class="lang-en">Work History.</span><span class="lang-id">Riwayat Pekerjaan.</span></div>
+      </div>
+      <p class="sec-desc">
+        <span class="lang-en">Professional journey across core banking systems, automation, and full-stack development.</span>
+        <span class="lang-id">Perjalanan profesional melintasi sistem core banking, automasi, dan pengembangan full-stack.</span>
+      </p>
+    </div>
+    
+    <div class="timeline">
+      
+      <!-- JOB 01 -->
+      <div class="exp-block reveal">
+        <div class="exp-left">JOB / 01</div>
+        <div class="exp-right">
+          <span class="exp-date">Oct 2025 – Sep 2026</span>
+          <div class="exp-company">Bank Rakyat Indonesia (BRI) - Vendor</div>
+          <div class="exp-role"><span class="lang-en">Back End Engineer</span><span class="lang-id">Insinyur Back End</span></div>
+          
+          <div class="exp-accordion">
+            <div class="acc-head">
+              <span><span class="lang-en">All Projects</span><span class="lang-id">Semua Proyek</span></span>
+              <span class="acc-icon">+</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-content">
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-parse-file-merah-putih</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">The legacy system (SSIS DTSX) was hard to maintain, lacked containerization support, and was slow in processing large file volumes.</span><span class="lang-id">Sistem lama (SSIS DTSX) sulit dikelola, tidak mendukung containerization, dan lambat memproses file.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Fetch ZIP from SFTP → Extract & Parse TXT → Stream to MinIO → DB Bulk Insert → API Notification</span><span class="lang-id">Ambil ZIP dari SFTP → Ekstrak & Parsing TXT → Stream ke MinIO → Insert Masal DB → Notifikasi API</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>MinIO</span><span>SQL Server</span><span>Docker</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Migrated and re-coded the legacy SSIS logic into a modern Golang service using Clean Architecture. Included the development of testing sub-modules <b>datasourcedistributor</b> (source data distribution) and <b>compare_project</b> (output validation vs legacy system).</span><span class="lang-id">Migrasi dan re-code logika SSIS lama menjadi service Golang modern menggunakan Clean Architecture. Termasuk pengembangan sub-modul testing <b>datasourcedistributor</b> (distribusi data sumber) dan <b>compare_project</b> (validasi output vs sistem lama).</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-log-activity-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val">Lack of centralized monitoring for job execution statuses across scattered scheduler applications.</div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Listen REST Hook → Parse Status → Central DB Insert → Expose via Fiber API</span><span class="lang-id">Dengarkan REST Hook → Parsing Status → Insert DB Pusat → Ekspos via API Fiber</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>Fiber</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built a centralized REST API service for tracking execution statuses across 7+ BRIVA scheduler applications.</span><span class="lang-id">Membangun service REST API terpusat untuk melacak status eksekusi dari 7+ aplikasi scheduler BRIVA.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-email-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Need for instant notifications and daily reporting regarding anomalies and reconciliation statuses of BRIVA data.</span><span class="lang-id">Dibutuhkan notifikasi instan dan laporan harian terkait anomali serta status rekonsiliasi data BRIVA.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Fetch DB Metrics → Generate HTML Template → Connect SMTP → Broadcast Email</span><span class="lang-id">Ambil Metrik DB → Buat Template HTML → Konek SMTP → Broadcast Email</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SMTP</span><span>HTML</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built from scratch to handle automated email alerting and real-time data reporting.</span><span class="lang-id">Membangun dari awal untuk menangani alert email otomatis dan pelaporan data real-time.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-data-copy-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Need for secure duplication and archiving of BRIVA datasets from source to target databases without burdening daily operational queries.</span><span class="lang-id">Kebutuhan duplikasi dan arsip dataset BRIVA yang aman dari sumber ke target tanpa membebani query harian.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Trigger Cron → Select Data Source → Batch Insert Destination → Acknowledge Log</span><span class="lang-id">Trigger Cron → Pilih Sumber Data → Batch Insert Destinasi → Log Acknowledge</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built from scratch for efficient data migration and backup automation.</span><span class="lang-id">Membangun dari awal untuk efisiensi migrasi data dan automasi backup.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-data-update-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Need for synchronization and mass updates (bulk update) on BRIVA data across environments.</span><span class="lang-id">Kebutuhan sinkronisasi dan update masal (bulk update) data BRIVA antar environment.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Trigger Cron → Get Delta Updates → Execute Batch Update → Trigger Log API</span><span class="lang-id">Trigger Cron → Ambil Update Delta → Eksekusi Batch Update → Trigger API Log</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built a dedicated scheduler for synchronizing daily transaction data states.</span><span class="lang-id">Membangun scheduler terdedikasi untuk mensinkronisasi state data transaksi harian.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-generate-file-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Manual creation of mutation text files for third-party reconciliation was slow and prone to errors.</span><span class="lang-id">Pembuatan file teks mutasi untuk rekonsiliasi pihak ketiga secara manual lambat dan rentan kesalahan.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Query Aggregated Data → Format File (TXT/CSV) → Write to Local/MinIO → Notify</span><span class="lang-id">Query Data Agregat → Format File (TXT/CSV) → Tulis ke Lokal/MinIO → Notifikasi</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>MinIO</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Automated the generation of precise end-of-day reconciliation files compatible with external systems.</span><span class="lang-id">Mengotomatisasi pembuatan file rekonsiliasi end-of-day yang presisi dan kompatibel dengan sistem eksternal.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-get-data-flow-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Downstream banking modules required a controlled and filtered flow of transaction data periodically.</span><span class="lang-id">Modul perbankan hilir membutuhkan aliran data transaksi yang terkontrol dan tersaring secara berkala.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Retrieve Data Streams → Filter & Transform → Publish to Target Service → Log Activity</span><span class="lang-id">Ambil Stream Data → Filter & Transformasi → Publish ke Service Target → Catat Log Aktivitas</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Developed a reliable transaction data flow distribution pipeline for downstream modules.</span><span class="lang-id">Mengembangkan pipeline distribusi aliran data transaksi yang andal untuk modul-modul hilir.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-get-ddhist-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">The reporting system struggled to efficiently pull historical mutation data (DDHIST) directly from the core.</span><span class="lang-id">Sistem pelaporan kesulitan menarik data mutasi historis (DDHIST) langsung dari core secara efisien.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Trigger Cron → Fetch Historical Mutasi (DDHIST) → Process/Cleanse → Insert to Reporting DB</span><span class="lang-id">Trigger Cron → Ambil Histori Mutasi (DDHIST) → Proses/Pembersihan → Insert ke DB Pelaporan</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built a historical mutation data extraction pipeline for business intelligence and customer reporting.</span><span class="lang-id">Membangun pipeline ekstraksi data mutasi historis untuk business intelligence dan pelaporan pelanggan.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-param-ftp-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Inefficiency in massively distributing FTP/SFTP configuration parameter updates to various client agents.</span><span class="lang-id">Ketidakefisienan dalam mendistribusikan pembaruan konfigurasi FTP/SFTP secara masal ke berbagai klien.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Read Parameters DB → Construct Settings → Broadcast to SFTP nodes → Central Log</span><span class="lang-id">Baca DB Parameter → Buat Setting → Broadcast ke Node SFTP → Log Pusat</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>FTP/SFTP</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built an automated centralized FTP parameter distribution service to maintain credential consistency.</span><span class="lang-id">Membangun service distribusi parameter FTP terpusat otomatis untuk menjaga konsistensi kredensial.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">sch-sp-executor-briva</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Required a robust automated mechanism to trigger heavy Stored Procedures (SP) asynchronously without timeouts.</span><span class="lang-id">Membutuhkan mekanisme otomatis yang kuat untuk menjalankan Stored Procedures (SP) asinkron tanpa timeout.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Trigger Cron → Fetch SP Config → Async Execute Target SP → Capture Output/Errors → Log API</span><span class="lang-id">Trigger Cron → Ambil Config SP → Eksekusi SP Async → Tangkap Output/Error → API Log</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built a generic task executor to schedule backend logic executions within the database.</span><span class="lang-id">Membangun task executor generik untuk menjadwalkan eksekusi logika backend di dalam database.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">AES & GPG Automation Scheduler</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Manual encryption/decryption of settlement and client files was vulnerable to human error and network transfer failures.</span><span class="lang-id">Enkripsi/dekripsi manual file settlement dan klien rentan kesalahan manusia dan gagal transfer.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Detect New Files → Multi-thread Encrypt/Decrypt (AES/GPG) → Auto-Retry Transfer → FTP Delivery</span><span class="lang-id">Deteksi File Baru → Enkripsi/Dekripsi Multi-thread (AES/GPG) → Transfer Auto-Retry → Pengiriman FTP</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Python</span><span>AES</span><span>GPG</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Maintained & optimized Python scripts with multi-threading and auto-retry logic. Included integrating <b>test_encrypt</b> for encryption key functionality validation.</span><span class="lang-id">Mengelola & mengoptimasi script Python dengan multi-threading dan logika auto-retry. Termasuk integrasi <b>test_encrypt</b> untuk validasi fungsionalitas kunci enkripsi.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">ms-briva-snap</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Need to capture and store snapshots of BRIVA transaction data states for end-of-day (EOD) audit purposes.</span><span class="lang-id">Kebutuhan mengambil dan menyimpan snapshot data transaksi BRIVA untuk keperluan audit end-of-day (EOD).</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Trigger Cron → Query Delta Transactions → Snapshot to Cold DB → Log Activity</span><span class="lang-id">Trigger Cron → Query Transaksi Delta → Snapshot ke Cold DB → Catat Log Aktivitas</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Golang</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Built from scratch to ensure audit data integrity and system compliance.</span><span class="lang-id">Membangun dari awal untuk memastikan integritas data audit dan kepatuhan sistem.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">SOP Query Documentation</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Frequent operational confusion and lack of auditable standards for query executions across various business conditions.</span><span class="lang-id">Sering terjadi kebingungan operasional dan kurangnya standar yang dapat diaudit untuk eksekusi query.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Analyze DB Schema → Draft Query SOP → Review with Business/IT → Publish Official Nota Dinas</span><span class="lang-id">Analisa Skema DB → Konsep SOP Query → Review dengan Bisnis/IT → Terbitkan Nota Dinas Resmi</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>SQL Server</span><span>Documentation</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Authored official guideline documents for queries (Insert, Update, Select) to ensure operational audit compliance.</span><span class="lang-id">Menulis dokumen pedoman resmi untuk query (Insert, Update, Select) untuk memastikan kepatuhan audit operasional.</span></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOB 02 -->
+      <div class="exp-block reveal">
+        <div class="exp-left">JOB / 02</div>
+        <div class="exp-right">
+          <span class="exp-date">Jan 2024 – Sep 2025</span>
+          <div class="exp-company">Hitachi Channel Solutions</div>
+          <div class="exp-role"><span class="lang-en">Software Engineer</span><span class="lang-id">Rekayasa Perangkat Lunak</span></div>
+          
+          <div class="exp-accordion">
+            <div class="acc-head">
+              <span><span class="lang-en">All Projects</span><span class="lang-id">Semua Proyek</span></span>
+              <span class="acc-icon">+</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-content">
+
+                <div class="proj-item">
+                  <div class="proj-name">IMHOTS & EJ Dashboard</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Bank clients lacked a unified dashboard to monitor physical ATM asset statuses and cross-branch transaction logs.</span><span class="lang-id">Klien bank tidak memiliki dashboard terpadu untuk memantau status aset ATM dan log transaksi antar cabang.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Fetch ATM Logs → Parse EJ Data → Update MySQL → Render Dashboard UI</span><span class="lang-id">Ambil Log ATM → Parsing Data EJ → Update MySQL → Render UI Dashboard</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>PHP</span><span>Laravel</span><span>MySQL</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Maintained, optimized, and implemented custom features based on bank client requests.</span><span class="lang-id">Mengelola, mengoptimasi, dan mengimplementasi fitur kustom berdasarkan permintaan klien bank.</span></div>
+                  </div>
+                </div>
+
+                <div class="proj-item">
+                  <div class="proj-name">Database Optimization & Miniscripts</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Data processing was extremely slow and the operational data input process (via Excel) consumed too much manual time.</span><span class="lang-id">Pemrosesan data sangat lambat dan proses input data operasional (via Excel) menyita terlalu banyak waktu.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Analyze Query Plan → Implement Indexing/Temp Tables → Script Excel-to-SQL Bulk Insert</span><span class="lang-id">Analisa Query Plan → Implementasi Indexing/Temp Tables → Script Insert Masal Excel-ke-SQL</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>MySQL</span><span>Python</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Optimized database schema (indexing) and built Python miniscripts for bulk insert automation.</span><span class="lang-id">Mengoptimasi skema database (indexing) dan membangun script mini Python untuk otomatisasi insert masal.</span></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOB 03 -->
+      <div class="exp-block reveal">
+        <div class="exp-left">JOB / 03</div>
+        <div class="exp-right">
+          <span class="exp-date">Jan 2022 – Feb 2024</span>
+          <div class="exp-company">OCBC NISP</div>
+          <div class="exp-role"><span class="lang-en">Software Engineer</span><span class="lang-id">Rekayasa Perangkat Lunak</span></div>
+          
+          <div class="exp-accordion">
+            <div class="acc-head">
+              <span><span class="lang-en">All Projects</span><span class="lang-id">Semua Proyek</span></span>
+              <span class="acc-icon">+</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-content">
+
+                <div class="proj-item">
+                  <div class="proj-name">ProrRekonATM Web Migration</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">The legacy reconciliation desktop application was rigid, slow, and inaccessible across platforms.</span><span class="lang-id">Aplikasi desktop rekonsiliasi lama sangat kaku, lambat, dan tidak dapat diakses lintas platform.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">React UI Request → Axios Call → Golang REST API → Execute SQL Stored Procedure → Return JSON</span><span class="lang-id">Request React UI → Panggilan Axios → API REST Golang → Eksekusi Stored Procedure SQL → Return JSON</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>React.js</span><span>Golang</span><span>PostgreSQL</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Completely redesigned and re-coded ProrRekonATM from a desktop app into a modern full-stack web platform.</span><span class="lang-id">Mendesain ulang dan melakukan re-code secara menyeluruh pada ProrRekonATM dari aplikasi desktop menjadi platform web full-stack modern.</span></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOB 04 -->
+      <div class="exp-block reveal">
+        <div class="exp-left">JOB / 04</div>
+        <div class="exp-right">
+          <span class="exp-date">Apr 2023 – Dec 2023</span>
+          <div class="exp-company">KNusantara Group</div>
+          <div class="exp-role"><span class="lang-en">Backend Developer & Systems Analyst</span><span class="lang-id">Pengembang Backend & Analis Sistem</span></div>
+          
+          <div class="exp-accordion">
+            <div class="acc-head">
+              <span><span class="lang-en">All Projects</span><span class="lang-id">Semua Proyek</span></span>
+              <span class="acc-icon">+</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-content">
+
+                <div class="proj-item">
+                  <div class="proj-name">Backend API Services</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Needed API centralization to integrate various fragmented internal business applications.</span><span class="lang-id">Membutuhkan sentralisasi API untuk mengintegrasikan berbagai aplikasi bisnis internal yang terpecah-pecah.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Receive Payload → Validate Logic → Execute MySQL Query → Return JSON Format</span><span class="lang-id">Terima Payload → Validasi Logika → Eksekusi Query MySQL → Return Format JSON</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>PHP</span><span>Laravel</span><span>MySQL</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Conducted comprehensive system analysis and built REST API backends to serve business applications.</span><span class="lang-id">Melakukan analisa sistem komprehensif dan membangun backend REST API untuk melayani aplikasi bisnis.</span></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOB 05 -->
+      <div class="exp-block reveal">
+        <div class="exp-left">JOB / 05</div>
+        <div class="exp-right">
+          <span class="exp-date">Jan 2020 – Dec 2022</span>
+          <div class="exp-company">BRI Life</div>
+          <div class="exp-role"><span class="lang-en">Backend Engineer</span><span class="lang-id">Insinyur Backend</span></div>
+          
+          <div class="exp-accordion">
+            <div class="acc-head">
+              <span><span class="lang-en">All Projects</span><span class="lang-id">Semua Proyek</span></span>
+              <span class="acc-icon">+</span>
+            </div>
+            <div class="acc-body">
+              <div class="acc-content">
+
+                <div class="proj-item">
+                  <div class="proj-name">Core Backend System</div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">PROBLEM</span><span class="lang-id">MASALAH</span></div>
+                    <div class="proj-val"><span class="lang-en">Raw insurance data could not be directly consumed by the front-end without complex business logic transformations.</span><span class="lang-id">Data asuransi mentah tidak bisa langsung digunakan front-end tanpa transformasi logika bisnis yang kompleks.</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+                    <div class="proj-val proj-flow"><span class="lang-en">Fetch Raw SQL Data → Data Model Transformation → Expose via Express API → Frontend Display</span><span class="lang-id">Ambil Data Mentah SQL → Transformasi Model Data → Ekspos via API Express → Tampilan Frontend</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">TECH</span><span class="lang-id">TEKNOLOGI</span></div>
+                    <div class="proj-tags"><span>Node.js</span><span>Express.js</span><span>SQL Server</span></div>
+                  </div>
+                  <div class="proj-row">
+                    <div class="proj-label"><span class="lang-en">ROLE</span><span class="lang-id">PERAN</span></div>
+                    <div class="proj-val"><span class="lang-en">Developed backend systems and designed secure, scalable data models.</span><span class="lang-id">Mengembangkan sistem backend dan mendesain model data yang aman dan skalabel.</span></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-eyebrow"><span class="lang-en">// Education</span><span class="lang-id">// Pendidikan</span></div>
+        <div class="sec-title"><span class="lang-en">Academic Background.</span><span class="lang-id">Latar Belakang Akademis.</span></div>
+      </div>
+    </div>
+    <div class="edu-list reveal">
+      <div class="edu-item">
+        <div class="edu-main">
+          <div class="edu-degree"><span class="lang-en">Bachelor in Information Systems</span><span class="lang-id">Sarjana Sistem Informasi</span></div>
+          <div class="edu-school">Mercu Buana University</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-year">2018 – 2022</div>
+          <div class="edu-gpa">GPA: 3.71</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-main">
+          <div class="edu-degree"><span class="lang-en">Major of Office Administration</span><span class="lang-id">Jurusan Administrasi Perkantoran</span></div>
+          <div class="edu-school">SMKN 42 Jakarta</div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-year">2014 – 2017</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="contact-title"><span class="lang-en">Let's<br><span class="accent">talk.</span></span><span class="lang-id">Mari<br><span class="accent">Bicara.</span></span></div>
+        <p class="contact-text"><span class="lang-en">New projects, collaborations, or just discussing backend systems — reach out via the channels below.</span><span class="lang-id">Proyek baru, kolaborasi, atau sekadar berdiskusi tentang sistem backend — hubungi via jalur di bawah ini.</span></p>
+      </div>
+      <div class="contact-links reveal">
+        <a id="waLink" href="https://wa.me/6289665241717?text=Hi%20Ards%2C%20I'm%20interested%20in%20discussing%20a%20project%20or%20recruitment%20opportunity%20with%20you!" target="_blank" class="c-icon" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: currentColor; stroke: none;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://linkedin.com/in/munardi" target="_blank" class="c-icon" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="mailto:dira20590@gmail.com" class="c-icon" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>Email</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-col foot-left">
+      <a href="#top">MUNARDI.</a>
+    </div>
+    <div class="foot-col foot-center">
+      <div class="foot-copy">© 2026 Munardi — Software Engineer</div>
+    </div>
+    <div class="foot-col foot-right">
+      <a href="#top" class="to-top-btn" onclick="window.scrollTo(0,0); return false;" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const iconSun = themeToggle.querySelector('.icon-sun');
+const iconMoon = themeToggle.querySelector('.icon-moon');
+let currentTheme = 'dark';
+themeToggle.addEventListener('click', () => {
+  if (currentTheme === 'dark') {
+    currentTheme = 'light';
+    document.body.setAttribute('data-theme', 'light');
+    iconSun.style.display = 'none';
+    iconMoon.style.display = 'block';
+  } else {
+    currentTheme = 'dark';
+    document.body.removeAttribute('data-theme');
+    iconSun.style.display = 'block';
+    iconMoon.style.display = 'none';
+  }
+});
+
+// Language Toggle
+const langToggle = document.getElementById('langToggle');
+const waLink = document.getElementById('waLink');
+const waMsgEn = "Hi Ards, I'm interested in discussing a project or recruitment opportunity with you!";
+const waMsgId = "Halo Ards, saya tertarik untuk diskusi masalah project atau rekrutmen dengan Anda!";
+
+let currentLang = 'en';
+document.body.setAttribute('data-lang', currentLang);
+langToggle.innerText = 'EN';
+
+langToggle.addEventListener('click', () => {
+  if(currentLang === 'en') {
+    currentLang = 'id';
+    langToggle.innerText = 'ID';
+    if(waLink) waLink.href = `https://wa.me/6289665241717?text=${encodeURIComponent(waMsgId)}`;
+  } else {
+    currentLang = 'en';
+    langToggle.innerText = 'EN';
+    if(waLink) waLink.href = `https://wa.me/6289665241717?text=${encodeURIComponent(waMsgEn)}`;
+  }
+  document.body.setAttribute('data-lang', currentLang);
+  setTimeout(() => ScrollTrigger.refresh(), 100);
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Header scroll state
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Hero load sequence
+const tl = gsap.timeline({ defaults:{ ease:'power3.out' } });
+tl.to('.hero-name', { opacity:1, y:0, duration:1 }, 0.2)
+  .to('.hero-divider', { width:120, duration:0.8 }, 0.5)
+  .to('.hero-role', { opacity:1, y:0, duration:1 }, 0.7)
+  .to('.hero-scroll', { opacity:1, duration:1 }, 1.0);
+
+const shapes = document.querySelectorAll('.float-shape');
+gsap.set(shapes, { opacity:0, scale:0.8 });
+gsap.to(shapes, { 
+  opacity:0.6, scale:1, duration:1, stagger:0.15, delay:1.2, ease:'power2.out',
+  onComplete: () => shapes.forEach(s => s.classList.add('animated'))
+});
+
+document.addEventListener('mousemove', (e) => {
+  const cx = (e.clientX / window.innerWidth - 0.5);
+  const cy = (e.clientY / window.innerHeight - 0.5);
+  shapes.forEach(shape => {
+    const speed = parseFloat(shape.dataset.speed) || 0.3;
+    gsap.to(shape, { x: cx * 100 * speed, y: cy * 100 * speed, duration:1.5, ease:'power2.out' });
+  });
+});
+
+// Generic scroll reveals
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity:1, y:0, duration:1, ease:'power3.out',
+    scrollTrigger:{ trigger:el, start:'top 85%' }
+  });
+});
+
+// Section title parallax drift
+gsap.utils.toArray('.sec-title').forEach(title => {
+  gsap.to(title, {
+    yPercent:-15, ease:'none',
+    scrollTrigger:{ trigger:title, start:'top bottom', end:'bottom top', scrub:true }
+  });
+});
+
+// Nav Links Active State Observer
+const sections = gsap.utils.toArray('.section');
+const navLinks = document.querySelectorAll('.links a');
+
+sections.forEach(sec => {
+  ScrollTrigger.create({
+    trigger: sec,
+    start: 'top 50%',
+    end: 'bottom 50%',
+    onToggle: self => {
+      if(self.isActive) {
+        const id = sec.getAttribute('id');
+        navLinks.forEach(l => {
+          l.classList.remove('active');
+          if(l.getAttribute('href') === '#' + id) l.classList.add('active');
+        });
+      }
+    }
+  });
+});
+
+// Accordion Interactivity
+document.querySelectorAll('.acc-head').forEach(head => {
+  head.addEventListener('click', () => {
+    const parent = head.parentElement;
+    const body = head.nextElementSibling;
+    const isOpen = parent.classList.contains('open');
+    
+    if(isOpen) {
+      parent.classList.remove('open');
+      body.style.height = '0px';
+    } else {
+      parent.classList.add('open');
+      body.style.height = body.scrollHeight + 'px';
+      
+      // Update ScrollTrigger instances in case height changes pushed layout
+      setTimeout(() => ScrollTrigger.refresh(), 450);
+    }
+  });
+});
+</script>
+</body>
+</html>
