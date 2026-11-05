@@ -208,7 +208,10 @@ import{n as e,r as t,t as n}from"./animation-C7vuVwcV.js";import{a as r,c as i,d
               </div>
             `}).join(``):``,r=n?`
       <div class="proj-field">
-        <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+        <div class="proj-label">
+          <span class="lang-en">FLOW</span><span class="lang-id">ALUR</span>
+          <span class="flow-scroll-hint"><span class="lang-en">‹ Swipe ↔ ›</span><span class="lang-id">‹ Geser ↔ ›</span></span>
+        </div>
         <div class="proj-val">
           <div class="flow-diagram">
             ${n}
