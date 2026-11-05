@@ -18,12 +18,12 @@ export const portfolioConfig = {
     "rolePrimary": "Software Engineer",
     "roleBadge": "Core Banking & Pipelines",
     "status": {
-      "en": "CORE BANKING & BACKEND ARCHITECT • AVAILABLE",
-      "id": "ARSITEK CORE BANKING & BACKEND • TERSEDIA"
+      "en": "SOFTWARE ENGINEER • BANKING & PIPELINES • AVAILABLE",
+      "id": "SOFTWARE ENGINEER • SISTEM PERBANKAN & PIPELINE • TERSEDIA"
     },
     "pitch": {
-      "en": "Over <b>7+ years</b> architecting mission-critical financial systems across <b>5 leading institutions</b>. Specializing in Golang, high-throughput data pipelines, Clean Architecture, and zero-downtime database optimization.",
-      "id": "Lebih dari <b>7+ tahun</b> merekayasa sistem finansial berskala kritikal di <b>5 institusi keuangan terkemuka</b>. Spesialisasi dalam Golang, pipeline data throughput tinggi, Clean Architecture, dan optimasi database tanpa downtime."
+      "en": "Over <b>6+ years</b> engineering mission-critical financial systems across <b>5 leading institutions</b>. Specializing in Golang, high-throughput data pipelines, Clean Architecture, and high-performance database optimization.",
+      "id": "Lebih dari <b>6+ tahun</b> merekayasa sistem finansial berskala kritikal di <b>5 institusi keuangan terkemuka</b>. Spesialisasi dalam Golang, pipeline data throughput tinggi, Clean Architecture, dan optimasi database performa tinggi."
     },
     "location": {
       "en": "JAKARTA, ID • REMOTE / HYBRID READY",
@@ -154,10 +154,10 @@ export const portfolioConfig = {
       }
     },
     {
-      "value": "100%",
+      "value": "20+",
       "label": {
-        "en": "Production Reliability",
-        "id": "Keandalan Produksi"
+        "en": "Production Projects Delivered",
+        "id": "Proyek Produksi Terkirim"
       }
     }
   ],
