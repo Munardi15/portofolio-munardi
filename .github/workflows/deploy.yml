@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  test-and-build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
@@ -37,9 +37,25 @@ jobs:
       - name: Build Production Assets
         run: npm run build
 
-      - name: Deploy to GitHub Pages Branch
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to gh-pages Branch (Branch Fallback)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: dist
           clean: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
