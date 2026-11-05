@@ -10,7 +10,43 @@
 
 A high-performance, institutional portfolio engineered with **Clean Architecture, OOP Design Patterns, and MVC Separation of Concerns**. Demonstrating 7+ years of senior-level software engineering across mission-critical core banking systems, high-throughput bulk ETL pipelines, and spatial 3D WebGL visual computing.
 
-Designed from the ground up to be **100% modular and reusable** by other software engineers, quant developers, and tech leads.
+Designed from the ground up to be **100% modular and reusable** by other software engineers, quant developers, and tech leads. Anyone who clones this repo can run it locally in seconds and adapt it to their own career history.
+
+---
+
+## ⚡ Quick Start (Run Locally in 60 Seconds)
+
+### Prerequisites
+* **Node.js**: `v18.0.0` or higher (`v20+` / `v22+` recommended)
+* **npm**: `v9.0.0` or higher (or `pnpm` / `yarn` / `bun`)
+* **Browser**: Modern browser with WebGL hardware acceleration enabled (Chrome, Safari, Firefox, Edge)
+
+### Installation & Execution
+```bash
+# 1. Clone the repository
+git clone https://github.com/Munardi15/portofolio-munardi.git
+cd portofolio-munardi
+
+# 2. Install dependencies (Three.js, GSAP, Lenis, Vite)
+npm install
+
+# 3. Start local development server with Hot Module Replacement (HMR)
+npm run dev
+```
+
+Visit [`http://localhost:5173`](http://localhost:5173) in your browser.
+
+### Other Useful Commands
+```bash
+# Run automated schema and component unit tests
+npm test
+
+# Build production-ready optimized bundle into dist/
+npm run build
+
+# Preview production build locally on http://localhost:4173
+npm run preview
+```
 
 ---
 
@@ -76,11 +112,16 @@ munardi-portfolio/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml            # Automated CI/CD pipeline to GitHub Pages
-├── public/                       # Static public assets (Favicons, Resumes, .nojekyll)
+├── public/                       # Static public assets (All icons, favicons & resumes)
+│   ├── apple-touch-icon.png
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   ├── favicon.svg               # Amber {A} brand icon
 │   ├── MUNARDI-CV_SoftwareEngineer.pdf
 │   ├── MUNARDI-CV_BackendEngineer.pdf
 │   ├── MUNARDI-CV_FullStackDeveloper.pdf
-│   └── favicon.svg
+│   └── .nojekyll
 ├── src/
 │   ├── config/
 │   │   └── portfolio.config.js   # 🎯 SINGLE SOURCE OF TRUTH (All your data lives here)
@@ -116,26 +157,19 @@ munardi-portfolio/
 
 ---
 
-## 🚀 How to Reuse This Portfolio For Yourself
+## 🛠️ How to Customize for Your Own Portfolio
 
-You can easily adapt this portfolio for your own software engineering background without touching Three.js, GSAP, or CSS.
+You can adapt this entire portfolio for your own CV and projects without touching Three.js, GSAP, or CSS.
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/Munardi15/portofolio-munardi.git my-portfolio
-cd my-portfolio
-npm install
-```
-
-### 2. Customize `src/config/portfolio.config.js`
-Open `src/config/portfolio.config.js` and modify your personal profile:
+### 1. Edit `src/config/portfolio.config.js`
+Open `src/config/portfolio.config.js` and modify your data:
 
 ```javascript
 export const portfolioConfig = {
   personal: {
     name: 'Your Name',
     rolePrimary: 'Senior Software Engineer',
-    roleBadge: 'Cloud Architecture & Distributed Systems',
+    roleBadge: 'Distributed Systems & Cloud Architecture',
     pitch: {
       en: 'Architecting scalable cloud systems and resilient data pipelines...',
       id: 'Merekayasa sistem cloud skalabel dan pipeline data andal...'
@@ -150,19 +184,19 @@ export const portfolioConfig = {
       { label: 'Software Engineer (PDF)', file: './YOUR_CV.pdf', primary: true }
     ]
   },
-  // Add your skills, experiences, projects, and education here!
+  // Update your skills categories, work experiences, project drawers, and education!
 };
 ```
 
-### 3. Run and Verify
-```bash
-# Run local dev server with HMR
-npm run dev
+### 2. Put your CV & Favicons in `public/`
+Drop your resume PDF files into `public/` and match the filenames in `portfolio.config.js`.
 
-# Run automated integrity test suite
+### 3. Test and Deploy
+```bash
+# Verify your data schema and components
 npm test
 
-# Build production bundle
+# Build and verify bundle
 npm run build
 ```
 
@@ -179,27 +213,27 @@ npm test
 Sample output:
 ```text
 ▶ MVC Component Renderers Integrity
-  ✔ NavbarComponent renders header and navigation links (0.40ms)
-  ✔ HeroComponent renders canvas, name, and CTA buttons (0.13ms)
-  ✔ MarqueeComponent renders dual velocity tracks (0.10ms)
-  ✔ AboutComponent renders bento grid and stats (0.11ms)
-  ✔ SkillsComponent renders 5 skill cards (0.12ms)
-  ✔ ExperienceComponent renders laser rail and 5 company blocks (0.81ms)
-  ✔ EducationComponent renders degrees and Mercu Buana (0.15ms)
-  ✔ ContactComponent renders contact channels and CV deck (0.15ms)
-  ✔ FooterComponent renders copyright and back to top button (0.69ms)
-✔ MVC Component Renderers Integrity (3.73ms)
+  ✔ NavbarComponent renders header and navigation links (0.43ms)
+  ✔ HeroComponent renders canvas, name, and CTA buttons (0.18ms)
+  ✔ MarqueeComponent renders dual velocity tracks (0.11ms)
+  ✔ AboutComponent renders bento grid and stats (0.12ms)
+  ✔ SkillsComponent renders 5 skill cards (0.13ms)
+  ✔ ExperienceComponent renders laser rail and 5 company blocks (1.00ms)
+  ✔ EducationComponent renders degrees and Mercu Buana (0.22ms)
+  ✔ ContactComponent renders contact channels and CV deck (0.27ms)
+  ✔ FooterComponent renders copyright and back to top button (0.90ms)
+✔ MVC Component Renderers Integrity (4.99ms)
 
 ▶ Portfolio Configuration Schema & Data Integrity
-  ✔ has all required top-level sections (0.61ms)
-  ✔ personal information is complete and valid (0.10ms)
-  ✔ experiences contain all 5 verified companies and 18+ projects (0.09ms)
-  ✔ every project has complete bilingual fields and tags (0.10ms)
-  ✔ skills contain all 5 architectural categories (0.07ms)
-  ✔ education lists degree with GPA 3.71 Cum Laude (0.07ms)
-✔ Portfolio Configuration Schema & Data Integrity (2.41ms)
+  ✔ has all required top-level sections (0.57ms)
+  ✔ personal information is complete and valid (0.13ms)
+  ✔ experiences contain all 5 verified companies and 18+ projects (0.10ms)
+  ✔ every project has complete bilingual fields and tags (0.12ms)
+  ✔ skills contain all 5 architectural categories (0.08ms)
+  ✔ education lists degree with GPA 3.71 Cum Laude (0.08ms)
+✔ Portfolio Configuration Schema & Data Integrity (2.26ms)
 
-ℹ tests 17 | pass 17 | fail 0 | duration_ms 64ms
+ℹ tests 17 | pass 17 | fail 0 | duration_ms 68ms
 ```
 
 ---
@@ -210,6 +244,22 @@ Deployments are automated via `.github/workflows/deploy.yml`. On every push to `
 1. Automated unit test suite runs.
 2. Vite compiles production assets into `dist/`.
 3. Assets are deployed to the `gh-pages` branch, serving the live site at `https://<username>.github.io/<repo>/`.
+
+To enable GitHub Pages in your own forked repository:
+1. Go to your repo on GitHub: **Settings** $\rightarrow$ **Pages**.
+2. Under **Build and deployment** $\rightarrow$ **Source**, choose **Deploy from a branch**.
+3. Select branch: `gh-pages` / folder: `/ (root)`.
+4. Click **Save**.
+
+---
+
+## 🔧 Troubleshooting
+
+| Issue | Resolution |
+| :--- | :--- |
+| **Port 5173 is already in use** | Run `npx vite --port 3000` to start on a different port. |
+| **WebGL not rendering in browser** | Check browser settings and enable **Hardware Acceleration**. |
+| **GitHub Pages 404 on assets** | Check `vite.config.js`: ensure `base: './'` is preserved so asset paths remain relative. |
 
 ---
 
