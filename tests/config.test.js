@@ -34,6 +34,20 @@ test('Portfolio Configuration Schema & Data Integrity', async (t) => {
     const bri = experiences.find((e) => e.company.includes('BRI') || e.id === 'job-01');
     assert.ok(bri, 'Bank Rakyat Indonesia must be present in experiences');
     assert.ok(bri.projects.length >= 13, 'BRI must have at least 13 detailed project cases');
+
+    // Verify company 2 (Hitachi)
+    const hitachi = experiences.find((e) => e.company.includes('Hitachi') || e.id === 'job-02');
+    assert.ok(hitachi, 'Hitachi must be present in experiences');
+    assert.strictEqual(hitachi.projects.length, 3, 'Hitachi must have 3 detailed project cases');
+
+    // Verify company 3 (OCBC)
+    const ocbc = experiences.find((e) => e.company.includes('OCBC') || e.id === 'job-03');
+    assert.ok(ocbc, 'OCBC must be present in experiences');
+    assert.strictEqual(ocbc.projects.length, 2, 'OCBC must have 2 detailed project cases');
+    assert.ok(
+      ocbc.projects.some((p) => p.codeName.includes('AS400')),
+      'OCBC must contain AS400 core banking verification project'
+    );
   });
 
   await t.test('every project has complete bilingual fields and tags', () => {
@@ -55,10 +69,13 @@ test('Portfolio Configuration Schema & Data Integrity', async (t) => {
     });
   });
 
-  await t.test('education lists degree with GPA 3.71 Cum Laude', () => {
+  await t.test('education lists degree with GPA 3.71 Cum Laude and Bootcamp', () => {
     const mercu = portfolioConfig.education.find((e) => e.school.includes('Mercu Buana'));
     assert.ok(mercu, 'Universitas Mercu Buana must be present');
     assert.ok(mercu.details.some((d) => d.includes('3.71')), 'GPA 3.71 must be present');
     assert.ok(mercu.details.some((d) => d.includes('Cum Laude')), 'Cum Laude honor must be present');
+
+    const bootcamp = portfolioConfig.education.find((e) => e.school.includes('Code Academy'));
+    assert.ok(bootcamp, 'Code Academy bootcamp must be present in education');
   });
 });

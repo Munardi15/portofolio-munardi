@@ -551,52 +551,82 @@ export const portfolioConfig = {
         "id": "Jan 2024 – Sep 2025"
       },
       "drawerTitle": {
-        "en": "ATM Fleet Monitoring & High-Speed Ingestion",
-        "id": "Monitoring Aset ATM & Ingestion Cepat"
+        "en": "ATM Fleet Monitoring, Data Ingestion & Server Provisioning",
+        "id": "Monitoring Armada ATM, Ingestion Data & Setup Server"
       },
-      "projectCount": 2,
+      "projectCount": 3,
       "projects": [
         {
-          "codeName": "IMHOTS & EJ Dashboard",
+          "codeName": "IMHOTS & EJ Fleet Monitoring",
           "tags": [
             "PHP",
             "Laravel",
-            "MySQL"
+            "MySQL",
+            "ATM Monitoring"
           ],
           "problem": {
-            "en": "Banking partners lacked unified monitoring of physical ATM terminal states and Electronic Journal (EJ) logs.",
-            "id": "Klien bank tidak memiliki dashboard terpadu untuk memantau status aset ATM dan log transaksi Electronic Journal (EJ)."
+            "en": "Banking partners lacked unified real-time visibility over physical ATM terminal statuses, cash availability, and Electronic Journal (EJ) operational logs across multi-vendor fleets.",
+            "id": "Bank mitra tidak memiliki visibilitas real-time terpadu atas status mesin ATM fisik, ketersediaan kas, dan log operasional Electronic Journal (EJ) pada ribuan armada mesin."
           },
           "flow": [
-            "Fetch ATM Logs",
-            "Parse EJ Data",
-            "Update MySQL",
-            "Render Dashboard UI"
+            "ATM Device Logs",
+            "EJ Stream Parser",
+            "Laravel Backend",
+            "MySQL Storage",
+            "Fleet Dashboard"
           ],
           "role": {
-            "en": "Maintained, optimized, and engineered mission-critical dashboard features tailored for institutional bank clients.",
-            "id": "Mengelola, mengoptimasi, dan mengimplementasi fitur kustom berdasarkan permintaan klien bank."
+            "en": "Engineered core monitoring modules, resolved mission-critical production defects, and developed custom analytical features tailored to institutional banking requirements.",
+            "id": "Mengembangkan modul monitoring inti, menuntaskan perbaikan bug produksi skala kritikal, dan mengimplementasikan fitur kustom sesuai kebutuhan operasional bank mitra."
           }
         },
         {
-          "codeName": "Database Optimization & Miniscripts",
+          "codeName": "Database Indexing & Excel Bulk Ingestion",
           "tags": [
             "MySQL",
+            "SQL Server",
             "Python",
-            "SQL Server"
+            "Bulk Insert"
           ],
           "problem": {
-            "en": "Severe database latency caused by non-indexed queries and tedious manual Excel data ingestion.",
-            "id": "Pemrosesan data sangat lambat dan proses input data operasional (via Excel) menyita terlalu banyak waktu."
+            "en": "Severe query latency impeded large-scale reporting, while manual spreadsheet data input from operational staff caused substantial workflow bottlenecks.",
+            "id": "Latensi query yang tinggi menghambat pelaporan skala besar, serta input manual data operasional dari file Excel memakan banyak waktu dan rentan eror."
           },
           "flow": [
-            "Analyze Query Plans",
-            "Implement Indexing",
-            "Python Excel Bulk Ingestion"
+            "Excel Path Scanner",
+            "Python Miniscript",
+            "SQL Transformation",
+            "Temporary Tables",
+            "Indexed Bulk Insert"
           ],
           "role": {
-            "en": "Optimized query execution plans via strategic indexing and engineered automated Python ingestion pipelines.",
-            "id": "Mengoptimasi skema database (indexing) dan membangun script mini Python untuk otomatisasi insert massal."
+            "en": "Optimized complex reporting queries via strategic indexing and temporary tables, and developed automated Python miniscripts to convert Excel files into SQL format for rapid bulk ingestion.",
+            "id": "Mengoptimasi query laporan menggunakan temporary table dan strategic indexing, serta membangun miniscript Python untuk otomatisasi konversi file Excel ke SQL bulk insert."
+          }
+        },
+        {
+          "codeName": "Client Server Provisioning & Auto-Start Daemons",
+          "tags": [
+            "Apache",
+            "XAMPP",
+            "MySQL",
+            "SQL Server",
+            "DevOps/Infra"
+          ],
+          "problem": {
+            "en": "Client bank environments required bespoke server and database provisioning, while background ingestion services frequently dropped offline after physical host reboots.",
+            "id": "Lingkungan server bank klien memerlukan konfigurasi dependensi mandiri, dan background service ingestion sering mati tanpa pemulihan otomatis pasca server fisik reboot."
+          },
+          "flow": [
+            "Server Setup",
+            "Dependency Config",
+            "Database Setup",
+            "Daemon Service Hook",
+            "Auto-Restart Check"
+          ],
+          "role": {
+            "en": "Configured client server hosts via Apache and XAMPP, provisioned MySQL and SQL Server database environments, and engineered auto-start service configurations ensuring zero-downtime daemon recovery after server reboots.",
+            "id": "Melakukan setup host server klien via Apache dan XAMPP, konfigurasi database MySQL & SQL Server, serta merancang konfigurasi auto-start service agar daemon ingestion otomatis aktif kembali saat reboot."
           }
         }
       ]
@@ -614,10 +644,10 @@ export const portfolioConfig = {
         "id": "Jan 2022 – Feb 2024"
       },
       "drawerTitle": {
-        "en": "ATM Reconciliation Platform Migration",
-        "id": "Migrasi Platform Rekonsiliasi ATM"
+        "en": "ATM Reconciliation Web Migration & Core Banking AS400 Audit",
+        "id": "Migrasi Web Rekonsiliasi ATM & Audit Core Banking AS400"
       },
-      "projectCount": 1,
+      "projectCount": 2,
       "projects": [
         {
           "codeName": "ProrRekonATM Web Migration",
@@ -625,22 +655,49 @@ export const portfolioConfig = {
             "React.js",
             "Golang",
             "PostgreSQL",
+            "Axios",
+            "REST API"
+          ],
+          "problem": {
+            "en": "The legacy desktop ATM billing reconciliation system was sluggish, locked to specific operating systems, and difficult to maintain due to monolithic procedural code.",
+            "id": "Aplikasi desktop lama untuk rekonsiliasi penagihan ATM sangat lambat, terkunci pada OS tertentu, dan sulit dipelihara akibat kode prosedural monolitik."
+          },
+          "flow": [
+            "React Web UI",
+            "Axios Client",
+            "Golang REST API",
+            "Business Layer",
+            "PostgreSQL Transaction",
+            "Client JSON"
+          ],
+          "role": {
+            "en": "Led end-to-end full-stack re-architecture: built modern interactive UI in React.js, engineered high-throughput REST APIs in Golang with PostgreSQL, and cleanly decoupled reconciliation business logic.",
+            "id": "Memimpin perancangan ulang full-stack menyeluruh: membangun UI interaktif modern dengan React.js, merekayasa REST API berkecepatan tinggi dengan Golang dan PostgreSQL, serta memisahkan logika bisnis rekonsiliasi secara bersih."
+          }
+        },
+        {
+          "codeName": "Core Banking AS400 Validation & Physical ATM Testing",
+          "tags": [
+            "AS400",
+            "Stored Procedures",
+            "Core Banking",
+            "Hardware Testing",
             "SQL Server"
           ],
           "problem": {
-            "en": "Legacy desktop application for ATM reconciliation was sluggish, unmaintainable, and restricted to single OS environments.",
-            "id": "Aplikasi desktop rekonsiliasi lama sangat kaku, lambat, dan tidak dapat diakses lintas platform."
+            "en": "Billing discrepancies between the bank and billers demanded rigorous ledger verification against core banking data and real-world cash dispensing validation.",
+            "id": "Ketidaksesuaian data billing antara bank dan mitra biller menuntut verifikasi audit ketat ke buku besar core banking serta validasi fisik pengeluaran kas."
           },
           "flow": [
-            "React UI Request",
-            "Axios",
-            "Golang REST API",
-            "SQL Stored Procedure",
-            "JSON Response"
+            "Billing Data Ingest",
+            "Stored Procedure Run",
+            "AS400 Ledger Cross-Check",
+            "Physical ATM Cash Test",
+            "Reconciliation Match"
           ],
           "role": {
-            "en": "Led complete end-to-end rewrite of ProrRekonATM from a legacy desktop app into a modern full-stack web architecture.",
-            "id": "Mendesain ulang dan melakukan re-code menyeluruh pada ProrRekonATM dari aplikasi desktop menjadi platform web full-stack modern."
+            "en": "Maintained mission-critical reconciliation Stored Procedures, conducted data cross-checks against the AS400 core banking system, and conducted on-device hardware testing on physical ATMs to validate cash and network timeout scenarios.",
+            "id": "Mengelola Stored Procedure rekonsiliasi penagihan, melakukan cross-check data langsung ke core banking AS400, serta melakukan pengujian perangkat keras langsung di mesin ATM fisik untuk validasi skenario transaksi dan kas riil."
           }
         }
       ]
@@ -658,31 +715,34 @@ export const portfolioConfig = {
         "id": "Apr 2023 – Dec 2023"
       },
       "drawerTitle": {
-        "en": "Enterprise API Centralization",
-        "id": "Sentralisasi API Perusahaan"
+        "en": "Enterprise Systems Analysis & Centralized API Services",
+        "id": "Analisis Sistem Enterprise & Layanan API Terpusat"
       },
       "projectCount": 1,
       "projects": [
         {
-          "codeName": "Backend API Services",
+          "codeName": "Enterprise Centralized API Services",
           "tags": [
             "PHP",
             "Laravel",
-            "MySQL"
+            "MySQL",
+            "Systems Analysis",
+            "REST API"
           ],
           "problem": {
-            "en": "Disjointed internal business software required unified, authenticated API endpoints for central operations.",
-            "id": "Membutuhkan sentralisasi API untuk mengintegrasikan berbagai aplikasi bisnis internal yang terpecah-pecah."
+            "en": "Disconnected internal business applications suffered from data silos, requiring comprehensive system analysis and unified, secure API endpoints.",
+            "id": "Berbagai aplikasi internal perusahaan terisolasi dan tidak terhubung, membutuhkan analisis sistem mendalam serta endpoint API yang aman dan terpusat."
           },
           "flow": [
-            "Receive Payload",
-            "Validate Business Logic",
-            "Execute DB Query",
-            "Return JSON"
+            "Requirements Analysis",
+            "Data Flow Contract",
+            "Laravel Service",
+            "MySQL Integration",
+            "Stakeholder Sign-Off"
           ],
           "role": {
-            "en": "Conducted technical systems analysis and implemented high-reliability REST API services.",
-            "id": "Melakukan analisa sistem komprehensif dan membangun backend REST API untuk melayani kebutuhan bisnis."
+            "en": "Executed structured technical systems analysis prior to development, designed relational schemas, and built centralized RESTful APIs with PHP Laravel and MySQL to seamlessly integrate enterprise business workflows.",
+            "id": "Melakukan analisis kebutuhan teknis sebelum pengkodean, mendesain skema relasional, dan membangun layanan REST API terpusat dengan PHP Laravel dan MySQL untuk mengintegrasikan alur bisnis perusahaan."
           }
         }
       ]
@@ -700,31 +760,34 @@ export const portfolioConfig = {
         "id": "Jan 2020 – Dec 2022"
       },
       "drawerTitle": {
-        "en": "Insurance Policy Data Transformation",
-        "id": "Transformasi Data Polis Asuransi"
+        "en": "Insurance Core Backend & Policy Data Transformation",
+        "id": "Backend Inti Asuransi & Transformasi Data Polis"
       },
       "projectCount": 1,
       "projects": [
         {
-          "codeName": "Core Backend System",
+          "codeName": "Core Insurance Policy Backend System",
           "tags": [
             "Node.js",
             "Express.js",
-            "SQL Server"
+            "SQL Server",
+            "Azure Data Studio",
+            "Data Modeling"
           ],
           "problem": {
-            "en": "Raw insurance policy data models could not be consumed directly by client frontend interfaces.",
-            "id": "Data asuransi mentah tidak bisa langsung dikonsumsi front-end tanpa transformasi logika bisnis yang kompleks."
+            "en": "Complex insurance policy relational schemas and strict underwriting regulations could not be directly consumed by client-facing frontend applications without rigorous data formatting.",
+            "id": "Struktur data polis asuransi yang kompleks serta aturan bisnis underwriting yang ketat tidak dapat langsung dikonsumsi frontend tanpa transformasi dan validasi data yang presisi."
           },
           "flow": [
-            "Fetch Raw SQL",
-            "Transform Model",
-            "Expose Express API",
-            "Frontend Display"
+            "Policy Database Schema",
+            "Azure Data Studio Tuning",
+            "Express.js Logic",
+            "Transformation Layer",
+            "Frontend JSON Contract"
           ],
           "role": {
-            "en": "Engineered backend service layer and designed highly secure, scalable relational schema models.",
-            "id": "Mengembangkan sistem backend dan mendesain model data yang aman dan skalabel."
+            "en": "Engineered Node.js and Express backend services, tuned relational data models in SQL Server via Azure Data Studio, and transformed raw insurance datasets into secure, consumable API payloads for frontend interfaces.",
+            "id": "Mengembangkan backend service Node.js dan Express, mengoptimasi model data SQL Server menggunakan Azure Data Studio, serta mentransformasikan data polis mentah menjadi payload API yang aman dan siap pakai untuk tim frontend."
           }
         }
       ]
@@ -740,6 +803,17 @@ export const portfolioConfig = {
       "details": [
         "2018 – 2022",
         "GPA 3.71 • Cum Laude"
+      ]
+    },
+    {
+      "degree": {
+        "en": "Fullstack Software Engineering Bootcamp",
+        "id": "Bootcamp Rekayasa Perangkat Lunak Fullstack"
+      },
+      "school": "Code Academy",
+      "details": [
+        "2019",
+        "Java Spring Boot & React.js"
       ]
     },
     {
@@ -769,6 +843,7 @@ export const portfolioConfig = {
       "TRANSACTION INTEGRITY",
       "HIGH AVAILABILITY",
       "AUTOMATED RECONCILIATION",
+      "AS400 & CORE BANKING",
       "AES/GPG CIPHER ENCRYPTION",
       "MINIO S3 COMPLIANCE",
       "PROVEN PRODUCTION RESILIENCE",

@@ -468,7 +468,8 @@ body[data-theme="light"] .flow-arr {
   color: #B45309;
 }
 
-body[data-theme="light"] .tech-pill {
+body[data-theme="light"] .tech-pill,
+body[data-theme="light"] .tech-pills span {
   background: rgba(180, 83, 9, 0.08);
   border-color: rgba(180, 83, 9, 0.2);
   color: #B45309;
@@ -1782,7 +1783,8 @@ body[data-lang="id"] span.block.lang-id { display: block !important; }
   gap: 6px;
 }
 
-.tech-pill {
+.tech-pill,
+.tech-pills span {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   padding: 3px 8px;
@@ -1790,6 +1792,8 @@ body[data-lang="id"] span.block.lang-id { display: block !important; }
   border: 1px solid rgba(232, 163, 61, 0.25);
   color: var(--amber);
   border-radius: var(--radius-sm);
+  display: inline-block;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -2204,7 +2208,8 @@ footer {
     gap: 4px;
   }
 
-  .tech-pill {
+  .tech-pill,
+  .tech-pills span {
     font-size: 0.68rem;
     padding: 2px 6px;
   }

@@ -14,7 +14,7 @@ export class ExperienceComponent {
    */
   static renderProjectCase(project) {
     const techPillsHtml = project.tags
-      .map((tag) => `<span>${tag}</span>`)
+      .map((tag) => `<span class="tech-pill">${tag}</span>`)
       .join('');
 
     const flowNodesHtml = project.flow && project.flow.length > 0
