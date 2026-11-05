@@ -22,8 +22,8 @@ export const portfolioConfig = {
       "id": "ARSITEK CORE BANKING & BACKEND • TERSEDIA"
     },
     "pitch": {
-      "en": "Over <b>7+ years</b> architecting mission-critical financial systems across <b>5 leading institutions</b>. Specializing in Golang, high-throughput bulk ingestion, Clean Architecture, and zero-downtime database optimization.",
-      "id": "Lebih dari <b>7+ tahun</b> merekayasa sistem finansial berskala kritikal di <b>5 institusi keuangan terkemuka</b>. Spesialisasi dalam Golang, bulk ingestion throughput tinggi, Clean Architecture, dan optimasi database tanpa downtime."
+      "en": "Over <b>7+ years</b> architecting mission-critical financial systems across <b>5 leading institutions</b>. Specializing in Golang, high-throughput data pipelines, Clean Architecture, and zero-downtime database optimization.",
+      "id": "Lebih dari <b>7+ tahun</b> merekayasa sistem finansial berskala kritikal di <b>5 institusi keuangan terkemuka</b>. Spesialisasi dalam Golang, pipeline data throughput tinggi, Clean Architecture, dan optimasi database tanpa downtime."
     },
     "location": {
       "en": "JAKARTA, ID • REMOTE / HYBRID READY",
@@ -117,15 +117,15 @@ export const portfolioConfig = {
       "id": "Filosofi Rekayasa."
     },
     "description": {
-      "en": "Solving core infrastructural problems with precision, architectural adaptability, and extreme accountability.",
-      "id": "Memecahkan masalah infrastruktur inti dengan presisi, adaptabilitas arsitektural, dan akuntabilitas tinggi."
+      "en": "Solving core infrastructural problems with precision, rapid technical adaptability, and uncompromising accountability.",
+      "id": "Memecahkan masalah infrastruktur inti dengan presisi teknis, adaptasi kilat, dan akuntabilitas penuh."
     },
     "narrative": {
-      "en": "As a <b>Software Engineer</b>, I don't just write code — <span class=\"highlight\">I adapt.</span> Across 5 major financial companies, I've successfully engineered mission-critical systems, jumping seamlessly between <b>Golang, Python, PHP, Node.js, and Java</b>.<br><br>My strongest asset isn't mastering a single framework — it's my ability to learn any tech stack rapidly and deliver production-ready solutions regardless of the environment. From modernizing legacy SSIS workflows into Go-based cloud architectures to optimizing deep SQL bottlenecks, my focus is solving the core problem, not just writing syntax.",
-      "id": "Sebagai seorang <b>Software Engineer</b>, saya tidak sekadar menulis kode — <span class=\"highlight\">saya beradaptasi.</span> Di 5 perusahaan finansial besar, saya sukses merekayasa sistem kritikal dengan melompat mulus antara <b>Golang, Python, PHP, Node.js, dan Java</b>.<br><br>Aset terkuat saya bukan hanya pada satu framework—melainkan kemampuan beradaptasi dan mempelajari tech stack apa pun dengan cepat untuk mengirimkan solusi siap-produksi di lingkungan mana pun. Mulai dari modernisasi sistem SSIS usang ke arsitektur cloud Golang hingga optimasi bottleneck SQL, fokus saya adalah memecahkan masalah inti, bukan sekadar menulis sintaks."
+      "en": "As a <b>Software Engineer</b>, my defining edge goes beyond writing code — <span class=\"highlight\">I adapt rapidly.</span> Proven across 5 premier financial institutions, I excel at stepping into complex, high-stakes environments and executing mission-critical systems across <b>Golang, Python, PHP, Node.js, and Java</b>.<br><br>My greatest asset isn't loyalty to a single stack — it's the speed and precision with which I master new architectures and ship production-grade solutions in any ecosystem. From modernizing rigid legacy SSIS pipelines into high-throughput Go microservices to untangling deep database bottlenecks, my focus is always engineering robust answers to fundamental problems, not just pushing syntax.",
+      "id": "Sebagai seorang <b>Software Engineer</b>, kekuatan utama saya bukan hanya menulis kode — <span class=\"highlight\">saya cepat beradaptasi.</span> Teruji di 5 institusi finansial terkemuka, saya terbiasa masuk ke ekosistem kompleks dan langsung mengeksekusi sistem kritikal melintasi berbagai teknologi: <b>Golang, Python, PHP, Node.js, hingga Java</b>.<br><br>Keunggulan terbesar saya bukan keterikatan pada satu framework, melainkan kecepatan dan ketepatan dalam menguasai arsitektur baru serta menghadirkan solusi siap-produksi di lingkungan mana pun. Mulai dari merombak pipeline data warisan (legacy SSIS) menjadi arsitektur cloud Go berkecepatan tinggi hingga mengurai bottleneck database level dalam, fokus saya adalah menyelesaikan akar permasalahan sistem secara tuntas, bukan sekadar mengetik baris sintaks."
     },
     "badges": [
-      "⚡ Core Banking Agility",
+      "⚡ Rapid Technical Adaptability",
       "🛡️ High Transaction Volume",
       "⚙️ Clean Architecture",
       "📦 Cloud & Containers"

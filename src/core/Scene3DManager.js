@@ -103,7 +103,9 @@ export class Scene3DManager {
 
     const isDesktop = window.innerWidth >= 1024;
     this.scrollPivot.position.x = isDesktop ? 2.8 : 0;
-    this.scrollPivot.position.y = 0;
+    this.scrollPivot.position.y = isDesktop ? 0 : -0.7;
+    const scale = isDesktop ? 1 : 0.85;
+    this.scrollPivot.scale.set(scale, scale, scale);
 
     this.mousePivot = new THREE.Group();
     this.scrollPivot.add(this.mousePivot);
@@ -314,6 +316,9 @@ export class Scene3DManager {
 
     const desktop = window.innerWidth >= 1024;
     this.scrollPivot.position.x = desktop ? 2.8 : 0;
+    this.scrollPivot.position.y = desktop ? 0 : -0.7;
+    const scale = desktop ? 1 : 0.85;
+    this.scrollPivot.scale.set(scale, scale, scale);
   }
 
   _setupScrollScrub() {
@@ -365,10 +370,11 @@ export class Scene3DManager {
       this.scrollPivot.rotation.y += (this.targetScrollRotY - this.scrollPivot.rotation.y) * 0.08;
     }
 
-    // 4. Smooth canvas opacity fade out
+    // 4. Smooth canvas opacity fade out (subtler on mobile to maximize text contrast)
     if (this.renderer && this.renderer.domElement) {
       this.currentOpacity += (this.targetOpacity - this.currentOpacity) * 0.1;
-      this.renderer.domElement.style.opacity = this.currentOpacity.toFixed(3);
+      const mobileFactor = window.innerWidth < 768 ? 0.35 : 1.0;
+      this.renderer.domElement.style.opacity = (this.currentOpacity * mobileFactor).toFixed(3);
       this.renderer.render(this.scene, this.camera);
     }
   }

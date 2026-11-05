@@ -21,7 +21,12 @@ export class ExperienceComponent {
       ? project.flow
           .map((step, idx) => {
             const isLast = idx === project.flow.length - 1;
-            return `<span class="flow-node">${step}</span>${isLast ? '' : '<span class="flow-arr">&rarr;</span>'}`;
+            return `
+              <div class="flow-step">
+                <span class="flow-node"><span class="flow-step-num">${idx + 1}</span>${step}</span>
+                ${isLast ? '' : '<span class="flow-arr" aria-hidden="true">&rarr;</span>'}
+              </div>
+            `;
           })
           .join('')
       : '';

@@ -446,6 +446,11 @@ body[data-theme="light"] .flow-node {
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
+body[data-theme="light"] .flow-step-num {
+  color: #0284C7;
+  background: rgba(2, 132, 199, 0.1);
+}
+
 body[data-theme="light"] .flow-arr {
   color: #B45309;
 }
@@ -1672,19 +1677,31 @@ body[data-lang="id"] span.block.lang-id { display: block !important; }
 /* Architecture Flow Nodes Visualizer */
 .flow-diagram {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 10px 14px;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .flow-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 0.74rem;
-  padding: 4px 10px;
+  padding: 5px 10px;
   background: rgba(63, 198, 214, 0.1);
   border: 1px solid rgba(63, 198, 214, 0.25);
   color: var(--cyan);
@@ -1692,10 +1709,21 @@ body[data-lang="id"] span.block.lang-id { display: block !important; }
   white-space: nowrap;
 }
 
+.flow-step-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--cyan);
+  opacity: 0.7;
+  background: rgba(63, 198, 214, 0.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
 .flow-arr {
   color: var(--amber);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  flex-shrink: 0;
 }
 
 .tech-pills {
@@ -1998,6 +2026,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .wrap {
+    padding: 0 16px;
+  }
+
   .nav-links {
     display: none;
   }
@@ -2005,33 +2037,197 @@ footer {
   .mobile-menu-btn {
     display: block;
   }
-  
+
+  /* Hero on Mobile */
+  .hero {
+    padding-top: 84px;
+    padding-bottom: 40px;
+    min-height: auto;
+  }
+
+  .hero-name {
+    font-size: clamp(2.6rem, 10vw, 3.8rem);
+  }
+
+  .hero-pitch {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-dive-container {
+    margin-top: 24px;
+  }
+
+  .hero-dive-pill {
+    font-size: 0.74rem;
+    padding: 8px 16px;
+  }
+
+  /* Bento About on Mobile */
+  .about-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .bento-card {
+    padding: 20px 16px;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* Work Experience on Mobile — Reclaiming 96px of horizontal space */
   .timeline-wrapper {
-    padding-left: 36px;
+    padding-left: 28px;
+    gap: 36px;
   }
   
   .timeline-rail {
-    left: 10px;
+    left: 8px;
   }
   
   .exp-node {
-    left: -36px;
-    width: 32px;
-    height: 32px;
-    font-size: 0.65rem;
+    left: -28px;
+    width: 28px;
+    height: 28px;
+    font-size: 0.62rem;
   }
   
   .exp-card {
-    padding: 22px;
+    padding: 18px 14px;
+    border-radius: var(--radius-md);
   }
-  
-  .contact-grid {
-    grid-template-columns: 1fr;
+
+  .exp-company-title {
+    font-size: 1.22rem;
   }
-  
+
+  .exp-role-title {
+    font-size: 0.86rem;
+  }
+
+  .exp-card-header {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .acc-btn {
+    padding: 12px 14px;
+    font-size: 0.78rem;
+  }
+
+  .acc-drawer-inner {
+    padding: 14px 8px;
+    gap: 16px;
+  }
+
+  .proj-case {
+    padding: 16px 12px;
+    border-radius: var(--radius-sm);
+    gap: 12px;
+  }
+
+  .proj-case-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .proj-code-name {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .tech-pills {
+    gap: 4px;
+  }
+
+  .tech-pill {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
+
   .proj-field {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .proj-label {
+    font-size: 0.68rem;
+  }
+
+  .proj-val {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  /* Architectural Pipeline Flow Track on Mobile */
+  .flow-diagram {
+    padding: 8px 10px;
+    gap: 6px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .flow-step {
+    gap: 6px;
+  }
+
+  .flow-node {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .flow-step-num {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+
+  .flow-arr {
+    font-size: 0.78rem;
+  }
+
+  /* Contact Deck on Mobile */
+  .contact-deck {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+    gap: 24px;
+  }
+
+  .contact-title {
+    font-size: 2.2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .contact-channel-btn {
+    padding: 14px;
+  }
+
+  .cv-download-card {
+    padding: 16px;
+  }
+
+  .cv-download-card .btn {
+    width: 100%;
   }
 }
 
