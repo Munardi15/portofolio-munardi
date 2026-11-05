@@ -73,5 +73,9 @@ export class ThemeService {
         iconMoon.style.display = 'none';
       }
     }
+
+    if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+    }
   }
 }

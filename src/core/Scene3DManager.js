@@ -45,6 +45,7 @@ export class Scene3DManager {
     // Bound listeners for clean destruction
     this._onMouseMove = this._handleMouseMove.bind(this);
     this._onResize = this._handleResize.bind(this);
+    this._onThemeChange = this._handleThemeChange.bind(this);
     this._animate = this._animateLoop.bind(this);
   }
 
@@ -59,6 +60,12 @@ export class Scene3DManager {
     this._setupMeshes();
     this._setupInteractions();
     this._setupScrollScrub();
+
+    // Check initial theme state
+    const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+    if (currentTheme === 'light') {
+      this.updateTheme('light');
+    }
 
     // Start 60fps render loop
     this.animate();
@@ -106,20 +113,20 @@ export class Scene3DManager {
   }
 
   _setupLighting() {
-    const ambientLight = new THREE.AmbientLight(0x101625, 2.5);
-    this.scene.add(ambientLight);
+    this.ambientLight = new THREE.AmbientLight(0x101625, 2.5);
+    this.scene.add(this.ambientLight);
 
-    const cyanLight = new THREE.DirectionalLight(0x00F2FE, 4.5);
-    cyanLight.position.set(6, 6, 6);
-    this.scene.add(cyanLight);
+    this.cyanLight = new THREE.DirectionalLight(0x00F2FE, 4.5);
+    this.cyanLight.position.set(6, 6, 6);
+    this.scene.add(this.cyanLight);
 
-    const amberLight = new THREE.DirectionalLight(0xE8A33D, 3.2);
-    amberLight.position.set(-6, -5, -4);
-    this.scene.add(amberLight);
+    this.amberLight = new THREE.DirectionalLight(0xE8A33D, 3.2);
+    this.amberLight.position.set(-6, -5, -4);
+    this.scene.add(this.amberLight);
 
-    const coreLight = new THREE.PointLight(0x3FC6D6, 2.5, 8);
-    coreLight.position.set(0, 0, 0);
-    this.coreGroup.add(coreLight);
+    this.coreLight = new THREE.PointLight(0x3FC6D6, 2.5, 8);
+    this.coreLight.position.set(0, 0, 0);
+    this.coreGroup.add(this.coreLight);
   }
 
   _setupMeshes() {
@@ -195,6 +202,98 @@ export class Scene3DManager {
   _setupInteractions() {
     window.addEventListener('mousemove', this._onMouseMove, { passive: true });
     window.addEventListener('resize', this._onResize, { passive: true });
+    window.addEventListener('themechange', this._onThemeChange);
+  }
+
+  _handleThemeChange(e) {
+    if (e && e.detail && e.detail.theme) {
+      this.updateTheme(e.detail.theme);
+    }
+  }
+
+  updateTheme(theme) {
+    if (!this.coreMesh) return;
+    const isLight = theme === 'light';
+
+    if (isLight) {
+      if (this.ambientLight) {
+        this.ambientLight.color.setHex(0xFFFFFF);
+        this.ambientLight.intensity = 3.6;
+      }
+      if (this.cyanLight) {
+        this.cyanLight.color.setHex(0x0284C7);
+        this.cyanLight.intensity = 4.2;
+      }
+      if (this.amberLight) {
+        this.amberLight.color.setHex(0xD97706);
+        this.amberLight.intensity = 3.2;
+      }
+      if (this.coreLight) {
+        this.coreLight.color.setHex(0x0284C7);
+        this.coreLight.intensity = 3.0;
+      }
+      if (this.coreMesh && this.coreMesh.material) {
+        // High-end lustrous Titanium / Pearl crystalline facet
+        this.coreMesh.material.color.setHex(0xE2E8F0);
+        this.coreMesh.material.roughness = 0.25;
+        this.coreMesh.material.metalness = 0.65;
+      }
+      if (this.wireMesh && this.wireMesh.material) {
+        this.wireMesh.material.color.setHex(0x0284C7);
+        this.wireMesh.material.opacity = 0.45;
+      }
+      if (this.ring1 && this.ring1.material) {
+        this.ring1.material.color.setHex(0x0284C7);
+        this.ring1.material.opacity = 0.6;
+      }
+      if (this.ring2 && this.ring2.material) {
+        this.ring2.material.color.setHex(0xD97706);
+        this.ring2.material.opacity = 0.55;
+      }
+      if (this.particles && this.particles.material) {
+        this.particles.material.color.setHex(0x64748B);
+        this.particles.material.opacity = 0.5;
+      }
+    } else {
+      if (this.ambientLight) {
+        this.ambientLight.color.setHex(0x101625);
+        this.ambientLight.intensity = 2.5;
+      }
+      if (this.cyanLight) {
+        this.cyanLight.color.setHex(0x00F2FE);
+        this.cyanLight.intensity = 4.5;
+      }
+      if (this.amberLight) {
+        this.amberLight.color.setHex(0xE8A33D);
+        this.amberLight.intensity = 3.2;
+      }
+      if (this.coreLight) {
+        this.coreLight.color.setHex(0x3FC6D6);
+        this.coreLight.intensity = 2.5;
+      }
+      if (this.coreMesh && this.coreMesh.material) {
+        // Faceted Obsidian Polyhedral Core
+        this.coreMesh.material.color.setHex(0x090F1B);
+        this.coreMesh.material.roughness = 0.18;
+        this.coreMesh.material.metalness = 0.88;
+      }
+      if (this.wireMesh && this.wireMesh.material) {
+        this.wireMesh.material.color.setHex(0x3FC6D6);
+        this.wireMesh.material.opacity = 0.35;
+      }
+      if (this.ring1 && this.ring1.material) {
+        this.ring1.material.color.setHex(0x3FC6D6);
+        this.ring1.material.opacity = 0.55;
+      }
+      if (this.ring2 && this.ring2.material) {
+        this.ring2.material.color.setHex(0xE8A33D);
+        this.ring2.material.opacity = 0.45;
+      }
+      if (this.particles && this.particles.material) {
+        this.particles.material.color.setHex(0x7C8798);
+        this.particles.material.opacity = 0.65;
+      }
+    }
   }
 
   _handleMouseMove(e) {
@@ -288,6 +387,7 @@ export class Scene3DManager {
     }
     window.removeEventListener('mousemove', this._onMouseMove);
     window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('themechange', this._onThemeChange);
 
     if (this.scrollTriggerInstance) {
       this.scrollTriggerInstance.kill();
