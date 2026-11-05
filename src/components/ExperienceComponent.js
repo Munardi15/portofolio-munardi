@@ -34,7 +34,10 @@ export class ExperienceComponent {
     const flowSectionHtml = flowNodesHtml
       ? `
       <div class="proj-field">
-        <div class="proj-label"><span class="lang-en">FLOW</span><span class="lang-id">ALUR</span></div>
+        <div class="proj-label">
+          <span class="lang-en">FLOW</span><span class="lang-id">ALUR</span>
+          <span class="flow-scroll-hint"><span class="lang-en">‹ Swipe ↔ ›</span><span class="lang-id">‹ Geser ↔ ›</span></span>
+        </div>
         <div class="proj-val">
           <div class="flow-diagram">
             ${flowNodesHtml}
