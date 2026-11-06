@@ -34,28 +34,28 @@ export class CameraRig {
     this.orbitAngles = { theta: 0.3, phi: Math.PI / 2.6, radius: 9.5 };
 
     // 7 Keyframes along the 3D Studio Scrollytelling Trajectory
-    // Mapped cleanly to scroll progress:
-    // 0.0 (Hero) -> 0.20 (About) -> 0.40 (Skill) -> 0.60 (Exp Top) -> 0.72 (Exp Bottom) -> 0.82 (Education) -> 1.0 (Contact)
+    // Mapped cleanly to scroll progress with guaranteed dwell plateaus:
+    // 0.0 (Hero) -> 0.20 (About) -> 0.40 (Skill) -> 0.60 (Exp Top) -> 0.72 (Exp Bottom) -> 0.84 (Education) -> 1.0 (Contact)
     this.storyKeyframes = [
       // 0: Hero — Terminal Cockpit directly facing the ultrawide screen
       {
         t: 0.0,
-        pos: new THREE.Vector3(1.2, 2.25, 1.2),
+        pos: new THREE.Vector3(1.2, 2.25, 1.15),
         lookAt: new THREE.Vector3(1.2, 2.15, -0.6),
         fov: 38
       },
       // 1: About — Diagonal zoom-out revealing the engineer's desk, chair, lamp, and workspace
       {
         t: 0.20,
-        pos: new THREE.Vector3(2.4, 3.2, 3.8),
-        lookAt: new THREE.Vector3(1.0, 1.6, -0.6),
+        pos: new THREE.Vector3(3.4, 3.8, 5.2),
+        lookAt: new THREE.Vector3(0.4, 1.6, -0.6),
         fov: 46
       },
-      // 2: Skill — Close dive to the Dual-Screen Terminal Toolkit (ultrawide + AS400 green screen)
+      // 2: Skill — Close dive to the Dual-Screen Terminal Toolkit (ultrawide + AS400 green screen on right)
       {
         t: 0.40,
-        pos: new THREE.Vector3(-0.2, 2.25, 0.95),
-        lookAt: new THREE.Vector3(0.8, 2.15, -0.75),
+        pos: new THREE.Vector3(0.1, 2.25, 1.15),
+        lookAt: new THREE.Vector3(1.5, 2.15, -0.75),
         fov: 38
       },
       // 3: Experience Top — Sweeps to the right side, framing top blades of 42U Server Rack (BRI BRIVA)
@@ -74,10 +74,10 @@ export class CameraRig {
       },
       // 5: Education — Pulls back across the room, rotates 180° to back wall, zooms into framed Cum Laude Diploma!
       {
-        t: 0.82,
-        pos: new THREE.Vector3(-0.8, 4.15, -1.3),
-        lookAt: new THREE.Vector3(0.8, 4.15, -4.9),
-        fov: 37
+        t: 0.84,
+        pos: new THREE.Vector3(1.6, 4.2, -2.2),
+        lookAt: new THREE.Vector3(-0.2, 4.2, -4.9),
+        fov: 36
       },
       // 6: Contact — Elevated grand panoramic pullback of the complete illuminated studio
       {

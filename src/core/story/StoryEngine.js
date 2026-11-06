@@ -55,21 +55,27 @@ export class StoryEngine {
     const sectionIds = ['hero', 'about', 'skill', 'experience', 'education', 'contact'];
     const scrollY = window.scrollY || window.pageYOffset || 0;
 
-    this.sectionAnchors = sectionIds.map((id, idx) => {
-      if (idx === 0) return 0;
-      if (idx === sectionIds.length - 1) return maxScroll;
+    this.sectionsData = sectionIds.map((id, idx) => {
       const el = document.getElementById(id);
-      if (!el) return (maxScroll * idx) / (sectionIds.length - 1);
-      
+      if (!el) {
+        return {
+          id,
+          top: (maxScroll * idx) / (sectionIds.length - 1),
+          height: maxScroll / (sectionIds.length - 1)
+        };
+      }
       const rect = el.getBoundingClientRect();
-      const absoluteTop = scrollY + rect.top;
-      // Focal anchor: when section is comfortably positioned in viewport
-      return Math.min(Math.max(absoluteTop - 60, 0), maxScroll);
+      const top = scrollY + rect.top;
+      const height = el.offsetHeight || rect.height;
+      return { id, top, height };
     });
+
+    // Backward-compatible sectionAnchors array
+    this.sectionAnchors = this.sectionsData.map((s) => s.top);
   }
 
   calculateProgressFromScroll(scrollY) {
-    if (!this.sectionAnchors || this.sectionAnchors.length < 2) {
+    if (!this.sectionsData || this.sectionsData.length < 6) {
       this.updateSectionAnchors();
     }
 
@@ -82,19 +88,82 @@ export class StoryEngine {
     if (clamped <= 0) return 0.0;
     if (clamped >= maxScroll) return 1.0;
 
-    const anchors = this.sectionAnchors;
-    const n = anchors.length; // 6
+    const s = this.sectionsData;
+    if (!s || s.length < 6) return clamped / maxScroll;
 
-    for (let i = 0; i < n - 1; i++) {
-      const a = anchors[i];
-      const b = anchors[i + 1];
-      if (clamped >= a && clamped <= b) {
-        const seg = b > a ? (clamped - a) / (b - a) : 0;
-        return (i + seg) / (n - 1);
-      }
+    const hero = s[0];
+    const about = s[1];
+    const skill = s[2];
+    const exp = s[3];
+    const edu = s[4];
+    const contact = s[5];
+
+    // Helper: Hermite smoothstep for organic flight transitions between stations
+    const smoothstep = (edge0, edge1, x) => {
+      if (edge1 <= edge0) return 0;
+      const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+      return t * t * (3 - 2 * t);
+    };
+
+    // 1. HERO STATION (0.0): Terminal Cockpit directly facing the code monitor
+    // Locked at 0.0 while in Hero, then flies smoothly to About over final 380px before About
+    const heroTransStart = Math.max(about.top - 380, 200);
+    if (clamped < heroTransStart) {
+      return 0.0;
+    }
+    if (clamped < about.top) {
+      const frac = smoothstep(heroTransStart, about.top, clamped);
+      return 0.0 + frac * 0.20;
     }
 
-    return clamped >= anchors[n - 1] ? 1.0 : 0.0;
+    // 2. ABOUT STATION (0.20): Workspace Overview (Desk, Chair, Lamp, Laptop)
+    // Locked at 0.20 while in About, then flies smoothly to Skill over final 380px before Skill
+    const aboutTransStart = Math.max(skill.top - 380, about.top + 150);
+    if (clamped < aboutTransStart) {
+      return 0.20;
+    }
+    if (clamped < skill.top) {
+      const frac = smoothstep(aboutTransStart, skill.top, clamped);
+      return 0.20 + frac * 0.20;
+    }
+
+    // 3. SKILL STATION (0.40): Dual-Screen Terminal Toolkit
+    // Locked at 0.40 while in Skill, then flies smoothly to Experience over final 380px before Experience
+    const skillTransStart = Math.max(exp.top - 380, skill.top + 150);
+    if (clamped < skillTransStart) {
+      return 0.40;
+    }
+    if (clamped < exp.top) {
+      const frac = smoothstep(skillTransStart, exp.top, clamped);
+      return 0.40 + frac * 0.20;
+    }
+
+    // 4. EXPERIENCE STATION (0.60 -> 0.72): 42U Server Rack (BRI -> Hitachi -> OCBC -> KNusantara)
+    // Tracks vertically down the server blades from Top Blade (0.60) to Bottom Blade (0.72)
+    // Final 450px smoothly executes backward flight, 180° rotation to back wall, zooming into Diploma
+    const expTransStart = Math.max(edu.top - 450, exp.top + 300);
+    if (clamped < expTransStart) {
+      const frac = (clamped - exp.top) / (expTransStart - exp.top);
+      return 0.60 + frac * (0.72 - 0.60);
+    }
+    if (clamped < edu.top) {
+      const frac = smoothstep(expTransStart, edu.top, clamped);
+      return 0.72 + frac * (0.84 - 0.72);
+    }
+
+    // 5. EDUCATION STATION (0.84): FRAMED CUM LAUDE DIPLOMA (Mercu Buana, GPA 3.71, Gold Seal)!
+    // Locked rock-solid at 0.84 while the user reads Education credentials!
+    const eduTransStart = Math.max(contact.top - 350, edu.top + 200);
+    if (clamped < eduTransStart) {
+      return 0.84;
+    }
+    if (clamped < contact.top) {
+      const frac = smoothstep(eduTransStart, contact.top, clamped);
+      return 0.84 + frac * (1.00 - 0.84);
+    }
+
+    // 6. CONTACT STATION (1.00): Grand Panoramic Studio Pullback
+    return 1.0;
   }
 
   onScrollDirect(scrollY, maxScroll) {
