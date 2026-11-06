@@ -45,7 +45,7 @@ import{t as e}from"./animation-C9A3lpHu.js";import{C as t,E as n,S as r,T as i,_
           <span class="dot-tooltip">Sector 06: Contact</span>
         </button>
       </nav>
-    `}},V=class{static render(e){let{personal:t}=e;return`
+    `}},V=class{static render(e){let{personal:t}=e,n=(t.cvDownloads||[]).find(e=>e.primary)||{file:`./MUNARDI-CV_SoftwareEngineer.pdf`};return`
       <header class="navbar-header" id="navbarHeader">
         <div class="navbar-container">
           <!-- Left: Identity & Beacon -->
@@ -111,8 +111,8 @@ import{t as e}from"./animation-C9A3lpHu.js";import{C as t,E as n,S as r,T as i,_
               <span class="lang-label" id="currentLangLabel">ID</span>
             </button>
 
-            <!-- Download CV CTA -->
-            <a href="${((t.cvDownloads||[]).find(e=>e.primary)||{file:`./MUNARDI-CV_SoftwareEngineer.pdf`}).file}" download="MUNARDI-CV_SoftwareEngineer.pdf" class="nav-btn-primary" id="navDownloadCvBtn">
+            <!-- Download CV CTA (Desktop) -->
+            <a href="${n.file}" download="MUNARDI-CV_SoftwareEngineer.pdf" class="nav-btn-primary nav-cv-desktop" id="navDownloadCvBtn">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
@@ -133,13 +133,23 @@ import{t as e}from"./animation-C9A3lpHu.js";import{C as t,E as n,S as r,T as i,_
         <!-- Mobile Drawer Menu -->
         <div class="mobile-drawer" id="mobileDrawer">
           <nav class="mobile-drawer-links">
-            <a href="#hero" class="mobile-link"><span class="lang-en">Hero</span><span class="lang-id">Awal</span></a>
+            <a href="#hero" class="mobile-link"><span class="lang-en">Home</span><span class="lang-id">Beranda</span></a>
             <a href="#about" class="mobile-link"><span class="lang-en">About</span><span class="lang-id">Tentang</span></a>
             <a href="#skill" class="mobile-link"><span class="lang-en">Skills</span><span class="lang-id">Keahlian</span></a>
             <a href="#experience" class="mobile-link"><span class="lang-en">Experience</span><span class="lang-id">Pengalaman</span></a>
             <a href="#education" class="mobile-link"><span class="lang-en">Education</span><span class="lang-id">Pendidikan</span></a>
             <a href="#contact" class="mobile-link"><span class="lang-en">Contact</span><span class="lang-id">Kontak</span></a>
           </nav>
+          <div class="mobile-drawer-footer">
+            <a href="${n.file}" download="MUNARDI-CV_SoftwareEngineer.pdf" class="mobile-drawer-cv-btn" id="mobileDrawerCvBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download CV (PDF)</span>
+            </a>
+          </div>
         </div>
       </header>
     `}},H=class{static render(e){return`
@@ -370,14 +380,27 @@ import{t as e}from"./animation-C9A3lpHu.js";import{C as t,E as n,S as r,T as i,_
             <!-- Expandable Drawer Toggle -->
             <div class="drawer-container">
               <button class="drawer-toggle-btn" aria-expanded="false" aria-controls="drawer-${e.id}">
-                <div class="drawer-btn-title">
-                  <span>
+                <div class="drawer-toggle-main">
+                  <div class="drawer-meta-row">
+                    <span class="project-count-badge">
+                      <span class="badge-dot"></span>
+                      <span>${e.projectCount} ${e.projectCount===1?`Project`:`Projects`}</span>
+                    </span>
+                    <span class="drawer-action-hint">
+                      <span class="action-hint-open lang-en">View Case Studies</span>
+                      <span class="action-hint-open lang-id">Lihat Studi Kasus</span>
+                      <span class="action-hint-close lang-en">Hide Case Studies</span>
+                      <span class="action-hint-close lang-id">Tutup Studi Kasus</span>
+                    </span>
+                  </div>
+                  <div class="drawer-btn-title">
                     <span class="lang-en">${e.drawerTitle.en}</span>
                     <span class="lang-id">${e.drawerTitle.id}</span>
-                  </span>
-                  <span class="project-count-badge">${e.projectCount} ${e.projectCount===1?`Project`:`Projects`}</span>
+                  </div>
                 </div>
-                <svg class="drawer-chevron" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                <div class="drawer-chevron-box">
+                  <svg class="drawer-chevron" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
               </button>
 
               <div class="drawer-body" id="drawer-${e.id}">
@@ -567,4 +590,4 @@ import{t as e}from"./animation-C9A3lpHu.js";import{C as t,E as n,S as r,T as i,_
           </a>
         </div>
       </footer>
-    `)}initServices(){this.audioSynth=new O,this.localization=new W,this.localization.init(),this.drawerManager=new U(this.audioSynth),this.drawerManager.init(),this.modalService=new G(this.config,this.audioSynth)}init3DScene(){let e=document.getElementById(`webglUniverseStage`);if(e)try{this.scene=new L(e,this.audioSynth),this.scene.start(),this.scene.raycaster&&this.scene.raycaster.onClick(e=>{this.modalService.openWithObject(e)})}catch(e){console.warn(`3D WebGL scene initialization fallback:`,e),document.body.classList.add(`webgl-fallback`)}}initScrollEngine(){try{this.lenis=new e({duration:1.2,easing:e=>Math.min(1,1.001-2**(-10*e)),smooth:!0,smoothTouch:!1});let t=e=>{this.lenis.raf(e),this.storyEngine&&this.storyEngine.update(),requestAnimationFrame(t)};requestAnimationFrame(t)}catch(e){console.warn(`Lenis scroll init:`,e)}if(this.scene){this.storyEngine=new R(this.scene,this.config);let e=document.getElementById(`scrollLaserBar`),t=document.getElementById(`hudSectorPill`),n=Array.from(document.querySelectorAll(`.hud-waypoint-dot`)),r=Array.from(document.querySelectorAll(`.chapter-section`));this.storyEngine.bindHUD({progressBar:e,hudSectorPill:t,hudStepDots:n,chapterSections:r})}}bindHUDControls(){let e=document.getElementById(`btnToggle3DMode`),t=document.getElementById(`labelModeToggle`);e&&this.scene&&this.scene.cameraRig&&e.addEventListener(`click`,()=>{this.scene.cameraRig.toggleMode()===`FREE_ORBIT`?(e.classList.add(`active`),t&&(t.textContent=`EXIT 3D`),document.body.classList.add(`orbit-mode-active`)):(e.classList.remove(`active`),t&&(t.textContent=`3D VIEW`),document.body.classList.remove(`orbit-mode-active`)),this.audioSynth&&this.audioSynth.playSelect()});let n=document.getElementById(`btnToggleAudio`),r=document.getElementById(`iconAudioOff`),i=document.getElementById(`iconAudioOn`);n&&this.audioSynth&&n.addEventListener(`click`,()=>{this.audioSynth.toggle()?(n.classList.add(`active`),r&&(r.style.display=`none`),i&&(i.style.display=`inline-block`)):(n.classList.remove(`active`),r&&(r.style.display=`inline-block`),i&&(i.style.display=`none`))});let a=document.getElementById(`mobileMenuBtn`),o=document.getElementById(`mobileDrawer`);a&&o&&(a.addEventListener(`click`,()=>{let e=o.classList.toggle(`open`);a.setAttribute(`aria-expanded`,String(e)),this.audioSynth&&this.audioSynth.playHover()}),o.querySelectorAll(`.mobile-link`).forEach(e=>{e.addEventListener(`click`,()=>{o.classList.remove(`open`),a.setAttribute(`aria-expanded`,`false`)})}))}bindSmoothNavigation(){document.querySelectorAll(`a[href^="#"]`).forEach(e=>{e.addEventListener(`click`,t=>{let n=e.getAttribute(`href`);if(!n||n===`#`||n.length<=1)return;let r=document.querySelector(n);if(r){if(t.preventDefault(),document.body.classList.contains(`orbit-mode-active`)){let e=document.getElementById(`btnToggle3DMode`);e&&e.click()}let e=document.getElementById(`mobileDrawer`),i=document.getElementById(`mobileMenuBtn`);e&&e.classList.contains(`open`)&&(e.classList.remove(`open`),i&&i.setAttribute(`aria-expanded`,`false`)),this.lenis?this.lenis.scrollTo(r,{offset:-40,duration:1.4,easing:e=>Math.min(1,1.001-2**(-10*e))}):r.scrollIntoView({behavior:`smooth`}),this.audioSynth&&this.audioSynth.playSelect(),document.querySelectorAll(`.navbar-links .nav-link`).forEach(e=>{e.getAttribute(`href`)===n?e.classList.add(`active`):e.classList.remove(`active`)})}})})}initKeyboardControls(){this.keyboard=new z(this),this.keyboard.init()}destroy(){this.keyboard&&this.keyboard.destroy(),this.scene&&this.scene.destroy(),this.storyEngine&&this.storyEngine.destroy(),this.lenis&&this.lenis.destroy()}};document.addEventListener(`DOMContentLoaded`,()=>{new K(`#app`).init().catch(e=>{console.error(`Fatal Universe Bootstrap Error:`,e)})});
+    `)}initServices(){this.audioSynth=new O,this.localization=new W,this.localization.init(),this.drawerManager=new U(this.audioSynth),this.drawerManager.init(),this.modalService=new G(this.config,this.audioSynth)}init3DScene(){let e=document.getElementById(`webglUniverseStage`);if(e)try{this.scene=new L(e,this.audioSynth),this.scene.start(),this.scene.raycaster&&this.scene.raycaster.onClick(e=>{this.modalService.openWithObject(e)})}catch(e){console.warn(`3D WebGL scene initialization fallback:`,e),document.body.classList.add(`webgl-fallback`)}}initScrollEngine(){try{this.lenis=new e({duration:1.2,easing:e=>Math.min(1,1.001-2**(-10*e)),smooth:!0,smoothTouch:!1});let t=e=>{this.lenis.raf(e),this.storyEngine&&this.storyEngine.update(),requestAnimationFrame(t)};requestAnimationFrame(t)}catch(e){console.warn(`Lenis scroll init:`,e)}if(this.scene){this.storyEngine=new R(this.scene,this.config);let e=document.getElementById(`scrollLaserBar`),t=document.getElementById(`hudSectorPill`),n=Array.from(document.querySelectorAll(`.hud-waypoint-dot`)),r=Array.from(document.querySelectorAll(`.chapter-section`));this.storyEngine.bindHUD({progressBar:e,hudSectorPill:t,hudStepDots:n,chapterSections:r})}}bindHUDControls(){let e=document.getElementById(`btnToggle3DMode`),t=document.getElementById(`labelModeToggle`);e&&this.scene&&this.scene.cameraRig&&e.addEventListener(`click`,()=>{this.scene.cameraRig.toggleMode()===`FREE_ORBIT`?(e.classList.add(`active`),t&&(t.textContent=`EXIT 3D`),document.body.classList.add(`orbit-mode-active`)):(e.classList.remove(`active`),t&&(t.textContent=`3D VIEW`),document.body.classList.remove(`orbit-mode-active`)),this.audioSynth&&this.audioSynth.playSelect()});let n=document.getElementById(`btnToggleAudio`),r=document.getElementById(`iconAudioOff`),i=document.getElementById(`iconAudioOn`);n&&this.audioSynth&&n.addEventListener(`click`,()=>{this.audioSynth.toggle()?(n.classList.add(`active`),r&&(r.style.display=`none`),i&&(i.style.display=`inline-block`)):(n.classList.remove(`active`),r&&(r.style.display=`inline-block`),i&&(i.style.display=`none`))});let a=document.getElementById(`mobileMenuBtn`),o=document.getElementById(`mobileDrawer`);a&&o&&(a.addEventListener(`click`,()=>{let e=o.classList.toggle(`open`);a.setAttribute(`aria-expanded`,String(e)),this.audioSynth&&this.audioSynth.playHover()}),o.querySelectorAll(`a`).forEach(e=>{e.addEventListener(`click`,()=>{o.classList.remove(`open`),a.setAttribute(`aria-expanded`,`false`)})}))}bindSmoothNavigation(){document.querySelectorAll(`a[href^="#"]`).forEach(e=>{e.addEventListener(`click`,t=>{let n=e.getAttribute(`href`);if(!n||n===`#`||n.length<=1)return;let r=document.querySelector(n);if(r){if(t.preventDefault(),document.body.classList.contains(`orbit-mode-active`)){let e=document.getElementById(`btnToggle3DMode`);e&&e.click()}let e=document.getElementById(`mobileDrawer`),i=document.getElementById(`mobileMenuBtn`);e&&e.classList.contains(`open`)&&(e.classList.remove(`open`),i&&i.setAttribute(`aria-expanded`,`false`)),this.lenis?this.lenis.scrollTo(r,{offset:-40,duration:1.4,easing:e=>Math.min(1,1.001-2**(-10*e))}):r.scrollIntoView({behavior:`smooth`}),this.audioSynth&&this.audioSynth.playSelect(),document.querySelectorAll(`.navbar-links .nav-link`).forEach(e=>{e.getAttribute(`href`)===n?e.classList.add(`active`):e.classList.remove(`active`)})}})})}initKeyboardControls(){this.keyboard=new z(this),this.keyboard.init()}destroy(){this.keyboard&&this.keyboard.destroy(),this.scene&&this.scene.destroy(),this.storyEngine&&this.storyEngine.destroy(),this.lenis&&this.lenis.destroy()}};document.addEventListener(`DOMContentLoaded`,()=>{new K(`#app`).init().catch(e=>{console.error(`Fatal Universe Bootstrap Error:`,e)})});
