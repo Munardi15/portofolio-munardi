@@ -108,6 +108,18 @@ export class StoryEngine {
       }
     });
 
+    // Update navbar active link state
+    const navHrefs = ['#hero', '#about', '#skill', '#experience', '#education', '#contact'];
+    const activeHref = navHrefs[index];
+    const navLinks = document.querySelectorAll('.navbar-links .nav-link');
+    navLinks.forEach((nl) => {
+      if (nl.getAttribute('href') === activeHref) {
+        nl.classList.add('active');
+      } else {
+        nl.classList.remove('active');
+      }
+    });
+
     // Update telemetry sector name in HUD
     if (this.hudSectorPill) {
       const sectorNames = [

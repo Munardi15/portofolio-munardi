@@ -44,6 +44,7 @@ export class App {
     this.init3DScene();
     this.initScrollEngine();
     this.bindHUDControls();
+    this.bindSmoothNavigation();
     this.initKeyboardControls();
   }
 
@@ -223,6 +224,58 @@ export class App {
         });
       });
     }
+  }
+
+  bindSmoothNavigation() {
+    const hashLinks = document.querySelectorAll('a[href^="#"]');
+    hashLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#' || href.length <= 1) return;
+
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          e.preventDefault();
+
+          // Exit orbit mode if active so camera flows smoothly along timeline
+          if (document.body.classList.contains('orbit-mode-active')) {
+            const btnMode = document.getElementById('btnToggle3DMode');
+            if (btnMode) btnMode.click();
+          }
+
+          // Close mobile menu if open
+          const mobileDrawer = document.getElementById('mobileDrawer');
+          const mobileBtn = document.getElementById('mobileMenuBtn');
+          if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+            mobileDrawer.classList.remove('open');
+            if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
+          }
+
+          if (this.lenis) {
+            this.lenis.scrollTo(targetEl, {
+              offset: -40,
+              duration: 1.4,
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+
+          if (this.audioSynth) {
+            this.audioSynth.playSelect();
+          }
+
+          // Update active link in navbar
+          document.querySelectorAll('.navbar-links .nav-link').forEach((nl) => {
+            if (nl.getAttribute('href') === href) {
+              nl.classList.add('active');
+            } else {
+              nl.classList.remove('active');
+            }
+          });
+        }
+      });
+    });
   }
 
   initKeyboardControls() {
