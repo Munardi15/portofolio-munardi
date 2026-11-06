@@ -1,37 +1,39 @@
 # MASTER PROMPT: UNIVERSAL 3D INTERACTIVE WEB SHOWCASE
-> **File Panduan & Template Prompt AI Generatif Universal**  
-> Dirancang agar dapat dieksekusi dengan hasil sempurna oleh model AI apa pun (Gemini, Claude, GPT-4o, Cursor, Windsurf, Bolt, v0) tanpa halusinasi dan tanpa bergantung pada tema tertentu.
+> **Enterprise-Grade Creative Engineering & Clean Architecture Edition**  
+> Dirancang oleh Principal Software Engineer & WebGL Specialist agar dapat dieksekusi dengan hasil sempurna oleh model AI apa pun (Gemini, Claude 3.7, GPT-4o, Cursor Composer, Windsurf, Bolt, v0). Menghasilkan kode berstandar industri tinggi: **Modular MVC, Clean Code (SOLID/DRY), Zero Memory Leaks, Built-in Automated QA Diagnostics, dan UI/UX Sinematik**.
 
 ---
 
 ## DAFTAR ISI
-1. [Cara Menggunakan Dokumen Ini](#1-cara-menggunakan-dokumen-ini)
+1. [Panduan Penggunaan Cepat](#1-panduan-penggunaan-cepat)
 2. [Panduan Menyiapkan Aset 3D Gratis (Rp0)](#2-panduan-menyiapkan-aset-3d-gratis-rp0)
-3. [MASTER PROMPT (Tinggal Copy-Paste ke AI)](#3-master-prompt-copy-paste-ke-ai)
-4. [Daftar Preset Tema Populer Siap Pakai](#4-daftar-preset-tema-populer-siap-pakai)
+3. [MASTER PROMPT (Tinggal Salin ke AI)](#3-master-prompt-copy-paste-ke-ai)
+4. [Daftar Preset Tema Industri Siap Pakai](#4-daftar-preset-tema-industri-siap-pakai)
+5. [Standar Struktur Folder Enterprise (Clean MVC)](#5-standar-struktur-folder-enterprise-clean-mvc)
 
 ---
 
-## 1. CARA MENGGUNAKAN DOKUMEN INI
+## 1. PANDUAN PENGGUNAAN CEPAT
 
-1. Salin teks yang ada di dalam kotak **Bagian 3 (MASTER PROMPT)** di bawah.
-2. Pada bagian **`[KONFIGURASI TEMA PROYEK]`**, sesuaikan nama proyek, warna, dan daftar objek 3D yang ingin Anda tampilkan (atau biarkan default untuk mode demo).
-3. Kirimkan prompt tersebut ke AI (Gemini / Claude / ChatGPT / Cursor Composer).
-4. AI akan menghasilkan file proyek lengkap (`index.html`, `style.css`, dan `main.js`) yang langsung bisa dijalankan dengan perintah `npm run dev`.
+1. Salin seluruh teks di dalam blok **Bagian 3 (MASTER PROMPT)**.
+2. Ubah variabel pada blok **`[KONFIGURASI TEMA PROYEK]`** sesuai produk atau ide yang ingin Anda buat (atau biarkan default untuk demo instan).
+3. Kirim ke AI (Gemini / Claude / ChatGPT / Cursor Composer).
+4. AI akan menyusun proyek modular lengkap dengan arsitektur MVC, komponen reusable, pengujian otomatis (QA self-test), dan Three.js WebGL engine.
+5. Jalankan `npm run dev` untuk melihat tampilan web, atau `npm test` untuk memvalidasi seluruh fungsionalitas arsitektur.
 
 ---
 
 ## 2. PANDUAN MENYIAPKAN ASET 3D GRATIS (RP0)
 
-Website ini menggunakan model 3D berformat **`.glb`** (GL Transmission Format Binary). Anda memiliki 2 cara gratis untuk menyiapkannya:
+Website ini menggunakan model 3D berformat **`.glb`** (GL Transmission Format Binary). Anda memiliki 2 opsi gratis:
 
-### Opsi A: Generate dari Gambar via AI (Seperti di Video Reels)
+### Opsi A: Generate dari Gambar/Teks via AI (Seperti di Video Reels)
 * **Meshy AI (`meshy.ai`)**: Buat akun gratis. Pilih menu *Image-to-3D*, upload foto objek dari sudut depan/samping, tunggu 1-2 menit, lalu download file `.glb`.
 * **Tripo3D (`tripo3d.ai`)**: Alternatif gratis tercepat untuk generate 3D dari teks prompt atau gambar ke format `.glb`.
 * **Luma AI Genie (`lumalabs.ai`)**: Menghasilkan objek 3D realistis siap pakai dalam format `.glb`.
 
 ### Opsi B: Download Model 3D Jadi (Gratis & Berkualitas Tinggi)
-* **Sketchfab (`sketchfab.com`)**: Cari objek (misal: *sneaker, watch, camera, drone, sword*), centang filter **Downloadable** dan lisensi **CC0 / Free**. Download format `.glb`.
+* **Sketchfab (`sketchfab.com`)**: Cari objek (misal: *sneaker, watch, camera, drone, sword, car*), centang filter **Downloadable** dan lisensi **CC0 / Free**. Download format `.glb`.
 * **Poly Pizza (`poly.pizza`)**: Ribuan model 3D low-poly & mid-poly gratis berformat `.glb`.
 * **Kenney 3D Assets (`kenney.nl`)**: Koleksi ratusan aset 3D domain publik tanpa atribusi.
 
@@ -46,10 +48,19 @@ Website ini menggunakan model 3D berformat **`.glb`** (GL Transmission Format Bi
 ---
 
 ```markdown
-Anda adalah seorang "Principal Creative Technologist & Senior WebGL Architect" kelas dunia yang berpengalaman membangun website pemenang penghargaan Awwwards, FWA, dan Apple Showcase.
+Anda adalah seorang "Principal Fullstack Software Engineer & Creative Technologist" kelas dunia dengan pengalaman mendalam di bidang Clean Architecture, Sistem Terdistribusi, dan Rekayasa WebGL/Three.js performa tinggi. Anda telah memenangkan berbagai penghargaan desain web kelas atas (Awwwards Site of the Year, FWA of the Day) dan dikenal selalu menulis kode yang elegan, modular, bebas duplikasi (DRY), serta mudah diaudit oleh tim QA maupun Senior Tech Recruiter.
 
-TUGAS ANDA:
-Bangun sebuah aplikasi web interaktif 3D sinematik "Single Page Application (SPA)" modern menggunakan Vite, Vanilla JavaScript/TypeScript, dan Three.js (WebGL). Website ini menampilkan showcase produk/objek 3D interaktif di mana pengguna dapat melihat objek 3D melayang secara realistis, berinteraksi lewat gerakan mouse (parallax), dan memilih/mengganti objek 3D melalui dock menu interaktif di bagian bawah layar.
+TUGAS UTAMA:
+Bangun sebuah aplikasi web interaktif 3D sinematik "Single Page Application (SPA)" modern dengan arsitektur Modular MVC / Clean Architecture menggunakan Vite, Vanilla JavaScript (ES Modules), dan Three.js. Website ini menampilkan showcase produk/objek 3D interaktif di mana pengguna dapat melihat objek 3D melayang secara realistis, berinteraksi melalui mouse parallax yang mulus, dan memilih/mengganti objek 3D lewat dock menu melayang di bawah layar.
+
+KUALITAS KODE HARUS MEMENUHI STANDAR SENIOR SOFTWARE ENGINEER:
+1. Single Responsibility Principle (SRP): Pisahkan UI Renderer, State Management, Asset Loader, dan 3D Scene Controller ke file/modul terpisah. DILARANG membuat file monolitik raksasa ("spaghetti code").
+2. Don't Repeat Yourself (DRY): Gunakan komponen yang reusable dan konfigurasi terpusat (Single Source of Truth).
+3. Zero Memory Leak (Resource Lifecycle Management): Setiap kali model 3D diganti, wajib dilakukan pembersihan eksplisit pada memori GPU (`geometry.dispose()`, `material.dispose()`, pembersihan tekstur).
+4. Built-in QA Self-Testing: Sediakan test suite unit terotomatisasi (`tests/showcase.test.js`) serta modul diagnostik runtime di browser (`window.__RUN_QA_DIAGNOSTICS__()`).
+5. Dual Audience Satisfaction:
+   - User Awam: Tampilan visual sinematik, navigasi sangat intuitif, animasi halus 60 FPS, teks mudah dibaca, ada petunjuk swipe di mobile.
+   - Senior Recruiter / Lead Architect: Arsitektur folder rapi, type-safety logic, penanganan error tangguh (fallback 3D jika file hilang), performa optimal (DPR clamped <= 2), dan test coverage terverifikasi.
 
 =============================================================================
 [KONFIGURASI TEMA PROYEK] (Ubah variabel di bawah sesuai kebutuhan pengguna)
@@ -63,7 +74,8 @@ Bangun sebuah aplikasi web interaktif 3D sinematik "Single Page Application (SPA
 
 - PALET_WARNA:
   * Warna_Background: "#0A0A0C" (Deep Void Black)
-  * Warna_Surface_Card: "rgba(18, 18, 22, 0.65)" (Glassmorphism Dark)
+  * Warna_Surface_Card: "rgba(18, 18, 22, 0.70)" (Glassmorphism Dark)
+  * Warna_Border_Line: "rgba(255, 255, 255, 0.12)" (Subtle Edge)
   * Warna_Aksen_Glow: "#00F0FF" (Electric Cyan / Neon)
   * Warna_Aksen_Secondary: "#FF0055" (Hot Magenta / Coral Accent)
   * Warna_Teks_Utama: "#FFFFFF" (Pure White)
@@ -78,7 +90,7 @@ Bangun sebuah aplikasi web interaktif 3D sinematik "Single Page Application (SPA
       "fileGlb": "./assets/3d/model-1.glb",
       "skala": 1.8,
       "rotasiOffset": [0, 0, 0],
-      "deskripsi": "Modul komputasi spasial generasi mutakhir dengan arsitektur pendingin cryogenic.",
+      "deskripsi": "Modul komputasi spasial generasi mutakhir dengan arsitektur pendingin cryogenic terisolasi.",
       "tag": "FLAGSHIP",
       "fallbackPrimitive": "TorusKnot"
     },
@@ -100,74 +112,118 @@ Bangun sebuah aplikasi web interaktif 3D sinematik "Single Page Application (SPA
       "fileGlb": "./assets/3d/model-3.glb",
       "skala": 1.6,
       "rotasiOffset": [0.2, 0, 0],
-      "deskripsi": "Transceiver teleportasi data quantum berlatensi nol dengan pelindung fluks magnetik.",
+      "deskripsi": "Transceiver teleportasi data quantum berlatensi nol dengan pelindung fluks magnetik ganda.",
       "tag": "SECURE",
       "fallbackPrimitive": "Octahedron"
     }
   ]
 =============================================================================
 
-PERSYARATAN ARSITEKTUR & REKAYASA SISTEM:
+STRUKTUR DIREKTORI PROYEK YANG WAJIB ANDA HASILKAN:
+Susun kode dalam arsitektur modular yang rapi berikut:
 
-1. ZERO EXTERNAL FRAMEWORK LOCK-IN:
-   Gunakan struktur Vite standar berbasis Vanilla JavaScript (atau TypeScript) murni agar kode bersih, memiliki performa 60 FPS konstan, dan mudah diintegrasikan ke framework apa pun (Next.js, React, Vue, Svelte, atau static HTML biasa).
-   Dependencies yang diizinkan hanya:
-   - `three`: ^0.160.0 (Core 3D Engine & GLTFLoader)
-   - `vite`: ^5.0.0 (Development & Bundler)
+```
+project-root/
+├── index.html
+├── package.json
+├── vite.config.js
+├── tests/
+│   └── showcase.test.js          # Automated unit & schema test suite (Node test runner)
+└── src/
+    ├── config/
+    │   └── theme.config.js       # Single source of truth untuk konfigurasi & metadata
+    ├── core/
+    │   ├── SceneManager.js       # Three.js lifecycle, renderer, lighting, resize handler
+    │   ├── ModelLoader.js        # GLTF loader, memory disposal, procedural 3D fallback
+    │   ├── AnimationEngine.js    # Harmonic floating oscillation, mouse parallax lerp
+    │   └── StateController.js    # MVC Controller: state active item, event listeners, dispatch
+    ├── components/
+    │   ├── HeaderComponent.js    # Header bar, brand logo, status pulse, audio toggle
+    │   ├── InfoCardComponent.js  # Dynamic overlay: title, category, description, CTAs
+    │   └── DockComponent.js      # Bottom floating dock carousel & thumbnail buttons
+    ├── styles/
+    │   ├── variables.css         # CSS custom properties (tokens, colors, typography)
+    │   └── style.css             # Glassmorphism, layout grid, transitions, mobile swipe
+    └── main.js                   # Entry point bootstrapping & QA runtime diagnostics
+```
 
-2. ARSITEKTUR THREE.JS RESILIENCE & FALLBACK ENGINE (KRUSIAL):
-   - Gunakan `THREE.WebGLRenderer` dengan parameter `{ alpha: true, antialias: true, powerPreference: 'high-performance' }`.
-   - Setup Tone Mapping: `renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.2;`.
-   - Setup Lighting Rig Sinematik 3-Titik:
-     a. `AmbientLight` (intensitas 0.6) untuk dasar visual.
-     b. `DirectionalLight` (key light putih, intensitas 2.5) dari sudut serong atas.
-     c. `PointLight` (rim/accent light) dengan warna yang mengikuti `Warna_Aksen_Glow` (intensitas 3.5) untuk memberi siluet berkilau pada tepi objek 3D.
-   - FALLBACK MEKANISME TANPA GAGAL:
-     Jika file file `.glb` tidak ditemukan (misal pengguna belum meletakkan file 3D fisik), sistem TIDAK BOLEH eror atau menampilkan layar kosong! Sistem WAJIB otomatis membuat objek 3D prosedural menggunakan Three.js Mesh murni (`MeshPhysicalMaterial` dengan `metalness: 0.8`, `roughness: 0.2`, `clearcoat: 1.0`, `wireframe: false`) berdasarkan konfigurasi `fallbackPrimitive` (TorusKnotGeometry, IcosahedronGeometry, dll.). Dengan cara ini, website dijamin 100% langsung tampil memukau sejak pertama kali di-run!
+SPESIFIKASI TEKNIS SETIAP KOMPONEN & FILE:
 
-3. REKAYASA ANIMASI SINEMATIK:
-   - Floating Oscillation (Efek Mengambang Alami):
-     Pada render loop, terapkan rumus osilasi harmonik:
-     `model.position.y = Math.sin(clock.getElapsedTime() * 1.5) * 0.12;`
-     `model.rotation.y += 0.006;`
-   - Parallax Mouse Tracking via Lerp (Linear Interpolation):
-     Jangan menggerakkan kamera secara kaku. Tangkap koordinat mouse (`clientX / innerWidth - 0.5`) dan terapkan interpolasi lerp halus:
+1. `package.json`:
+   - Gunakan type `"module"`.
+   - Scripts: `"dev": "vite"`, `"build": "vite build"`, `"test": "node --test tests/*.test.js"`.
+   - Dependencies: `three` (^0.160.0).
+   - DevDependencies: `vite` (^5.0.0).
+
+2. `src/config/theme.config.js`:
+   - Ekspor objek `themeConfig` yang membungkus semua variabel konfigurasi dari blok `[KONFIGURASI TEMA PROYEK]` di atas, terstruktur dan siap dikonsumsi seluruh modul.
+
+3. `src/core/SceneManager.js`:
+   - Menginisialisasi `THREE.Scene`, `THREE.PerspectiveCamera` (FOV 45, near 0.1, far 100), dan `THREE.WebGLRenderer`.
+   - Parameter renderer: `{ alpha: true, antialias: true, powerPreference: 'high-performance' }`.
+   - Tone Mapping: `ACESFilmicToneMapping` dengan exposure 1.2.
+   - Lighting Rig Sinematik 3-Titik:
+     * `AmbientLight` (intensitas 0.6)
+     * `DirectionalLight` (key light putih, intensitas 2.5) di posisi `(5, 8, 5)`
+     * `PointLight` (rim accent light, mengikuti `Warna_Aksen_Glow`, intensitas 3.5) di posisi `(-4, 3, -2)`
+   - Resize Listener: otomatis update aspect ratio kamera dan ukuran renderer. Batasi `devicePixelRatio` maksimal 2 (`Math.min(window.devicePixelRatio, 2)`).
+
+4. `src/core/ModelLoader.js`:
+   - Class pengelola pemuatan aset 3D.
+   - Method `loadModel(itemConfig)`:
+     * Coba muat file `.glb` menggunakan `THREE.GLTFLoader`.
+     * FALLBACK TANGGUH (Zero Crash Guarantee): Jika file `.glb` gagal dimuat (file belum ada / 404), sistem WAJIB otomatis membuat geometri prosedural 3D Three.js murni (`TorusKnotGeometry`, `IcosahedronGeometry`, atau `OctahedronGeometry`) yang diberi material premium `MeshPhysicalMaterial` (`metalness: 0.85`, `roughness: 0.15`, `clearcoat: 1.0`, warna aksen).
+   - Method `disposeCurrentModel(model)`:
+     * Melakukan iterasi seluruh mesh anak (`traverse`), memanggil `geometry.dispose()`, `material.dispose()`, dan membersihkan tekstur dari memori GPU untuk mencegah memory leak.
+
+5. `src/core/AnimationEngine.js`:
+   - Mengelola loop animasi `requestAnimationFrame`.
+   - Menerapkan osilasi mengambang (floating harmonic):
+     `model.position.y = baseY + Math.sin(time * 1.5) * 0.12;`
+     `model.rotation.y += 0.005;`
+   - Menerapkan mouse parallax halus dengan Linear Interpolation (Lerp):
      `camera.position.x += (targetMouseX * 1.2 - camera.position.x) * 0.05;`
      `camera.position.y += (-targetMouseY * 1.2 - camera.position.y) * 0.05;`
      `camera.lookAt(0, 0, 0);`
-   - Transisi Pergantian Objek Halus:
-     Ketika pengguna memilih item lain di dock bawah:
-     Model aktif melakukan animasi scaling down ke 0 (`scale -> 0`), lalu model baru di-swap dan di-scale up kembali (`scale -> target`) secara elegan, sementara data teks (nama, kategori, deskripsi) berganti dengan transisi fade-in.
 
-4. USER INTERFACE & DOCK CAROUSEL:
-   - Header: Brand logo/slug, status live indicator hijau berkedip, tombol toggle audio ambience / fullscreen.
-   - Main Canvas: Kanvas WebGL 3D yang mengisi seluruh layar di belakang teks (z-index 1).
-   - Dynamic Info Card (Overlay Kanan/Tengah):
-     Menampilkan Badge Kategori, Judul Objek aktif, Deskripsi teknis, Tombol CTA Interaktif, dan pagination counter (misal: "01 / 03").
-   - Bottom Dock Switcher (Bawah Layar):
-     Menu dock melayang bergaya macOS/iOS glassmorphism (`backdrop-filter: blur(20px)`), menampilkan tombol/ikon setiap objek. Item yang aktif memiliki border menyala (`Warna_Aksen_Glow`) dan indikator titik bersinar.
-   - Mobile Responsiveness & Touch Support:
-     Pada layar smartphone (< 768px):
-     - Ukuran kanvas 3D otomatis menyesuaikan viewport.
-     - Dock bawah dapat di-scroll secara horizontal (`overflow-x: auto; -webkit-overflow-scrolling: touch;`).
-     - Teks judul tidak saling bertumpuk dengan objek 3D.
-     - Device Pixel Ratio dibatasi maksimal 2 (`Math.min(window.devicePixelRatio, 2)`) demi menghemat baterai HP dan mencegah frame drop.
+6. `src/core/StateController.js`:
+   - Mengelola state item aktif (`activeItemIndex`).
+   - Ketika pengguna mengklik dock menu atau menekan tombol navigasi:
+     * Update state aktif.
+     * Panggil transisi keluar pada model lama (scale down halus).
+     * Muat model baru via `ModelLoader`, lalu transisi masuk (scale up halus dengan easing).
+     * Update konten DOM pada `InfoCardComponent` dan tandai tombol aktif pada `DockComponent`.
 
-5. STRUKTUR FILE OUTPUT YANG WAJIB ANDA BUAT:
-   Buat dan sajikan kode lengkap tanpa potongan ("no placeholder, no TODO, fully implemented") untuk 4 file berikut:
-   1. `package.json` (Konfigurasi dependencies Vite dan Three.js)
-   2. `index.html` (Markup semantik, Google Fonts, dan container canvas)
-   3. `style.css` (Desain glassmorphism, tipografi futuristik, animasi glowing, layout responsif mobile)
-   4. `src/main.js` (Engine Three.js komplit: Scene, Camera, Renderer, Lights, GLTFLoader + Fallback Mesh, Parallax Lerp, Dynamic Dock Switcher Controller, Resize Handler)
+7. `src/components/` (`HeaderComponent.js`, `InfoCardComponent.js`, `DockComponent.js`):
+   - Masing-masing kelas memiliki method `static render(config, activeIndex)` yang mengembalikan string HTML semantik dan method `static bindEvents(container, controller)` untuk event listener.
+   - `DockComponent`: Menampilkan thumbnail/tombol untuk setiap item dalam konfigurasi. Tombol aktif memiliki class `.active` dengan efek glowing border. Di mobile, dock ini memiliki horizontal swipe yang mulus (`overflow-x: auto; -webkit-overflow-scrolling: touch;`).
 
-Mulai eksekusi sekarang dan tuliskan seluruh kode lengkapnya langkah demi langkah!
+8. `src/styles/` (`variables.css` & `style.css`):
+   - Desain dark glassmorphism modern (`backdrop-filter: blur(16px)`).
+   - Animasi transisi halus (CSS transition 0.3s cubic-bezier(0.16, 1, 0.3, 1)).
+   - Responsif penuh: Desktop, Tablet, dan Mobile (< 768px). Pada layar mobile, teks dan dock tersusun rapi tanpa menutupi area pandang 3D secara berlebihan.
+
+9. `tests/showcase.test.js`:
+   - Suite test menggunakan Node.js native test runner (`node:test` dan `node:assert/strict`).
+   - Menguji:
+     a. Integritas konfigurasi skema tema (semua field wajib ada, palet warna valid hex/rgba).
+     b. Daftar objek 3D memiliki ID unik, skala valid, dan fallback primitive yang valid.
+     c. Renderers komponen menghasilkan HTML valid yang memuat elemen penampung kanvas dan tombol dock.
+     d. Controller state transitions berfungsi dengan benar (berpindah indeks 0 -> 1 -> 2).
+
+10. `src/main.js`:
+    - Inisialisasi seluruh komponen (MVC Bootstrapping).
+    - Memasang fungsi diagnostik runtime `window.__RUN_QA_DIAGNOSTICS__()` di konsol browser yang bisa dipanggil kapan saja untuk mengecek status WebGL context, frame rate FPS, jumlah objek yang aktif di memori scene, dan status event listener.
+
+INSTRUKSI PENYAJIAN KODE:
+Tuliskan seluruh kode sumber secara LENGKAP tanpa memotong bagian apa pun ("no placeholders, no TODOs, fully implemented and production-ready"). Sajikan file satu per satu dengan path yang jelas sesuai struktur direktori di atas.
 ```
 
 ---
 
-## 4. DAFTAR PRESET TEMA POPULER SIAP PAKAI
+## 4. DAFTAR PRESET TEMA INDUSTRI SIAP PAKAI
 
-Anda cukup mengganti blok `[KONFIGURASI TEMA PROYEK]` pada prompt di atas dengan salah satu preset di bawah ini:
+Anda cukup mengganti blok `[KONFIGURASI TEMA PROYEK]` pada prompt di atas dengan salah satu preset berikut:
 
 ### Preset 1: Luxury Automotive / Cyberpunk Vehicle
 ```yaml
@@ -177,12 +233,12 @@ Warna_Background: "#070709"
 Warna_Aksen_Glow: "#FF5E00" # Radiant Neon Amber
 Warna_Aksen_Secondary: "#00E5FF" # Cyan Beam
 DAFTAR_OBJEK_3D:
-  - nama: "Apex GT Stealth" (Kategori: Hypercar, fileGlb: "./assets/3d/car.glb")
-  - nama: "Aero Turbine Rim" (Kategori: Carbon Wheel, fileGlb: "./assets/3d/rim.glb")
-  - nama: "Quantum Steering Yoke" (Kategori: Cockpit Control, fileGlb: "./assets/3d/wheel.glb")
+  - nama: "Apex GT Stealth" (Kategori: Hypercar, fileGlb: "./assets/3d/car.glb", fallback: "TorusKnot")
+  - nama: "Aero Turbine Rim" (Kategori: Carbon Wheel, fileGlb: "./assets/3d/rim.glb", fallback: "Cylinder")
+  - nama: "Quantum Steering Yoke" (Kategori: Cockpit Control, fileGlb: "./assets/3d/wheel.glb", fallback: "Torus")
 ```
 
-### Preset 2: Streetwear / Sneaker & Apparel
+### Preset 2: Streetwear / Sneaker & Apparel (Mirip Video 2)
 ```yaml
 NAMA_PROYEK: "STRIDE // Kinetic Footwear Lab"
 SLUG_BRAND: "STRIDE 00"
@@ -190,9 +246,9 @@ Warna_Background: "#0D0D11"
 Warna_Aksen_Glow: "#CCFF00" # Volt Acid Lime
 Warna_Aksen_Secondary: "#7000FF" # Cyber Violet
 DAFTAR_OBJEK_3D:
-  - nama: "Strider Volt Runner" (Kategori: Footwear, fileGlb: "./assets/3d/sneaker.glb")
-  - nama: "Modular Cargo Hoodie" (Kategori: Apparel, fileGlb: "./assets/3d/hoodie.glb")
-  - nama: "Tactical Visor Goggles" (Kategori: Eyewear, fileGlb: "./assets/3d/visor.glb")
+  - nama: "Strider Volt Runner" (Kategori: Footwear, fileGlb: "./assets/3d/sneaker.glb", fallback: "TorusKnot")
+  - nama: "Modular Cargo Hoodie" (Kategori: Apparel, fileGlb: "./assets/3d/hoodie.glb", fallback: "Icosahedron")
+  - nama: "Tactical Visor Goggles" (Kategori: Eyewear, fileGlb: "./assets/3d/visor.glb", fallback: "Octahedron")
 ```
 
 ### Preset 3: Fintech & Modern Banking Hardware
@@ -203,12 +259,12 @@ Warna_Background: "#050B14"
 Warna_Aksen_Glow: "#0066FF" # Royal Sapphire
 Warna_Aksen_Secondary: "#00FFA3" # Fintech Mint
 DAFTAR_OBJEK_3D:
-  - nama: "Nexus Titanium Card" (Kategori: Smart Card, fileGlb: "./assets/3d/card.glb")
-  - nama: "Biometric ATM Module" (Kategori: Cash Terminal, fileGlb: "./assets/3d/atm.glb")
-  - nama: "Hardware Security Vault" (Kategori: Core Ledger, fileGlb: "./assets/3d/vault.glb")
+  - nama: "Nexus Titanium Card" (Kategori: Smart Card, fileGlb: "./assets/3d/card.glb", fallback: "Box")
+  - nama: "Biometric ATM Module" (Kategori: Cash Terminal, fileGlb: "./assets/3d/atm.glb", fallback: "Icosahedron")
+  - nama: "Hardware Security Vault" (Kategori: Core Ledger, fileGlb: "./assets/3d/vault.glb", fallback: "Dodecahedron")
 ```
 
-### Preset 4: Mythological / Fantasy Cultural Showcase (Mirip Video 1)
+### Preset 4: Mythological / Cultural Gaming (Mirip Video 1)
 ```yaml
 NAMA_PROYEK: "MYSTIKA // Nusantara Relics"
 SLUG_BRAND: "MYSTIKA STUDIO"
@@ -216,36 +272,60 @@ Warna_Background: "#140A08" # Warm Candlelit Black
 Warna_Aksen_Glow: "#E05A4E" # Crimson Coral
 Warna_Aksen_Secondary: "#E8B33C" # Ancient Gold
 DAFTAR_OBJEK_3D:
-  - nama: "Keris Pusaka Naga" (Kategori: Ancient Blade, fileGlb: "./assets/3d/keris.glb")
-  - nama: "Boneka Arwah Voodoo" (Kategori: Ritual Totem, fileGlb: "./assets/3d/voodoo.glb")
-  - nama: "Kartu Tarot Mistis" (Kategori: Divination Deck, fileGlb: "./assets/3d/tarot.glb")
+  - nama: "Keris Pusaka Naga" (Kategori: Ancient Blade, fileGlb: "./assets/3d/keris.glb", fallback: "Cone")
+  - nama: "Boneka Arwah Voodoo" (Kategori: Ritual Totem, fileGlb: "./assets/3d/voodoo.glb", fallback: "TorusKnot")
+  - nama: "Kartu Tarot Mistis" (Kategori: Divination Deck, fileGlb: "./assets/3d/tarot.glb", fallback: "Box")
 ```
 
 ---
 
-## 5. STRUKTUR DIREKTORI PROYEK REKOMENDASI
+## 5. STANDAR STRUKTUR FOLDER ENTERPRISE (CLEAN MVC)
 
-Ketika AI telah meng-generate kode dari prompt di atas, susun file proyek Anda seperti ini:
+Ketika AI meng-generate proyek, pastikan struktur direktori mengikuti standar berikut:
 
 ```
 my-3d-showcase/
 ├── index.html
-├── style.css
 ├── package.json
 ├── vite.config.js
+├── tests/
+│   └── showcase.test.js          <-- Menjalankan QA Otomatis (npm test)
 ├── src/
-│   └── main.js
+│   ├── config/
+│   │   └── theme.config.js       <-- Single Source of Truth Konfigurasi
+│   ├── core/
+│   │   ├── SceneManager.js       <-- Setup Three.js WebGL, Lampu, Kamera
+│   │   ├── ModelLoader.js        <-- Load GLB + Fallback Geometri Prosedural
+│   │   ├── AnimationEngine.js    <-- Floating Oscillation & Parallax Lerp
+│   │   └── StateController.js    <-- MVC Controller & Event Dispatcher
+│   ├── components/
+│   │   ├── HeaderComponent.js    <-- Reusable UI Header & Controls
+│   │   ├── InfoCardComponent.js  <-- Reusable UI Overlay Produk
+│   │   └── DockComponent.js      <-- Reusable UI Bottom Dock Slider
+│   ├── styles/
+│   │   ├── variables.css         <-- Design Tokens & Color Palettes
+│   │   └── style.css             <-- Glassmorphism & Mobile Responsive Rules
+│   └── main.js                   <-- Bootstrapper & window.__RUN_QA_DIAGNOSTICS__()
 └── public/
     └── assets/
-        └── 3d/
-            ├── model-1.glb   (letakkan file 3D Anda di sini)
+        └── 3d/                   <-- Letakkan file .glb fisik di sini
+            ├── model-1.glb
             ├── model-2.glb
             └── model-3.glb
 ```
 
-Jalankan proyek dengan:
-```bash
-npm install
-npm run dev
-```
-Website 3D interaktif kelas tinggi Anda langsung live di browser!
+### Cara Menjalankan & Memverifikasi:
+1. Jalankan development server:
+   ```bash
+   npm install
+   npm run dev
+   ```
+2. Jalankan test otomatis QA:
+   ```bash
+   npm test
+   ```
+3. Buka Console di Browser (tekan F12) lalu ketik:
+   ```javascript
+   window.__RUN_QA_DIAGNOSTICS__()
+   ```
+   Sistem akan mencetak laporan kesehatan scene 3D, memori WebGL, dan status interaktivitas secara instan!
