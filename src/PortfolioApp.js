@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { portfolioConfig } from './config/portfolio.config.js';
 
 // Core Services & Controllers (OOP)
-import { Scene3DManager } from './core/Scene3DManager.js';
+import { ScrollytellingController } from './core/ScrollytellingController.js';
 import { ScrollManager } from './core/ScrollManager.js';
 import { TimelineController } from './core/TimelineController.js';
 import { AccordionManager } from './core/AccordionManager.js';
@@ -51,7 +51,7 @@ export class PortfolioApp {
     this.themeService = null;
     this.localizationService = null;
     this.scrollManager = null;
-    this.scene3DManager = null;
+    this.scrollytellingController = null;
     this.timelineController = null;
     this.accordionManager = null;
     this.headerController = null;
@@ -108,9 +108,9 @@ export class PortfolioApp {
     this.scrollManager = new ScrollManager();
     this.scrollManager.init();
 
-    // 4. Three.js Spatial WebGL Core (Hero 3D)
-    this.scene3DManager = new Scene3DManager();
-    this.scene3DManager.init();
+    // 4. Cinematic Scrollytelling Engine (Scroll-Driven Hero, Bento, Skills, Experience)
+    this.scrollytellingController = new ScrollytellingController();
+    this.scrollytellingController.init();
 
     // 5. Work Experience Timeline Laser & 50% Center Node Illumination
     this.timelineController = new TimelineController();
@@ -118,7 +118,12 @@ export class PortfolioApp {
 
     // 6. Interactive Project Accordion Drawers (GSAP Tweens)
     this.accordionManager = new AccordionManager({
-      getLanguage: () => this.localizationService.getLanguage()
+      getLanguage: () => this.localizationService.getLanguage(),
+      onDrawerOpen: (drawer) => {
+        if (this.scrollytellingController) {
+          this.scrollytellingController.animateProjectFlowSteps(drawer);
+        }
+      }
     });
     this.accordionManager.init();
 
@@ -144,10 +149,10 @@ export class PortfolioApp {
   }
 
   /**
-   * Cleanly destroys and unmounts all listeners and WebGL contexts.
+   * Cleanly destroys and unmounts all listeners and controllers.
    */
   destroy() {
-    if (this.scene3DManager) this.scene3DManager.destroy();
+    if (this.scrollytellingController) this.scrollytellingController.destroy();
     if (this.scrollManager) this.scrollManager.destroy();
     if (this.timelineController) this.timelineController.destroy();
     if (this.accordionManager) this.accordionManager.destroy();

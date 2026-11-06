@@ -2300,6 +2300,103 @@ footer {
   }
 }
 
+/* ==========================================================================
+   SCROLLYTELLING FOCAL ZOOM & EDITORIAL ENGINEERING AESTHETICS
+   ========================================================================== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center center;
+}
+
+.hero-layout {
+  will-change: transform, opacity;
+  transform-origin: center center;
+  transition: transform 0.1s linear, opacity 0.1s linear;
+}
+
+.about-bento-grid .bento-card {
+  will-change: transform, opacity;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.about-bento-grid .bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 0 25px rgba(6, 182, 212, 0.12);
+}
+
+.stat-card {
+  will-change: transform;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.025);
+  border-color: rgba(6, 182, 212, 0.4);
+}
+
+.skill-card {
+  will-change: transform, opacity;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 182, 212, 0.12);
+}
+
+.exp-block {
+  will-change: transform, opacity;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.exp-block.focal-in {
+  transform: scale(1.02);
+  opacity: 1 !important;
+}
+
+.exp-block.focal-in .exp-card {
+  border-color: rgba(6, 182, 212, 0.45);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 28px rgba(6, 182, 212, 0.15);
+}
+
+.exp-block.focal-dim {
+  opacity: 0.68;
+  transform: scale(0.985);
+}
+
+.flow-step {
+  will-change: transform, opacity;
+}
+
+.flow-node {
+  transition: all 0.25s ease;
+}
+
+.flow-node:hover {
+  border-color: #06B6D4;
+  color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .hero-layout {
+    transform: none !important;
+  }
+  .exp-block.focal-in,
+  .exp-block.focal-dim {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Print and Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   * {

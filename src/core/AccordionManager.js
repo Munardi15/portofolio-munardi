@@ -107,6 +107,19 @@ export class AccordionManager {
           { y: 0, opacity: 1, duration: 0.35, stagger: 0.02, ease: 'power2.out', delay: 0.06 }
         );
       }
+
+      // Sequential flow steps illumination (Left -> Right architecture walkthrough)
+      const flowSteps = drawer.querySelectorAll('.flow-step');
+      if (flowSteps.length) {
+        gsap.fromTo(flowSteps,
+          { opacity: 0.25, x: -6 },
+          { opacity: 1, x: 0, duration: 0.35, stagger: 0.035, ease: 'power2.out', delay: 0.12 }
+        );
+      }
+
+      if (typeof this.onDrawerOpen === 'function') {
+        this.onDrawerOpen(drawer);
+      }
     } else {
       block.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');

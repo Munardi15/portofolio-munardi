@@ -33,14 +33,6 @@ export class ScrollManager {
       smoothWheel: true,
     });
 
-    const raf = (time) => {
-      if (this.lenis) {
-        this.lenis.raf(time);
-        this.rafId = requestAnimationFrame(raf);
-      }
-    };
-    this.rafId = requestAnimationFrame(raf);
-
     this.lenis.on('scroll', ScrollTrigger.update);
 
     this._tickerCallback = (time) => {

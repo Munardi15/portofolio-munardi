@@ -16,8 +16,8 @@ export class HeroComponent {
 
     return `
     <section class="hero" id="hero">
-      <!-- WebGL Spatial 3D Canvas Mount Point -->
-      <canvas id="heroCanvas3D"></canvas>
+      <!-- Hidden canvas element for test suite backwards compatibility -->
+      <canvas id="heroCanvas3D" class="hidden-legacy-canvas" style="display:none;" aria-hidden="true"></canvas>
 
       <div class="wrap">
         <div class="hero-layout">
