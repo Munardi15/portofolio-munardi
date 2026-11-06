@@ -463,8 +463,56 @@ body.orbit-mode-active .spatial-story-flow {
   display: flex;
   align-items: center;
   padding: 120px 24px 100px;
-  max-width: 1240px;
+  max-width: 1320px;
   margin: 0 auto;
+}
+
+/* ==========================================================================
+ * DYNAMIC ASYMMETRIC SPLIT LAYOUT (DESKTOP)
+ * Leaves 52%-58% of the viewport completely unobstructed for real-time 3D exploration
+ * ========================================================================== */
+@media (min-width: 992px) {
+  .chapter-section#hero {
+    justify-content: flex-start;
+  }
+  .chapter-section#hero .hero-panel {
+    max-width: 580px;
+  }
+
+  .chapter-section#about {
+    justify-content: flex-end;
+  }
+  .chapter-section#about .about-panel {
+    max-width: 640px;
+  }
+
+  .chapter-section#skill {
+    justify-content: flex-start;
+  }
+  .chapter-section#skill .skills-panel {
+    max-width: 620px;
+  }
+
+  .chapter-section#experience {
+    justify-content: flex-start;
+  }
+  .chapter-section#experience .experience-panel {
+    max-width: 680px;
+  }
+
+  .chapter-section#education {
+    justify-content: flex-end;
+  }
+  .chapter-section#education .education-panel {
+    max-width: 640px;
+  }
+
+  .chapter-section#contact {
+    justify-content: center;
+  }
+  .chapter-section#contact .contact-panel {
+    max-width: 880px;
+  }
 }
 
 .holographic-panel {

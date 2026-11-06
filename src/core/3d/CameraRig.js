@@ -33,44 +33,69 @@ export class CameraRig {
     this.previousMousePosition = { x: 0, y: 0 };
     this.orbitAngles = { theta: 0.3, phi: Math.PI / 2.6, radius: 9.5 };
 
-    // 6 Canonical Chapter Waypoints (Dynamic 3D Spatial Choreography)
-    this.waypoints = [
-      // 0: Hero / Developer Workstation & Terminal (Zoomed IN on Computer Screens)
+    // 7 Keyframes along the 3D Studio Scrollytelling Trajectory
+    // Mapped cleanly to scroll progress:
+    // 0.0 (Hero) -> 0.20 (About) -> 0.40 (Skill) -> 0.60 (Exp Top) -> 0.72 (Exp Bottom) -> 0.82 (Education) -> 1.0 (Contact)
+    this.storyKeyframes = [
+      // 0: Hero — Terminal Cockpit directly facing the ultrawide screen
       {
+        t: 0.0,
         pos: new THREE.Vector3(1.2, 2.25, 1.2),
         lookAt: new THREE.Vector3(1.2, 2.15, -0.6),
         fov: 38
       },
-      // 1: About / The Engineer's Workspace (Zoomed OUT diagonally to reveal full desk & human space)
+      // 1: About — Diagonal zoom-out revealing the engineer's desk, chair, lamp, and workspace
       {
-        pos: new THREE.Vector3(2.2, 3.2, 4.2),
-        lookAt: new THREE.Vector3(1.2, 1.8, -0.6),
+        t: 0.20,
+        pos: new THREE.Vector3(2.4, 3.2, 3.8),
+        lookAt: new THREE.Vector3(1.0, 1.6, -0.6),
         fov: 46
       },
-      // 2: Skill / Dual-Screen Toolkit (Angled Close-Up on Terminal & AS400 screens)
+      // 2: Skill — Close dive to the Dual-Screen Terminal Toolkit (ultrawide + AS400 green screen)
       {
-        pos: new THREE.Vector3(0.2, 2.25, 0.95),
-        lookAt: new THREE.Vector3(0.6, 2.15, -0.75),
+        t: 0.40,
+        pos: new THREE.Vector3(-0.2, 2.25, 0.95),
+        lookAt: new THREE.Vector3(0.8, 2.15, -0.75),
         fov: 38
       },
-      // 3: Experience / 42U Enterprise Server Rack (Tracks down the server blades)
+      // 3: Experience Top — Sweeps to the right side, framing top blades of 42U Server Rack (BRI BRIVA)
       {
-        pos: new THREE.Vector3(3.2, 3.4, 2.0),
-        lookAt: new THREE.Vector3(4.8, 3.0, -1.4),
-        fov: 44
+        t: 0.60,
+        pos: new THREE.Vector3(2.8, 3.4, 1.8),
+        lookAt: new THREE.Vector3(4.8, 3.2, -1.4),
+        fov: 42
       },
-      // 4: Education / Academic Diploma (Pulls back, zooms into Ijazah framed on left)
+      // 4: Experience Bottom — Tracking smoothly down the server blades (Hitachi, OCBC, KNusantara)
       {
+        t: 0.72,
+        pos: new THREE.Vector3(2.8, 1.9, 1.8),
+        lookAt: new THREE.Vector3(4.8, 1.7, -1.4),
+        fov: 42
+      },
+      // 5: Education — Pulls back across the room, rotates 180° to back wall, zooms into framed Cum Laude Diploma!
+      {
+        t: 0.82,
         pos: new THREE.Vector3(-0.8, 4.15, -1.3),
         lookAt: new THREE.Vector3(0.8, 4.15, -4.9),
         fov: 37
       },
-      // 5: Contact / Transmission Array & Complete Illuminated Studio
+      // 6: Contact — Elevated grand panoramic pullback of the complete illuminated studio
       {
+        t: 1.0,
         pos: new THREE.Vector3(2.8, 5.2, 7.8),
         lookAt: new THREE.Vector3(1.2, 1.8, -0.6),
         fov: 48
       }
+    ];
+
+    // Maintain backward-compatibility for waypoints array (6 canonical chapters)
+    this.waypoints = [
+      this.storyKeyframes[0],
+      this.storyKeyframes[1],
+      this.storyKeyframes[2],
+      this.storyKeyframes[3],
+      this.storyKeyframes[5], // Education
+      this.storyKeyframes[6]  // Contact
     ];
 
     this.initListeners();
@@ -143,50 +168,35 @@ export class CameraRig {
 
   /**
    * Smoothly interpolate waypoint along scroll progress (0.0 to 1.0)
+   * Using multi-keyframe trajectory with cubic smoothstep easing
    * @param {number} progress
    */
   setScrollProgress(progress) {
     if (this.mode !== 'CINEMATIC') return;
 
     const clamped = Math.max(0, Math.min(1, progress));
-    const totalWaypoints = this.waypoints.length; // 6
-    const scaled = clamped * (totalWaypoints - 1); // 0.0 to 5.0
-    const index = Math.min(Math.floor(scaled), totalWaypoints - 2);
-    const frac = scaled - index;
+    const kfs = this.storyKeyframes;
+    const n = kfs.length;
 
-    const wpA = this.waypoints[index];
-    const wpB = this.waypoints[Math.min(index + 1, totalWaypoints - 1)];
+    let kfA = kfs[0];
+    let kfB = kfs[1];
 
-    const interpolatedPos = new THREE.Vector3();
-    const interpolatedLookAt = new THREE.Vector3();
-    let interpolatedFov = wpA.fov;
-
-    // Special choreography for Chapter 4: Experience (index === 3)
-    // Allows the camera to glide down the 42U rack cabinet during the first 65% of Experience,
-    // and then smoothly transition across the studio towards Education (pulling back into room and zooming to diploma)
-    if (index === 3) {
-      const topRackPos = this.waypoints[3].pos;
-      const bottomRackPos = new THREE.Vector3(3.2, 1.8, 2.0);
-      const topRackLookAt = this.waypoints[3].lookAt;
-      const bottomRackLookAt = new THREE.Vector3(4.8, 1.6, -1.4);
-
-      if (frac < 0.65) {
-        const subFrac = frac / 0.65;
-        interpolatedPos.lerpVectors(topRackPos, bottomRackPos, subFrac);
-        interpolatedLookAt.lerpVectors(topRackLookAt, bottomRackLookAt, subFrac);
-        interpolatedFov = 44;
-      } else {
-        const subFrac = (frac - 0.65) / 0.35;
-        // User explicit: "terus pas bagian pendidikan bergerak mundur lalu zoom ke ijazah"
-        interpolatedPos.lerpVectors(bottomRackPos, wpB.pos, subFrac);
-        interpolatedLookAt.lerpVectors(bottomRackLookAt, wpB.lookAt, subFrac);
-        interpolatedFov = 44 + (wpB.fov - 44) * subFrac;
+    for (let i = 0; i < n - 1; i++) {
+      if (clamped >= kfs[i].t && clamped <= kfs[i + 1].t) {
+        kfA = kfs[i];
+        kfB = kfs[i + 1];
+        break;
       }
-    } else {
-      interpolatedPos.lerpVectors(wpA.pos, wpB.pos, frac);
-      interpolatedLookAt.lerpVectors(wpA.lookAt, wpB.lookAt, frac);
-      interpolatedFov = wpA.fov + (wpB.fov - wpA.fov) * frac;
     }
+
+    const span = kfB.t - kfA.t;
+    const rawFrac = span > 0 ? (clamped - kfA.t) / span : 0;
+    // Cubic smoothstep (3x^2 - 2x^3) gives organic ease-in-out flight acceleration
+    const frac = rawFrac * rawFrac * (3 - 2 * rawFrac);
+
+    const interpolatedPos = new THREE.Vector3().lerpVectors(kfA.pos, kfB.pos, frac);
+    const interpolatedLookAt = new THREE.Vector3().lerpVectors(kfA.lookAt, kfB.lookAt, frac);
+    const interpolatedFov = kfA.fov + (kfB.fov - kfA.fov) * frac;
 
     const isMobile = window.innerWidth < 768;
     if (isMobile) {
@@ -211,10 +221,10 @@ export class CameraRig {
     this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.05;
 
     if (this.mode === 'CINEMATIC') {
-      // 1. Inertial lerp camera towards target waypoint (responsive 0.14 lerp prevents sluggish lag)
-      this.currentPos.lerp(this.targetPos, 0.14);
-      this.currentLookAt.lerp(this.targetLookAt, 0.14);
-      this.currentFov += (this.targetFov - this.currentFov) * 0.14;
+      // 1. Inertial lerp camera towards target waypoint (responsive 0.16 lerp prevents sluggish lag)
+      this.currentPos.lerp(this.targetPos, 0.16);
+      this.currentLookAt.lerp(this.targetLookAt, 0.16);
+      this.currentFov += (this.targetFov - this.currentFov) * 0.16;
 
       // 2. Add organic ambient breathing drift (ensures 3D world is always alive, never statically dead)
       this.ambientTimer = (this.ambientTimer || 0) + delta;
