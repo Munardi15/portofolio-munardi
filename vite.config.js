@@ -1,17 +1,28 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './', // Ensures relative asset links for GitHub Pages
+  base: './',
+  server: {
+    host: '127.0.0.1',
+    port: 5175,
+    open: false
+  },
   build: {
-    chunkSizeWarningLimit: 1000,
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules/gsap') || id.includes('node_modules/lenis')) {
+          if (id.includes('three')) {
+            return 'three';
+          }
+          if (id.includes('gsap') || id.includes('lenis')) {
             return 'animation';
           }
-        },
-      },
-    },
-  },
+        }
+      }
+    }
+  }
 });

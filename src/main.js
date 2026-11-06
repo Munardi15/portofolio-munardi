@@ -1,16 +1,10 @@
-import './styles/style.css';
-import { PortfolioApp } from './PortfolioApp.js';
+import './styles/main.css';
+import { App } from './App.js';
 
-/**
- * ============================================================================
- * Application Entry Point
- * ============================================================================
- * Instantiates the PortfolioApp and bootstraps the senior-grade architecture.
- */
+// DOM Content Loaded Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new PortfolioApp();
-  app.init();
-
-  // Expose to window for debugging or extensions
-  window.__PORTFOLIO_APP__ = app;
+  const app = new App('#app');
+  app.init().catch((err) => {
+    console.error('Fatal Universe Bootstrap Error:', err);
+  });
 });

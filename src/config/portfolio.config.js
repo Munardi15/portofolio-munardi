@@ -21,9 +21,9 @@ export const portfolioConfig = {
       "en": "SOFTWARE ENGINEER • BANKING & PIPELINES • AVAILABLE",
       "id": "SOFTWARE ENGINEER • SISTEM PERBANKAN & PIPELINE • TERSEDIA"
     },
-    "pitch": {
-      "en": "Over <b>6+ years</b> engineering mission-critical financial systems across <b>5 leading institutions</b>. Specializing in Golang, high-throughput data pipelines, Clean Architecture, and high-performance database optimization.",
-      "id": "Lebih dari <b>6+ tahun</b> merekayasa sistem finansial berskala kritikal di <b>5 institusi keuangan terkemuka</b>. Spesialisasi dalam Golang, pipeline data throughput tinggi, Clean Architecture, dan optimasi database performa tinggi."
+        "pitch": {
+      "en": "Software Engineer with <b>6+ years of experience</b> in banking and financial systems, specializing in Go, distributed schedulers, and high-reliability data processing. Proven track record across 5 institutions adapting rapidly to diverse tech stacks, optimizing database workflows, and modernizing mission-critical legacy architectures.",
+      "id": "Software Engineer dengan pengalaman <b>6+ tahun</b> di industri perbankan dan finansial, dengan spesialisasi pada Golang, distributed scheduler, dan pemrosesan data bervolume tinggi. Teruji di 5 institusi dengan kecepatan adaptasi tinggi pada berbagai tech stack, optimasi basis data, dan modernisasi sistem legacy berskala kritikal."
     },
     "location": {
       "en": "JAKARTA, ID • REMOTE / HYBRID READY",
@@ -237,15 +237,15 @@ export const portfolioConfig = {
       "company": "Bank Rakyat Indonesia (BRI) — Vendor",
       "role": {
         "en": "Back End Engineer",
-        "id": "Insinyur Back End"
+        "id": "Back End Engineer"
       },
       "period": {
         "en": "Oct 2025 – Now",
         "id": "Okt 2025 – Sekarang"
       },
       "drawerTitle": {
-        "en": "Core Schedulers & Banking Pipelines",
-        "id": "Scheduler Core & Pipeline Perbankan"
+        "en": "BRIVA Modular Schedulers, SSIS Modernization & Encryption Pipelines",
+        "id": "Scheduler Modular BRIVA, Modernisasi SSIS & Pipeline Enkripsi"
       },
       "projectCount": 13,
       "projects": [
@@ -544,89 +544,115 @@ export const portfolioConfig = {
       "company": "Hitachi Channel Solutions",
       "role": {
         "en": "Software Engineer",
-        "id": "Rekayasa Perangkat Lunak"
+        "id": "Software Engineer"
       },
       "period": {
-        "en": "Jan 2024 – Sep 2025",
-        "id": "Jan 2024 – Sep 2025"
+        "en": "2024 – Sep 2025",
+        "id": "2024 – Sep 2025"
       },
       "drawerTitle": {
-        "en": "ATM Fleet Monitoring, Data Ingestion & Server Provisioning",
-        "id": "Monitoring Armada ATM, Ingestion Data & Setup Server"
+        "en": "ATM Fleet Monitoring, Database Optimization & Server Setup",
+        "id": "Monitoring Armada ATM, Optimasi Database & Setup Server"
       },
-      "projectCount": 3,
+      "projectCount": 4,
       "projects": [
         {
-          "codeName": "IMHOTS & EJ Fleet Monitoring",
+          "codeName": "IMHOTS & EJ Dashboard (ATM Asset Management)",
           "tags": [
             "PHP",
             "Laravel",
             "MySQL",
-            "ATM Monitoring"
+            "ATM Telemetry",
+            "EJ Processing"
           ],
           "problem": {
-            "en": "Banking partners lacked unified real-time visibility over physical ATM terminal statuses, cash availability, and Electronic Journal (EJ) operational logs across multi-vendor fleets.",
-            "id": "Bank mitra tidak memiliki visibilitas real-time terpadu atas status mesin ATM fisik, ketersediaan kas, dan log operasional Electronic Journal (EJ) pada ribuan armada mesin."
+            "en": "Banking partners required a unified platform to monitor real-time operational health, cash availability, and Electronic Journal (EJ) data across multi-bank fleets of 8,000+ ATM terminals.",
+            "id": "Bank mitra membutuhkan platform terpadu untuk memantau status operasional perangkat, ketersediaan kas, dan data Electronic Journal (EJ) pada armada 8.000+ mesin ATM lintas bank secara real-time."
           },
           "flow": [
-            "ATM Device Logs",
+            "ATM Device Telemetry",
             "EJ Stream Parser",
-            "Laravel Backend",
+            "Laravel Backend Logic",
             "MySQL Storage",
-            "Fleet Dashboard"
+            "Fleet Monitoring Dashboard"
           ],
           "role": {
-            "en": "Engineered core monitoring modules, resolved mission-critical production defects, and developed custom analytical features tailored to institutional banking requirements.",
-            "id": "Mengembangkan modul monitoring inti, menuntaskan perbaikan bug produksi skala kritikal, dan mengimplementasikan fitur kustom sesuai kebutuhan operasional bank mitra."
+            "en": "Developed web modules for IMHOTS and EJ Dashboard using PHP Laravel and MySQL, resolved production defects, implemented custom feature requests from client banks, and optimized application performance for continuous fleet monitoring.",
+            "id": "Mengembangkan modul web aplikasi IMHOTS dan EJ Dashboard berbasis PHP Laravel dan MySQL, menangani perbaikan bug produksi, mengakomodasi request fitur kustom dari bank klien, dan mengoptimasi performa aplikasi untuk monitoring armada ATM."
           }
         },
         {
-          "codeName": "Database Indexing & Excel Bulk Ingestion",
+          "codeName": "Database Indexing & Temporary Tables Optimization",
           "tags": [
             "MySQL",
-            "SQL Server",
-            "Python",
-            "Bulk Insert"
+            "Query Optimization",
+            "Indexing Strategy",
+            "Temporary Tables"
           ],
           "problem": {
-            "en": "Severe query latency impeded large-scale reporting, while manual spreadsheet data input from operational staff caused substantial workflow bottlenecks.",
-            "id": "Latensi query yang tinggi menghambat pelaporan skala besar, serta input manual data operasional dari file Excel memakan banyak waktu dan rentan eror."
+            "en": "Growing transaction and monitoring history volumes resulted in significant latency during periodic reporting and aggregate data queries.",
+            "id": "Volume data transaksi dan riwayat monitoring ATM yang terus bertambah menyebabkan latensi tinggi saat proses pelaporan berkala dan query agregasi data."
           },
           "flow": [
-            "Excel Path Scanner",
-            "Python Miniscript",
-            "SQL Transformation",
-            "Temporary Tables",
-            "Indexed Bulk Insert"
+            "Slow Query Profile",
+            "Column Usage Analysis",
+            "Strategic Indexing",
+            "Temporary Table Creation",
+            "Accelerated Data Aggregation"
           ],
           "role": {
-            "en": "Optimized complex reporting queries via strategic indexing and temporary tables, and developed automated Python miniscripts to convert Excel files into SQL format for rapid bulk ingestion.",
-            "id": "Mengoptimasi query laporan menggunakan temporary table dan strategic indexing, serta membangun miniscript Python untuk otomatisasi konversi file Excel ke SQL bulk insert."
+            "en": "Significantly accelerated data processing performance by implementing strategic indexing on frequently queried columns and utilizing MySQL temporary tables for rapid aggregation of operational reporting datasets.",
+            "id": "Meningkatkan kecepatan pemrosesan data secara signifikan dengan menerapkan indexing pada kolom-kolom query kritikal dan memanfaatkan temporary table di MySQL untuk mempercepat agregasi data pelaporan operasional."
           }
         },
         {
-          "codeName": "Client Server Provisioning & Auto-Start Daemons",
+          "codeName": "Excel-to-SQL Miniscripts & File-Path Bulk Ingestion",
+          "tags": [
+            "PHP CLI",
+            "Miniscripts",
+            "Excel-to-SQL",
+            "Bulk Insert",
+            "Automation"
+          ],
+          "problem": {
+            "en": "Operational staff manually inputted spreadsheet records into the database, creating workflow bottlenecks and increasing risk of input errors.",
+            "id": "Input data laporan operasional dari file Excel ke database masih dilakukan manual oleh staf, memakan banyak waktu dan berisiko salah ketik."
+          },
+          "flow": [
+            "Client Excel Files",
+            "Miniscript CLI Parser",
+            "SQL Syntax Generator",
+            "File-Path Bulk Ingestion",
+            "High-Speed DB Import"
+          ],
+          "role": {
+            "en": "Developed CLI automation miniscripts to parse Excel spreadsheets into valid SQL insert statements, and engineered bulk insert utilities reading directly from file paths to dramatically speed up mass data ingestion.",
+            "id": "Membangun miniscript otomasi untuk mengonversi file Excel menjadi format SQL siap import, serta merancang script bulk insert yang membaca path file langsung dari sistem berkas untuk mempercepat pemasukan data massal ke database."
+          }
+        },
+        {
+          "codeName": "Client Server Setup (Apache/XAMPP) & Auto-Start Service Recovery",
           "tags": [
             "Apache",
             "XAMPP",
             "MySQL",
             "SQL Server",
-            "DevOps/Infra"
+            "Windows/Linux Services"
           ],
           "problem": {
-            "en": "Client bank environments required bespoke server and database provisioning, while background ingestion services frequently dropped offline after physical host reboots.",
-            "id": "Lingkungan server bank klien memerlukan konfigurasi dependensi mandiri, dan background service ingestion sering mati tanpa pemulihan otomatis pasca server fisik reboot."
+            "en": "Client banks required isolated on-premise server environments with specific database dependencies, while background services failed to automatically recover following host server reboots.",
+            "id": "Setiap bank mitra memerlukan penyiapan server mandiri dengan dependensi database terpisah, dan background service sering mati tanpa pemulihan otomatis saat server fisik reboot."
           },
           "flow": [
-            "Server Setup",
-            "Dependency Config",
-            "Database Setup",
-            "Daemon Service Hook",
-            "Auto-Restart Check"
+            "Server Host Provisioning",
+            "Apache / XAMPP Configuration",
+            "MySQL & SQL Server Setup",
+            "Service Daemon Registration",
+            "Reboot Auto-Recovery Verification"
           ],
           "role": {
-            "en": "Configured client server hosts via Apache and XAMPP, provisioned MySQL and SQL Server database environments, and engineered auto-start service configurations ensuring zero-downtime daemon recovery after server reboots.",
-            "id": "Melakukan setup host server klien via Apache dan XAMPP, konfigurasi database MySQL & SQL Server, serta merancang konfigurasi auto-start service agar daemon ingestion otomatis aktif kembali saat reboot."
+            "en": "Provisioned and configured client servers using manual Apache setups and XAMPP, installed MySQL and SQL Server dependencies, and implemented auto-start service configurations ensuring essential background services automatically resume execution after server restarts.",
+            "id": "Melakukan setup server untuk tiap klien bank menggunakan konfigurasi Apache manual maupun XAMPP, instalasi dependensi database MySQL & SQL Server, serta mengonfigurasi fitur auto-start service agar background process yang diperlukan otomatis aktif kembali saat server menyala pasca restart."
           }
         }
       ]
@@ -637,67 +663,67 @@ export const portfolioConfig = {
       "company": "OCBC NISP",
       "role": {
         "en": "Software Engineer",
-        "id": "Rekayasa Perangkat Lunak"
+        "id": "Software Engineer"
       },
       "period": {
-        "en": "Jan 2022 – Feb 2024",
-        "id": "Jan 2022 – Feb 2024"
+        "en": "2022 – Feb 2024",
+        "id": "2022 – Feb 2024"
       },
       "drawerTitle": {
-        "en": "ATM Reconciliation Web Migration & Core Banking AS400 Audit",
-        "id": "Migrasi Web Rekonsiliasi ATM & Audit Core Banking AS400"
+        "en": "ProrRekonATM Web Migration, AS400 Query Checks & Physical ATM Testing",
+        "id": "Migrasi Web ProrRekonATM, Pengecekan Query AS400 & Uji Fisik ATM"
       },
       "projectCount": 2,
       "projects": [
         {
-          "codeName": "ProrRekonATM Web Migration",
+          "codeName": "ProrRekonATM Web Migration (React.js & Golang REST API)",
           "tags": [
             "React.js",
             "Golang",
             "PostgreSQL",
             "Axios",
-            "REST API"
+            "REST API",
+            "Clean Architecture"
           ],
           "problem": {
-            "en": "The legacy desktop ATM billing reconciliation system was sluggish, locked to specific operating systems, and difficult to maintain due to monolithic procedural code.",
-            "id": "Aplikasi desktop lama untuk rekonsiliasi penagihan ATM sangat lambat, terkunci pada OS tertentu, dan sulit dipelihara akibat kode prosedural monolitik."
+            "en": "The internal ProrRekonATM desktop application relied heavily on procedural Stored Procedures, presenting maintenance hurdles and accessibility constraints for operations during ongoing billing reconciliation between the bank and external billers.",
+            "id": "Aplikasi internal ProrRekonATM sebelumnya berbasis desktop prosedural yang sangat bergantung pada Stored Procedure, sehingga tim operasional menghadapi keterbatasan aksesibilitas dan perawatan kode saat proses rekonsiliasi billing penagihan dengan biller berjalan."
           },
           "flow": [
-            "React Web UI",
-            "Axios Client",
-            "Golang REST API",
-            "Business Layer",
-            "PostgreSQL Transaction",
-            "Client JSON"
+            "Legacy Desktop Logic",
+            "Golang REST API Design",
+            "PostgreSQL Storage",
+            "Axios Client Layer",
+            "React.js Web Interface"
           ],
           "role": {
-            "en": "Led end-to-end full-stack re-architecture: built modern interactive UI in React.js, engineered high-throughput REST APIs in Golang with PostgreSQL, and cleanly decoupled reconciliation business logic.",
-            "id": "Memimpin perancangan ulang full-stack menyeluruh: membangun UI interaktif modern dengan React.js, merekayasa REST API berkecepatan tinggi dengan Golang dan PostgreSQL, serta memisahkan logika bisnis rekonsiliasi secara bersih."
+            "en": "Re-architected and re-coded the procedural desktop application into a modern web application using React.js on the frontend and a Golang REST API with PostgreSQL on the backend, integrating communications via Axios and restructuring business logic from stored procedures into maintainable API services without disrupting active reconciliation cycles.",
+            "id": "Mendesain ulang dan merekonstruksi (re-code) aplikasi desktop menjadi web application menggunakan React.js di frontend dan Golang REST API dengan database PostgreSQL di backend, mengintegrasikannya via Axios, serta memindahkan sebagian logika prosedural ke API secara terstruktur tanpa mengganggu jalannya rekonsiliasi aktif."
           }
         },
         {
-          "codeName": "Core Banking AS400 Validation & Physical ATM Testing",
+          "codeName": "AS400 Core Banking Query Cross-Checks & Physical ATM Testing",
           "tags": [
             "AS400",
-            "Stored Procedures",
             "Core Banking",
-            "Hardware Testing",
-            "SQL Server"
+            "SQL Stored Procedures",
+            "ATM Hardware Testing",
+            "Reconciliation"
           ],
           "problem": {
-            "en": "Billing discrepancies between the bank and billers demanded rigorous ledger verification against core banking data and real-world cash dispensing validation.",
-            "id": "Ketidaksesuaian data billing antara bank dan mitra biller menuntut verifikasi audit ketat ke buku besar core banking serta validasi fisik pengeluaran kas."
+            "en": "Billing discrepancies between bank records and external billers required direct verification against core banking ledger data and physical ATM transaction verification.",
+            "id": "Ketidaksesuaian data billing antara catatan bank dan mitra biller memerlukan penelusuran data transaksi secara langsung ke pembukuan core banking serta verifikasi fisik pada perangkat ATM."
           },
           "flow": [
-            "Billing Data Ingest",
-            "Stored Procedure Run",
-            "AS400 Ledger Cross-Check",
+            "Biller Billing Data",
+            "Stored Procedure Execution",
+            "AS400 Query Cross-Check",
             "Physical ATM Cash Test",
-            "Reconciliation Match"
+            "Discrepancy Resolution"
           ],
           "role": {
-            "en": "Maintained mission-critical reconciliation Stored Procedures, conducted data cross-checks against the AS400 core banking system, and conducted on-device hardware testing on physical ATMs to validate cash and network timeout scenarios.",
-            "id": "Mengelola Stored Procedure rekonsiliasi penagihan, melakukan cross-check data langsung ke core banking AS400, serta melakukan pengujian perangkat keras langsung di mesin ATM fisik untuk validasi skenario transaksi dan kas riil."
+            "en": "Maintained reconciliation Stored Procedures, performed direct query cross-checks against the AS400 core banking database to trace billing discrepancies against ledger entries, and conducted physical on-device ATM testing to validate live cash dispensing and transaction flows.",
+            "id": "Memelihara Stored Procedure rekonsiliasi penagihan, melakukan pengecekan query secara langsung ke sistem core banking AS400 untuk memverifikasi dan mencocokkan data billing dengan transaksi, serta melakukan pengujian langsung pada hardware mesin ATM fisik untuk memastikan keakuratan transaksi dan pengeluaran kas riil."
           }
         }
       ]
@@ -708,41 +734,42 @@ export const portfolioConfig = {
       "company": "KNusantara Group",
       "role": {
         "en": "Backend Developer & Systems Analyst",
-        "id": "Pengembang Backend & Analis Sistem"
+        "id": "Backend Developer & Analis Sistem"
       },
       "period": {
         "en": "Apr 2023 – Dec 2023",
-        "id": "Apr 2023 – Dec 2023"
+        "id": "Apr 2023 – Des 2023"
       },
       "drawerTitle": {
-        "en": "Enterprise Systems Analysis & Centralized API Services",
-        "id": "Analisis Sistem Enterprise & Layanan API Terpusat"
+        "en": "REST API Architecture & Systems Workflow Analysis",
+        "id": "Arsitektur REST API & Analisis Alur Sistem"
       },
       "projectCount": 1,
       "projects": [
         {
-          "codeName": "Enterprise Centralized API Services",
+          "codeName": "Enterprise REST API & Systems Workflow Analysis",
           "tags": [
             "PHP",
             "Laravel",
             "MySQL",
+            "REST API",
             "Systems Analysis",
-            "REST API"
+            "Workflow Modeling"
           ],
           "problem": {
-            "en": "Disconnected internal business applications suffered from data silos, requiring comprehensive system analysis and unified, secure API endpoints.",
-            "id": "Berbagai aplikasi internal perusahaan terisolasi dan tidak terhubung, membutuhkan analisis sistem mendalam serta endpoint API yang aman dan terpusat."
+            "en": "Developing new internal business applications required rigorous upfront requirement analysis, clear workflow mapping, and dependable API endpoints for frontend consumption.",
+            "id": "Kebutuhan pembangunan aplikasi internal baru menuntut analisis kebutuhan bisnis yang jelas, desain alur data yang terstruktur, serta ketersediaan endpoint API yang andal untuk integrasi antarmuka."
           },
           "flow": [
-            "Requirements Analysis",
-            "Data Flow Contract",
-            "Laravel Service",
-            "MySQL Integration",
-            "Stakeholder Sign-Off"
+            "Stakeholder Requirement Gathering",
+            "System Workflow Modeling",
+            "Relational Schema Design",
+            "Laravel REST API Development",
+            "MySQL Integration & Testing"
           ],
           "role": {
-            "en": "Executed structured technical systems analysis prior to development, designed relational schemas, and built centralized RESTful APIs with PHP Laravel and MySQL to seamlessly integrate enterprise business workflows.",
-            "id": "Melakukan analisis kebutuhan teknis sebelum pengkodean, mendesain skema relasional, dan membangun layanan REST API terpusat dengan PHP Laravel dan MySQL untuk mengintegrasikan alur bisnis perusahaan."
+            "en": "Conducted technical system analysis and workflow modeling prior to development, designed relational MySQL database schemas, and built structured RESTful APIs using PHP Laravel to power application features.",
+            "id": "Melakukan analisis kebutuhan teknis dan pemodelan alur sistem secara mendalam sebelum proses pengembangan, merancang skema basis data MySQL, dan membangun RESTful API terstruktur menggunakan PHP Laravel untuk integrasi fungsionalitas aplikasi."
           }
         }
       ]
@@ -752,42 +779,133 @@ export const portfolioConfig = {
       "node": "05",
       "company": "PT Asuransi BRI Life",
       "role": {
-        "en": "Backend Engineer",
-        "id": "Insinyur Backend"
+        "en": "Backend Developer",
+        "id": "Backend Developer"
       },
       "period": {
-        "en": "Jan 2020 – Dec 2022",
-        "id": "Jan 2020 – Dec 2022"
+        "en": "2020 – 2022",
+        "id": "2020 – 2022"
       },
       "drawerTitle": {
-        "en": "Insurance Core Backend & Policy Data Transformation",
-        "id": "Backend Inti Asuransi & Transformasi Data Polis"
+        "en": "Insurance Core Backend & Policy Data Modeling (Node.js & SQL Server)",
+        "id": "Backend Sistem Asuransi & Pemodelan Data Polis (Node.js & SQL Server)"
       },
       "projectCount": 1,
       "projects": [
         {
-          "codeName": "Core Insurance Policy Backend System",
+          "codeName": "Insurance Policy Data Modeling & REST API",
           "tags": [
             "Node.js",
             "Express.js",
             "SQL Server",
             "Azure Data Studio",
-            "Data Modeling"
+            "JSON Transformation"
           ],
           "problem": {
-            "en": "Complex insurance policy relational schemas and strict underwriting regulations could not be directly consumed by client-facing frontend applications without rigorous data formatting.",
-            "id": "Struktur data polis asuransi yang kompleks serta aturan bisnis underwriting yang ketat tidak dapat langsung dikonsumsi frontend tanpa transformasi dan validasi data yang presisi."
+            "en": "Insurance policy datasets and underwriting workflows required structured data modeling in SQL Server and clean, standardized JSON output formatting for smooth frontend consumption.",
+            "id": "Data polis asuransi dan alur bisnis operasional memerlukan pemodelan data yang tepat di SQL Server serta penyajian format output data (JSON) yang terstandarisasi agar siap dikonsumsi oleh tim frontend."
           },
           "flow": [
-            "Policy Database Schema",
-            "Azure Data Studio Tuning",
-            "Express.js Logic",
-            "Transformation Layer",
-            "Frontend JSON Contract"
+            "Insurance Policy Data",
+            "Azure Data Studio Query Modeling",
+            "Node.js Express Backend",
+            "Business Logic Transformation",
+            "Frontend-Ready JSON Contract"
           ],
           "role": {
-            "en": "Engineered Node.js and Express backend services, tuned relational data models in SQL Server via Azure Data Studio, and transformed raw insurance datasets into secure, consumable API payloads for frontend interfaces.",
-            "id": "Mengembangkan backend service Node.js dan Express, mengoptimasi model data SQL Server menggunakan Azure Data Studio, serta mentransformasikan data polis mentah menjadi payload API yang aman dan siap pakai untuk tim frontend."
+            "en": "Developed backend services using Node.js and the Express framework, engineered data models and optimized queries on SQL Server via Azure Data Studio, and shaped output data structures (JSON) to match insurance business workflows for frontend integration.",
+            "id": "Membangun sistem backend menggunakan Node.js dan framework Express, melakukan pemodelan data serta penulisan query pada SQL Server menggunakan Azure Data Studio, dan menyesuaikan struktur output data (JSON) sesuai kebutuhan alur proses bisnis asuransi agar dapat diintegrasikan dengan baik oleh tim frontend."
+          }
+        }
+      ]
+    },
+    {
+      "id": "job-06",
+      "node": "06",
+      "company": "Bootcamp Code Academy",
+      "role": {
+        "en": "Fullstack Engineering Trainee",
+        "id": "Trainee Software Engineer Fullstack"
+      },
+      "period": {
+        "en": "2019",
+        "id": "2019"
+      },
+      "drawerTitle": {
+        "en": "Fullstack Foundations with Java Spring Boot & React.js",
+        "id": "Fondasi Fullstack dengan Java Spring Boot & React.js"
+      },
+      "projectCount": 1,
+      "projects": [
+        {
+          "codeName": "Fullstack Application Development (Java Spring Boot & React)",
+          "tags": [
+            "Java",
+            "Spring Boot",
+            "React.js",
+            "JavaScript",
+            "MySQL",
+            "REST API"
+          ],
+          "problem": {
+            "en": "Building solid software engineering foundations through intensive enterprise programming training covering OOP patterns, relational data structures, and modern web interfaces.",
+            "id": "Membangun fondasi software engineering yang kokoh melalui pelatihan intensif pemrograman enterprise berbasis pola OOP, struktur data relasional, dan antarmuka web modern."
+          },
+          "flow": [
+            "OOP Concept Modeling",
+            "Java Spring Boot REST API",
+            "Relational Database",
+            "React.js Component Architecture",
+            "End-to-End Integration"
+          ],
+          "role": {
+            "en": "Learned and implemented enterprise programming with Java Spring Boot on the backend and React.js on the frontend, designing REST APIs, managing database interactions, and establishing fundamental fullstack software practices.",
+            "id": "Mempelajari dan mempraktikkan pemrograman backend menggunakan Java dan framework Spring Boot, serta frontend menggunakan JavaScript dan React.js, mencakup perancangan REST API dan integrasi data end-to-end."
+          }
+        }
+      ]
+    },
+    {
+      "id": "job-07",
+      "node": "07",
+      "company": "IT Freelance",
+      "role": {
+        "en": "Computer Systems & Hardware Specialist",
+        "id": "Spesialis Sistem Komputer & Hardware"
+      },
+      "period": {
+        "en": "Jan 2019 – Present",
+        "id": "Jan 2019 – Sekarang"
+      },
+      "drawerTitle": {
+        "en": "Hardware Diagnostics, OS Deployment & Equipment Refurbishment",
+        "id": "Diagnostik Hardware, Instalasi OS & Perbaikan Perangkat"
+      },
+      "projectCount": 1,
+      "projects": [
+        {
+          "codeName": "Hardware Diagnostics & OS Deployment Operations",
+          "tags": [
+            "Hardware Repair",
+            "OS Installation",
+            "Diagnostics",
+            "Device Refurbishment",
+            "Troubleshooting"
+          ],
+          "problem": {
+            "en": "End-users and small businesses needed reliable hardware repair, operating system troubleshooting, and thoroughly tested refurbished computing systems.",
+            "id": "Kebutuhan perbaikan perangkat komputer, penanganan troubleshooting sistem operasi, dan penyiapan laptop refurbished yang siap pakai dan andal bagi pengguna."
+          },
+          "flow": [
+            "Hardware Defect Diagnostics",
+            "Component Repair & Upgrade",
+            "Clean OS Installation & Config",
+            "Driver & Performance Tuning",
+            "Quality Assurance"
+          ],
+          "role": {
+            "en": "Diagnosed and resolved hardware issues, conducted clean OS installations (Windows/Linux), repaired device components, and refurbished laptops with rigorous quality testing before client handover.",
+            "id": "Memberikan layanan perbaikan hardware komputer, instalasi dan konfigurasi sistem operasi (Windows/Linux), serta penyiapan dan penjualan laptop bekas layak pakai dengan pengujian performa menyeluruh."
           }
         }
       ]
@@ -826,6 +944,128 @@ export const portfolioConfig = {
         "2014 – 2017",
         "Jakarta Barat"
       ]
+    }
+  ],
+  "interviewChapters": [
+    {
+      "id": "story-stage-01",
+      "stage": {
+        "en": "STAGE 01 // GENESIS & PHILOSOPHY",
+        "id": "STAGE 01 // GENESIS & FILOSOFI"
+      },
+      "sectionId": "about",
+      "title": {
+        "en": "01. Engineering Philosophy & Identity",
+        "id": "01. Filosofi Rekayasa & Identitas Diri"
+      },
+      "cameraPos": [-1.4, 0.1, 6.8],
+      "zoomFov": 42,
+      "modelRotation": [0.15, 0.45, 0],
+      "explosionFactor": 0.0,
+      "lead": {
+        "en": "6+ years of engineering experience across 5 financial institutions, grounded in rapid stack adaptability and robust fundamentals.",
+        "id": "Pengalaman 6+ tahun merekayasa sistem perbankan dan finansial di 5 institusi, berlandaskan kecepatan adaptasi stack dan fundamental yang kuat."
+      },
+      "narrative": {
+        "en": "Throughout my career, every company I joined utilized a different technology stack — from Java Spring Boot, Node.js, and PHP Laravel, to React.js and Golang. I don't confine myself to a single language; my core strength is how quickly I become productive in any ecosystem by applying transferable software engineering principles: Clean Architecture, resilient data workflows, database query tuning, and strict data accuracy. While I am comfortable managing features end-to-end, I currently choose to deepen Golang for high-concurrency banking systems.",
+        "id": "Sepanjang perjalanan karier saya, tiap institusi yang saya masuki memakai stack teknologi yang berbeda — mulai dari Java Spring Boot, Node.js, PHP Laravel, hingga React.js dan Golang. Saya tidak membatasi diri pada satu bahasa tertentu; keunggulan utama saya adalah kecepatan adaptasi untuk langsung produktif di ekosistem mana pun melalui prinsip software engineering yang transferable: Clean Architecture, keandalan alur data, optimasi basis data, serta akurasi transaksi. Saya terbiasa mengelola fitur end-to-end, dengan fokus pendalaman saat ini pada Golang untuk sistem perbankan berkonkurensi tinggi."
+      }
+    },
+    {
+      "id": "story-stage-02",
+      "stage": {
+        "en": "STAGE 02 // TECHNICAL ARSENAL",
+        "id": "STAGE 02 // GUDANG SENJATA TEKNIS"
+      },
+      "sectionId": "skill",
+      "title": {
+        "en": "02. Technical Arsenal & Stack Evolution",
+        "id": "02. Gudang Senjata Teknis & Evolusi Stack"
+      },
+      "cameraPos": [1.4, 0.25, 4.8],
+      "zoomFov": 32,
+      "modelRotation": [0.3, 1.35, -0.1],
+      "explosionFactor": 0.25,
+      "lead": {
+        "en": "A 5-pillar production-tested architecture engineered for zero data loss and resilient concurrency.",
+        "id": "Arsitektur 5 pilar teruji di produksi untuk integritas data tanpa kompromi dan konkurensi tinggi."
+      },
+      "narrative": {
+        "en": "My technical toolkit spans modern backend services (Golang with Fiber, GORM, gocron; Python; Node.js; PHP Laravel), frontend integration (React.js, TypeScript, Axios), relational databases (SQL Server, PostgreSQL, MySQL with stored procedures and indexing), containerization (Docker multi-stage, Kubernetes Helm), and secure integrations (FTP/SFTP, MinIO S3, AES/GPG file encryption).",
+        "id": "Gudang senjata teknis saya mencakup pengembangan backend modern (Golang dengan Fiber, GORM, gocron; Python; Node.js; PHP Laravel), integrasi frontend (React.js, TypeScript, Axios), teknik basis data (SQL Server, PostgreSQL, MySQL dengan stored procedure dan strategic indexing), kontainerisasi (Docker multi-stage, Kubernetes Helm), serta integrasi aman (FTP/SFTP, MinIO S3, enkripsi file AES/GPG)."
+      }
+    },
+    {
+      "id": "story-stage-03",
+      "stage": {
+        "en": "STAGE 03 // CORE BANKING & ATM",
+        "id": "STAGE 03 // CORE BANKING & ATM"
+      },
+      "sectionId": "experience",
+      "title": {
+        "en": "03. Banking Systems & ATM Reconciliation",
+        "id": "03. Sistem Perbankan & Rekonsiliasi ATM"
+      },
+      "cameraPos": [-1.5, 0.2, 4.4],
+      "zoomFov": 30,
+      "modelRotation": [-0.15, 2.6, 0.1],
+      "explosionFactor": 1.0,
+      "lead": {
+        "en": "ProrRekonATM web migration at OCBC NISP, AS400 core banking query checks, and IMHOTS 8,000+ ATM fleet monitoring at Hitachi.",
+        "id": "Migrasi web ProrRekonATM di OCBC NISP, pengecekan query AS400, dan monitoring armada 8.000+ ATM di Hitachi."
+      },
+      "narrative": {
+        "en": "At <b>OCBC NISP</b>, I re-architected the internal procedural desktop tool into <b>ProrRekonATM Web</b> using React.js and Golang REST APIs with PostgreSQL. To resolve billing discrepancies, I regularly ran query cross-checks directly against the <b>AS400 core banking</b> system and conducted physical testing on ATM hardware. At <b>Hitachi Channel Solutions</b>, I developed and maintained the <b>IMHOTS</b> web platform and EJ Dashboard monitoring 8,000+ ATMs across multiple banks, optimized MySQL queries via indexing and temporary tables, built Excel-to-SQL automation miniscripts, and configured client servers with auto-start daemon recovery.",
+        "id": "Di <b>OCBC NISP</b>, saya mendesain ulang aplikasi desktop prosedural menjadi <b>ProrRekonATM Web</b> berbasis React.js dan REST API Golang dengan PostgreSQL. Untuk menelusuri selisih penagihan billing, saya rutin melakukan pengecekan query langsung ke sistem <b>core banking AS400</b> serta melakukan uji fisik pada mesin ATM. Di <b>Hitachi Channel Solutions</b>, saya mengembangkan platform web <b>IMHOTS</b> dan EJ Dashboard untuk monitoring armada 8.000+ mesin ATM lintas bank, mengoptimasi query MySQL dengan indexing dan temporary table, membuat miniscript konversi Excel ke SQL, serta menyiapkan server klien dengan fitur auto-start daemon recovery."
+      }
+    },
+    {
+      "id": "story-stage-04",
+      "stage": {
+        "en": "STAGE 04 // DISTRIBUTED PIPELINES",
+        "id": "STAGE 04 // PIPELINE & MICROSERVICE"
+      },
+      "sectionId": "experience",
+      "title": {
+        "en": "04. High-Throughput Pipelines & Background Schedulers",
+        "id": "04. Pipeline Throughput Tinggi & Background Scheduler"
+      },
+      "cameraPos": [1.5, -0.2, 5.2],
+      "zoomFov": 36,
+      "modelRotation": [0.25, 3.9, -0.1],
+      "explosionFactor": 0.75,
+      "lead": {
+        "en": "13+ automated Golang schedulers at BRI, legacy SSIS modernization, and multi-threaded Python AES/GPG encryption.",
+        "id": "13+ scheduler Golang otomatis di BRI, modernisasi SSIS legacy, dan enkripsi file klien via Python AES/GPG."
+      },
+      "narrative": {
+        "en": "At <b>Bank Rakyat Indonesia (BRI)</b>, I engineered <b>13+ modular background schedulers</b> for BRIVA processing — including centralized activity logging (sch-log-activity-briva), FTP parameter synchronization with MinIO S3, batch file generation, and transaction data updates. I built <b>sch-parse-file-merah-putih</b> from scratch in Golang using Clean Architecture to replace 3 legacy SSIS DTSX packages, preserving 100% of business logic while enabling containerized processing. In parallel, I developed a multi-threaded Python scheduler for AES and GPG encryption/decryption of ATM settlement files with automated retry handling.",
+        "id": "Di <b>Bank Rakyat Indonesia (BRI)</b>, saya membangun <b>13+ background scheduler modular</b> untuk operasional BRIVA — mencakup logging terpusat (sch-log-activity-briva), sinkronisasi parameter FTP/SFTP ke MinIO S3, batch file generation, dan update data transaksi. Saya membangun service <b>sch-parse-file-merah-putih</b> dari nol menggunakan Golang dengan Clean Architecture untuk menggantikan 3 package SSIS DTSX warisan, mempertahankan 100% logika bisnis seraya beralih ke container dan MinIO. Saya juga mengembangkan scheduler Python multi-threaded untuk enkripsi/dekripsi file settlement ATM klien via cipher AES dan GPG dengan mekanisme retry otomatis."
+      }
+    },
+    {
+      "id": "story-stage-05",
+      "stage": {
+        "en": "STAGE 05 // CREDENTIALS & CONTACT",
+        "id": "STAGE 05 // FONDASI AKADEMIK & KONTAK"
+      },
+      "sectionId": "education",
+      "title": {
+        "en": "05. Academic Rigor & Engineering Collaboration",
+        "id": "05. Fondasi Akademik & Inisiasi Kolaborasi"
+      },
+      "cameraPos": [-1.3, 0, 7.2],
+      "zoomFov": 45,
+      "modelRotation": [0.1, 6.28, 0],
+      "explosionFactor": 0.0,
+      "lead": {
+        "en": "Universitas Mercu Buana GPA 3.71 (Cum Laude) • Open for High-Impact Software Engineering Roles.",
+        "id": "Universitas Mercu Buana IPK 3.71 (Cum Laude) • Terbuka untuk Peran Rekayasa Perangkat Lunak Strategis."
+      },
+      "narrative": {
+        "en": "I hold a Bachelor's degree in Information Systems from <b>Universitas Mercu Buana</b> with a <b>3.71 GPA (Cum Laude)</b>, reinforced by full-stack training at <b>Code Academy</b> and early hands-on hardware troubleshooting since 2019. I bring grounded technical maturity, high accountability, and proven enterprise delivery. I am ready for immediate deployment in remote or hybrid Jakarta engineering roles.",
+        "id": "Saya lulusan S1 Sistem Informasi dari <b>Universitas Mercu Buana</b> dengan predikat <b>Cum Laude (IPK 3.71)</b>, diperkuat pelatihan intensif full-stack di <b>Code Academy</b> dan pengalaman awal perbaikan hardware sejak 2019. Saya membawa kedewasaan teknis yang teruji, akuntabilitas tinggi, dan rekam jejak delivery enterprise nyata. Saya siap berkontribusi langsung untuk peran software engineering remote maupun hybrid di Jakarta."
+      }
     }
   ],
   "marquee": {
