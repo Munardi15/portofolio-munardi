@@ -1,21 +1,23 @@
 # MASTER PROMPT: UNIVERSAL 3D INTERACTIVE WEB SHOWCASE
-> **Enterprise-Grade Creative Engineering & Clean Architecture Edition**  
-> Dirancang oleh Principal Software Engineer & WebGL Specialist agar dapat dieksekusi dengan hasil sempurna oleh model AI apa pun (Gemini, Claude 3.7, GPT-4o, Cursor Composer, Windsurf, Bolt, v0). Menghasilkan kode berstandar industri tinggi: **Modular MVC, Clean Code (SOLID/DRY), Zero Memory Leaks, Built-in Automated QA Diagnostics, dan UI/UX Sinematik**.
+> **Enterprise-Grade Creative Engineering, Autonomous Self-Audit & Clean Architecture Edition**  
+> Dirancang oleh Principal Software Engineer & WebGL Specialist agar dapat dieksekusi dengan hasil sempurna oleh model AI apa pun (Gemini, Claude 3.7, GPT-4o, Cursor Composer, Windsurf, Bolt, v0).  
+> **Fitur Unggulan:** Arsitektur Modular MVC, Clean Code (SOLID/DRY), Zero GPU Memory Leaks, **Autonomous Self-Audit & Self-Correction Loop**, Built-in Automated Unit Testing, dan UI/UX Sinematik.
 
 ---
 
 ## DAFTAR ISI
 1. [Panduan Penggunaan Cepat](#1-panduan-penggunaan-cepat)
-2. [Panduan Menyiapkan Aset 3D Gratis (Rp0)](#2-panduan-menyiapkan-aset-3d-gratis-rp0)
-3. [MASTER PROMPT (Tinggal Salin ke AI)](#3-master-prompt-copy-paste-ke-ai)
-4. [Daftar Preset Tema Industri Siap Pakai](#4-daftar-preset-tema-industri-siap-pakai)
-5. [Standar Struktur Folder Enterprise (Clean MVC)](#5-standar-struktur-folder-enterprise-clean-mvc)
+2. [Aturan Lokasi & Penempatan Aset (Asset Management)](#2-aturan-lokasi--penempatan-aset-asset-management)
+3. [Panduan Menyiapkan Aset 3D Gratis (Rp0)](#3-panduan-menyiapkan-aset-3d-gratis-rp0)
+4. [MASTER PROMPT (Tinggal Salin ke AI)](#4-master-prompt-copy-paste-ke-ai)
+5. [Daftar Preset Tema Industri Siap Pakai](#5-daftar-preset-tema-industri-siap-pakai)
+6. [Standar Struktur Folder Enterprise (Clean MVC)](#6-standar-struktur-folder-enterprise-clean-mvc)
 
 ---
 
 ## 1. PANDUAN PENGGUNAAN CEPAT
 
-1. Salin seluruh teks di dalam blok **Bagian 3 (MASTER PROMPT)**.
+1. Salin seluruh teks di dalam blok **Bagian 4 (MASTER PROMPT)**.
 2. Ubah variabel pada blok **`[KONFIGURASI TEMA PROYEK]`** sesuai produk atau ide yang ingin Anda buat (atau biarkan default untuk demo instan).
 3. Kirim ke AI (Gemini / Claude / ChatGPT / Cursor Composer).
 4. AI akan menyusun proyek modular lengkap dengan arsitektur MVC, komponen reusable, pengujian otomatis (QA self-test), dan Three.js WebGL engine.
@@ -23,7 +25,33 @@
 
 ---
 
-## 2. PANDUAN MENYIAPKAN ASET 3D GRATIS (RP0)
+## 2. ATURAN LOKASI & PENEMPATAN ASET (ASSET MANAGEMENT)
+
+### Di mana aset harus ditaruh?
+Di dalam proyek web modern berbasis **Vite**, seluruh file statis biner (seperti model 3D `.glb`, foto karakter, logo, audio, atau tekstur) **WAJIB diletakkan di dalam folder `public/`**, BUKAN di dalam folder `src/`.
+
+```
+my-3d-showcase/
+├── public/
+│   └── assets/
+│       ├── 3d/          <--- SEMUA FILE MODEL 3D (.glb / .gltf) DITARUH DI SINI
+│       │   ├── model-1.glb
+│       │   ├── model-2.glb
+│       │   └── model-3.glb
+│       ├── images/      <--- Foto karakter 2D, background, atau favicon
+│       │   ├── hero-bg.jpg
+│       │   └── character.png
+│       └── sounds/      <--- (Opsional) Efek audio klik / ambience .mp3
+```
+
+### Mengapa harus di folder `public/`?
+* File di dalam `public/` tidak akan di-bundle, tidak di-rename, dan tidak di-hash acak oleh compiler Vite saat proses build.
+* Three.js `GLTFLoader` memuat file 3D melalui HTTP fetch URL saat runtime. Dengan ditaruh di `public/assets/3d/`, file dapat dipanggil langsung melalui path browser:
+  👉 `/assets/3d/model-1.glb` atau `./assets/3d/model-1.glb`.
+
+---
+
+## 3. PANDUAN MENYIAPKAN ASET 3D GRATIS (RP0)
 
 Website ini menggunakan model 3D berformat **`.glb`** (GL Transmission Format Binary). Anda memiliki 2 opsi gratis:
 
@@ -41,7 +69,7 @@ Website ini menggunakan model 3D berformat **`.glb`** (GL Transmission Format Bi
 
 ---
 
-## 3. MASTER PROMPT (COPY-PASTE KE AI)
+## 4. MASTER PROMPT (COPY-PASTE KE AI)
 
 *Salin seluruh blok di bawah garis ini dan tempelkan ke AI:*
 
@@ -63,6 +91,36 @@ KUALITAS KODE HARUS MEMENUHI STANDAR SENIOR SOFTWARE ENGINEER:
    - Senior Recruiter / Lead Architect: Arsitektur folder rapi, type-safety logic, penanganan error tangguh (fallback 3D jika file hilang), performa optimal (DPR clamped <= 2), dan test coverage terverifikasi.
 
 =============================================================================
+[PROTOKOL OTONOM: SELF-AUDIT, SELF-CORRECTION & RE-TEST LOOP UNTIL FINAL]
+=============================================================================
+Sebagai Senior Engineer, Anda DILARANG KERAS hanya berhenti setelah menulis draft kode pertama. Anda WAJIB menjalankan Siklus Audit & Perbaikan Otonom (Self-Healing Loop) sampai sistem 100% sempurna tanpa cacat:
+
+FASE 1 — IMPLEMENTASI ARSITEKTUR LENGKAP:
+Tuliskan seluruh kode modular sesuai struktur file yang telah ditetapkan.
+
+FASE 2 — AUDIT MANDIRI KETAT (SELF-AUDIT CHECKLIST):
+Audit setiap baris kode Anda terhadap 6 Vektor Masalah:
+1. Integritas Path Aset: Apakah pemanggilan file 3D mengarah ke `/assets/3d/...` di folder `public/`?
+2. WebGL Lifecycle & Memori: Apakah fungsi `disposeCurrentModel()` benar-benar membersihkan seluruh geometri, material, dan tekstur saat pergantian model? (Mencegah WebGL context crash akibat memory leak).
+3. Fallback Resilience (Anti-Blank Screen): Jika file `.glb` 404 atau belum ditaruh pengguna, apakah fallback geometri prosedural 3D Three.js murni (`TorusKnotGeometry`, `IcosahedronGeometry`) otomatis menggantikan posisinya tanpa error di konsol?
+4. Formula Animasi & Parallax: Apakah mouse parallax menggunakan interpolasi lerp halus (`lerp factor 0.05`) dan bukan pergerakan kaku? Apakah model memiliki osilasi melayang (`Math.sin()`)?
+5. Responsivitas Mobile & Layar Sentuh: Apakah dock bawah dapat digeser menyamping (`overflow-x: auto; touch-action: pan-x;`) pada viewport 375px–390px? Apakah `devicePixelRatio` dibatasi `Math.min(window.devicePixelRatio, 2)`?
+6. Unit Test Pass Rate: Apakah semua skenario pengujian di `tests/showcase.test.js` dirancang dengan asersi nyata yang dapat dieksekusi dengan `node --test`?
+
+FASE 3 — RISET ANOMALI & PERBAIKAN SURGICAL:
+Jika Anda menemukan celah logika, potensi lag, style yang bertumpuk di mobile, atau inkonsistensi nama variabel:
+- Teliti akar masalah teknisnya secara objektif.
+- Lakukan refactoring langsung pada komponen yang bersangkutan tanpa merusak modul lain.
+
+FASE 4 — VERIFIKASI ULANG (RE-TEST LOOP):
+Evaluasi kembali seluruh sistem setelah perbaikan.
+- Masih ada kekurangan atau celah? -> Ulangi Fase 3 (Riset lagi, perbaiki lagi, cek lagi).
+- Sudah lolos seluruh verifikasi, 0 error, 0 memory leak, dan tampilan mulus 60 FPS? -> FASE 5 (FINAL PRODUCTION APPROVAL).
+
+FASE 5 — FINAL DELIVERY:
+Sajikan seluruh file final yang telah bersih dan lulus uji mandiri.
+=============================================================================
+
 [KONFIGURASI TEMA PROYEK] (Ubah variabel di bawah sesuai kebutuhan pengguna)
 =============================================================================
 - NAMA_PROYEK: "AURA // Next-Gen Spatial Showcase"
@@ -87,7 +145,7 @@ KUALITAS KODE HARUS MEMENUHI STANDAR SENIOR SOFTWARE ENGINEER:
       "id": "item-01",
       "nama": "Cybernetic Core V1",
       "kategori": "Spatial Hardware",
-      "fileGlb": "./assets/3d/model-1.glb",
+      "fileGlb": "/assets/3d/model-1.glb",
       "skala": 1.8,
       "rotasiOffset": [0, 0, 0],
       "deskripsi": "Modul komputasi spasial generasi mutakhir dengan arsitektur pendingin cryogenic terisolasi.",
@@ -98,7 +156,7 @@ KUALITAS KODE HARUS MEMENUHI STANDAR SENIOR SOFTWARE ENGINEER:
       "id": "item-02",
       "nama": "Aero Kinetic Capsule",
       "kategori": "Aerospace Prototype",
-      "fileGlb": "./assets/3d/model-2.glb",
+      "fileGlb": "/assets/3d/model-2.glb",
       "skala": 1.5,
       "rotasiOffset": [0, 0.5, 0],
       "deskripsi": "Kapsul aerodinamis berbahan serat karbon monocoque untuk efisiensi manuver atmosferik.",
@@ -109,7 +167,7 @@ KUALITAS KODE HARUS MEMENUHI STANDAR SENIOR SOFTWARE ENGINEER:
       "id": "item-03",
       "nama": "Quantum Relay Node",
       "kategori": "Sub-atomic Network",
-      "fileGlb": "./assets/3d/model-3.glb",
+      "fileGlb": "/assets/3d/model-3.glb",
       "skala": 1.6,
       "rotasiOffset": [0.2, 0, 0],
       "deskripsi": "Transceiver teleportasi data quantum berlatensi nol dengan pelindung fluks magnetik ganda.",
@@ -129,6 +187,12 @@ project-root/
 ├── vite.config.js
 ├── tests/
 │   └── showcase.test.js          # Automated unit & schema test suite (Node test runner)
+├── public/
+│   └── assets/
+│       └── 3d/                   # Tempat file .glb fisik diletakkan
+│           ├── model-1.glb
+│           ├── model-2.glb
+│           └── model-3.glb
 └── src/
     ├── config/
     │   └── theme.config.js       # Single source of truth untuk konfigurasi & metadata
@@ -221,7 +285,7 @@ Tuliskan seluruh kode sumber secara LENGKAP tanpa memotong bagian apa pun ("no p
 
 ---
 
-## 4. DAFTAR PRESET TEMA INDUSTRI SIAP PAKAI
+## 5. DAFTAR PRESET TEMA INDUSTRI SIAP PAKAI
 
 Anda cukup mengganti blok `[KONFIGURASI TEMA PROYEK]` pada prompt di atas dengan salah satu preset berikut:
 
@@ -233,9 +297,9 @@ Warna_Background: "#070709"
 Warna_Aksen_Glow: "#FF5E00" # Radiant Neon Amber
 Warna_Aksen_Secondary: "#00E5FF" # Cyan Beam
 DAFTAR_OBJEK_3D:
-  - nama: "Apex GT Stealth" (Kategori: Hypercar, fileGlb: "./assets/3d/car.glb", fallback: "TorusKnot")
-  - nama: "Aero Turbine Rim" (Kategori: Carbon Wheel, fileGlb: "./assets/3d/rim.glb", fallback: "Cylinder")
-  - nama: "Quantum Steering Yoke" (Kategori: Cockpit Control, fileGlb: "./assets/3d/wheel.glb", fallback: "Torus")
+  - nama: "Apex GT Stealth" (Kategori: Hypercar, fileGlb: "/assets/3d/car.glb", fallback: "TorusKnot")
+  - nama: "Aero Turbine Rim" (Kategori: Carbon Wheel, fileGlb: "/assets/3d/rim.glb", fallback: "Cylinder")
+  - nama: "Quantum Steering Yoke" (Kategori: Cockpit Control, fileGlb: "/assets/3d/wheel.glb", fallback: "Torus")
 ```
 
 ### Preset 2: Streetwear / Sneaker & Apparel (Mirip Video 2)
@@ -246,9 +310,9 @@ Warna_Background: "#0D0D11"
 Warna_Aksen_Glow: "#CCFF00" # Volt Acid Lime
 Warna_Aksen_Secondary: "#7000FF" # Cyber Violet
 DAFTAR_OBJEK_3D:
-  - nama: "Strider Volt Runner" (Kategori: Footwear, fileGlb: "./assets/3d/sneaker.glb", fallback: "TorusKnot")
-  - nama: "Modular Cargo Hoodie" (Kategori: Apparel, fileGlb: "./assets/3d/hoodie.glb", fallback: "Icosahedron")
-  - nama: "Tactical Visor Goggles" (Kategori: Eyewear, fileGlb: "./assets/3d/visor.glb", fallback: "Octahedron")
+  - nama: "Strider Volt Runner" (Kategori: Footwear, fileGlb: "/assets/3d/sneaker.glb", fallback: "TorusKnot")
+  - nama: "Modular Cargo Hoodie" (Kategori: Apparel, fileGlb: "/assets/3d/hoodie.glb", fallback: "Icosahedron")
+  - nama: "Tactical Visor Goggles" (Kategori: Eyewear, fileGlb: "/assets/3d/visor.glb", fallback: "Octahedron")
 ```
 
 ### Preset 3: Fintech & Modern Banking Hardware
@@ -259,9 +323,9 @@ Warna_Background: "#050B14"
 Warna_Aksen_Glow: "#0066FF" # Royal Sapphire
 Warna_Aksen_Secondary: "#00FFA3" # Fintech Mint
 DAFTAR_OBJEK_3D:
-  - nama: "Nexus Titanium Card" (Kategori: Smart Card, fileGlb: "./assets/3d/card.glb", fallback: "Box")
-  - nama: "Biometric ATM Module" (Kategori: Cash Terminal, fileGlb: "./assets/3d/atm.glb", fallback: "Icosahedron")
-  - nama: "Hardware Security Vault" (Kategori: Core Ledger, fileGlb: "./assets/3d/vault.glb", fallback: "Dodecahedron")
+  - nama: "Nexus Titanium Card" (Kategori: Smart Card, fileGlb: "/assets/3d/card.glb", fallback: "Box")
+  - nama: "Biometric ATM Module" (Kategori: Cash Terminal, fileGlb: "/assets/3d/atm.glb", fallback: "Icosahedron")
+  - nama: "Hardware Security Vault" (Kategori: Core Ledger, fileGlb: "/assets/3d/vault.glb", fallback: "Dodecahedron")
 ```
 
 ### Preset 4: Mythological / Cultural Gaming (Mirip Video 1)
@@ -272,14 +336,14 @@ Warna_Background: "#140A08" # Warm Candlelit Black
 Warna_Aksen_Glow: "#E05A4E" # Crimson Coral
 Warna_Aksen_Secondary: "#E8B33C" # Ancient Gold
 DAFTAR_OBJEK_3D:
-  - nama: "Keris Pusaka Naga" (Kategori: Ancient Blade, fileGlb: "./assets/3d/keris.glb", fallback: "Cone")
-  - nama: "Boneka Arwah Voodoo" (Kategori: Ritual Totem, fileGlb: "./assets/3d/voodoo.glb", fallback: "TorusKnot")
-  - nama: "Kartu Tarot Mistis" (Kategori: Divination Deck, fileGlb: "./assets/3d/tarot.glb", fallback: "Box")
+  - nama: "Keris Pusaka Naga" (Kategori: Ancient Blade, fileGlb: "/assets/3d/keris.glb", fallback: "Cone")
+  - nama: "Boneka Arwah Voodoo" (Kategori: Ritual Totem, fileGlb: "/assets/3d/voodoo.glb", fallback: "TorusKnot")
+  - nama: "Kartu Tarot Mistis" (Kategori: Divination Deck, fileGlb: "/assets/3d/tarot.glb", fallback: "Box")
 ```
 
 ---
 
-## 5. STANDAR STRUKTUR FOLDER ENTERPRISE (CLEAN MVC)
+## 6. STANDAR STRUKTUR FOLDER ENTERPRISE (CLEAN MVC)
 
 Ketika AI meng-generate proyek, pastikan struktur direktori mengikuti standar berikut:
 
@@ -290,6 +354,12 @@ my-3d-showcase/
 ├── vite.config.js
 ├── tests/
 │   └── showcase.test.js          <-- Menjalankan QA Otomatis (npm test)
+├── public/
+│   └── assets/
+│       └── 3d/                   <-- LETAKKAN FILE .GLB FISIK DI SINI
+│           ├── model-1.glb
+│           ├── model-2.glb
+│           └── model-3.glb
 ├── src/
 │   ├── config/
 │   │   └── theme.config.js       <-- Single Source of Truth Konfigurasi
@@ -306,12 +376,6 @@ my-3d-showcase/
 │   │   ├── variables.css         <-- Design Tokens & Color Palettes
 │   │   └── style.css             <-- Glassmorphism & Mobile Responsive Rules
 │   └── main.js                   <-- Bootstrapper & window.__RUN_QA_DIAGNOSTICS__()
-└── public/
-    └── assets/
-        └── 3d/                   <-- Letakkan file .glb fisik di sini
-            ├── model-1.glb
-            ├── model-2.glb
-            └── model-3.glb
 ```
 
 ### Cara Menjalankan & Memverifikasi:
