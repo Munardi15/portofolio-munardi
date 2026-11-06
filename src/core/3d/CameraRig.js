@@ -148,24 +148,56 @@ export class CameraRig {
     if (this.mode !== 'CINEMATIC') return;
 
     const clamped = Math.max(0, Math.min(1, progress));
-    const totalWaypoints = this.waypoints.length;
-    const scaled = clamped * (totalWaypoints - 1);
-    const index = Math.floor(scaled);
+    const totalWaypoints = this.waypoints.length; // 6
+    const scaled = clamped * (totalWaypoints - 1); // 0.0 to 5.0
+    const index = Math.min(Math.floor(scaled), totalWaypoints - 2);
     const frac = scaled - index;
 
     const wpA = this.waypoints[index];
     const wpB = this.waypoints[Math.min(index + 1, totalWaypoints - 1)];
 
-    // Interpolate target vectors
-    const isMobile = window.innerWidth < 768;
-    const pos = new THREE.Vector3().lerpVectors(wpA.pos, wpB.pos, frac);
-    if (isMobile) {
-      pos.y += 0.8;
-      pos.z += 1.8;
+    const interpolatedPos = new THREE.Vector3();
+    const interpolatedLookAt = new THREE.Vector3();
+    let interpolatedFov = wpA.fov;
+
+    // Special choreography for Chapter 4: Experience (index === 3)
+    // Allows the camera to glide down the 42U rack cabinet during the first 65% of Experience,
+    // and then smoothly transition across the studio towards Education
+    if (index === 3) {
+      if (frac < 0.65) {
+        const subFrac = frac / 0.65;
+        const upperRackPos = new THREE.Vector3(4.8, 3.2, 2.4);
+        const lowerRackPos = new THREE.Vector3(4.5, 2.1, 2.0);
+        const upperLookAt = new THREE.Vector3(4.8, 2.8, -0.8);
+        const lowerLookAt = new THREE.Vector3(4.5, 1.8, -0.8);
+
+        interpolatedPos.lerpVectors(upperRackPos, lowerRackPos, subFrac);
+        interpolatedLookAt.lerpVectors(upperLookAt, lowerLookAt, subFrac);
+        interpolatedFov = 45;
+      } else {
+        const subFrac = (frac - 0.65) / 0.35;
+        const lowerRackPos = new THREE.Vector3(4.5, 2.1, 2.0);
+        const lowerLookAt = new THREE.Vector3(4.5, 1.8, -0.8);
+
+        interpolatedPos.lerpVectors(lowerRackPos, wpB.pos, subFrac);
+        interpolatedLookAt.lerpVectors(lowerLookAt, wpB.lookAt, subFrac);
+        interpolatedFov = 45 + (wpB.fov - 45) * subFrac;
+      }
+    } else {
+      interpolatedPos.lerpVectors(wpA.pos, wpB.pos, frac);
+      interpolatedLookAt.lerpVectors(wpA.lookAt, wpB.lookAt, frac);
+      interpolatedFov = wpA.fov + (wpB.fov - wpA.fov) * frac;
     }
-    this.targetPos.copy(pos);
-    this.targetLookAt.lerpVectors(wpA.lookAt, wpB.lookAt, frac);
-    this.targetFov = wpA.fov + (wpB.fov - wpA.fov) * frac;
+
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      interpolatedPos.y += 0.8;
+      interpolatedPos.z += 1.8;
+    }
+
+    this.targetPos.copy(interpolatedPos);
+    this.targetLookAt.copy(interpolatedLookAt);
+    this.targetFov = interpolatedFov;
   }
 
   focusOnTarget(position, lookAt = new THREE.Vector3(0, 0, 0), fov = 35) {
@@ -181,18 +213,24 @@ export class CameraRig {
 
     if (this.mode === 'CINEMATIC') {
       // 1. Inertial lerp camera towards target waypoint
-      this.currentPos.lerp(this.targetPos, 0.06);
-      this.currentLookAt.lerp(this.targetLookAt, 0.06);
-      this.currentFov += (this.targetFov - this.currentFov) * 0.06;
+      this.currentPos.lerp(this.targetPos, 0.08);
+      this.currentLookAt.lerp(this.targetLookAt, 0.08);
+      this.currentFov += (this.targetFov - this.currentFov) * 0.08;
 
-      // 2. Add subtle parallax offset
-      const parallaxX = this.mouse.x * 0.35;
-      const parallaxY = this.mouse.y * 0.25;
+      // 2. Add organic ambient breathing drift (ensures 3D world is always alive, never statically dead)
+      this.ambientTimer = (this.ambientTimer || 0) + delta;
+      const breathX = Math.sin(this.ambientTimer * 0.75) * 0.04;
+      const breathY = Math.cos(this.ambientTimer * 0.55) * 0.03;
+      const breathZ = Math.sin(this.ambientTimer * 0.35) * 0.02;
+
+      // 3. Add subtle parallax offset + breathing
+      const parallaxX = this.mouse.x * 0.35 + breathX;
+      const parallaxY = this.mouse.y * 0.25 + breathY;
 
       this.camera.position.set(
         this.currentPos.x + parallaxX,
         this.currentPos.y + parallaxY,
-        this.currentPos.z
+        this.currentPos.z + breathZ
       );
       this.camera.lookAt(this.currentLookAt);
 

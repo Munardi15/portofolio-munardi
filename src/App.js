@@ -117,26 +117,7 @@ export class App {
   }
 
   initScrollEngine() {
-    // 1. Smooth Inertial Scroll with Lenis
-    try {
-      this.lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        smoothTouch: false
-      });
-
-      const raf = (time) => {
-        this.lenis.raf(time);
-        if (this.storyEngine) this.storyEngine.update();
-        requestAnimationFrame(raf);
-      };
-      requestAnimationFrame(raf);
-    } catch (e) {
-      console.warn('Lenis scroll init:', e);
-    }
-
-    // 2. Story Engine linking scroll to 3D camera
+    // 1. Story Engine linking scroll to 3D camera
     if (this.scene) {
       this.storyEngine = new StoryEngine(this.scene, this.config);
 
@@ -151,6 +132,36 @@ export class App {
         hudStepDots,
         chapterSections
       });
+    }
+
+    // 2. Smooth Inertial Scroll with Lenis
+    try {
+      this.lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        smoothTouch: false
+      });
+
+      // Synchronize Lenis interpolated scroll events directly with StoryEngine
+      this.lenis.on('scroll', (e) => {
+        if (this.storyEngine) {
+          this.storyEngine.onScrollDirect(e.scroll, e.limit);
+        }
+      });
+
+      window.addEventListener('pageHeightChanged', () => {
+        if (this.lenis) this.lenis.resize();
+      });
+
+      const raf = (time) => {
+        this.lenis.raf(time);
+        if (this.storyEngine) this.storyEngine.update();
+        requestAnimationFrame(raf);
+      };
+      requestAnimationFrame(raf);
+    } catch (e) {
+      console.warn('Lenis scroll init:', e);
     }
   }
 

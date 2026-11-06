@@ -49,6 +49,12 @@ export class ProjectDrawerManager {
       drawer.classList.remove('open');
       drawer.style.maxHeight = '0px';
     }
+
+    // Notify StoryEngine and Lenis that page dimensions have changed
+    window.dispatchEvent(new CustomEvent('pageHeightChanged'));
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('pageHeightChanged'));
+    }, 450);
   }
 }
 

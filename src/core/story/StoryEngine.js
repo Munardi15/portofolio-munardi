@@ -2,7 +2,7 @@
  * StoryEngine (3D Scrollytelling & Chapter Coordinator)
  * Links browser scroll position to the 3D CameraRig, drives the
  * procedural explosion teardown of the computational core,
- * and updates floating HUD telemetry metrics.
+ * and updates floating HUD telemetry metrics with DOM-synchronized precision.
  */
 export class StoryEngine {
   constructor(universeScene, config) {
@@ -18,6 +18,10 @@ export class StoryEngine {
     this.hudSectorPill = null;
     this.hudStepDots = [];
     this.chapterSections = [];
+
+    // Dynamic section scroll anchors
+    this.sectionAnchors = [];
+    this.maxScroll = 1;
 
     this.initScrollListener();
   }
@@ -35,64 +39,160 @@ export class StoryEngine {
         this.scrollToChapter(idx);
       });
     });
+
+    this.updateSectionAnchors();
+  }
+
+  updateSectionAnchors() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    const maxScroll = Math.max(
+      document.documentElement.scrollHeight - window.innerHeight,
+      1
+    );
+    this.maxScroll = maxScroll;
+
+    const sectionIds = ['hero', 'about', 'skill', 'experience', 'education', 'contact'];
+    this.sectionAnchors = sectionIds.map((id, idx) => {
+      if (idx === 0) return 0;
+      if (idx === sectionIds.length - 1) return maxScroll;
+      const el = document.getElementById(id);
+      if (!el) return (maxScroll * idx) / (sectionIds.length - 1);
+      // Anchor when section top is slightly above viewport center
+      return Math.min(Math.max(el.offsetTop - 80, 0), maxScroll);
+    });
+  }
+
+  calculateProgressFromScroll(scrollY) {
+    if (!this.sectionAnchors || this.sectionAnchors.length < 2) {
+      this.updateSectionAnchors();
+    }
+
+    const maxScroll = this.maxScroll || Math.max(
+      document.documentElement.scrollHeight - window.innerHeight,
+      1
+    );
+    const clamped = Math.min(Math.max(scrollY, 0), maxScroll);
+
+    // If within 25px of the very bottom, snap to 1.0 so animation fully finishes
+    if (maxScroll - clamped <= 25) {
+      return 1.0;
+    }
+    if (clamped <= 10) {
+      return 0.0;
+    }
+
+    const anchors = this.sectionAnchors;
+    const n = anchors.length; // 6
+
+    for (let i = 0; i < n - 1; i++) {
+      const a = anchors[i];
+      const b = anchors[i + 1];
+      if (clamped >= a && clamped <= b) {
+        const seg = b > a ? (clamped - a) / (b - a) : 0;
+        return (i + seg) / (n - 1);
+      }
+    }
+
+    return clamped >= anchors[n - 1] ? 1.0 : 0.0;
+  }
+
+  onScrollDirect(scrollY, maxScroll) {
+    if (maxScroll && maxScroll > 0) {
+      this.maxScroll = maxScroll;
+    }
+    this.targetProgress = this.calculateProgressFromScroll(scrollY);
   }
 
   initScrollListener() {
     this.onScroll = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      const maxScroll = Math.max(
-        document.documentElement.scrollHeight - window.innerHeight,
-        1
-      );
-      this.targetProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      this.targetProgress = this.calculateProgressFromScroll(scrollY);
+    };
+
+    this.onResize = () => {
+      this.updateSectionAnchors();
+      this.onScroll();
     };
 
     window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('pageHeightChanged', this.onResize);
+
+    this.updateSectionAnchors();
     this.onScroll();
   }
 
   scrollToChapter(index) {
-    if (this.chapterSections[index]) {
+    if (this.chapterSections && this.chapterSections[index]) {
       this.chapterSections[index].scrollIntoView({ behavior: 'smooth' });
     }
   }
 
-  update() {
-    // 1. Inertial dampening for camera scroll
-    this.currentProgress += (this.targetProgress - this.currentProgress) * 0.08;
+  detectActiveChapter() {
+    if (!this.chapterSections || this.chapterSections.length === 0) return;
 
-    // 2. Drive Camera Rig
+    const viewportFocal = window.innerHeight * 0.42;
+    let foundIndex = -1;
+
+    for (let i = 0; i < this.chapterSections.length; i++) {
+      const sec = this.chapterSections[i];
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= viewportFocal && rect.bottom >= viewportFocal) {
+        foundIndex = i;
+        break;
+      }
+    }
+
+    // Edge check: near top or bottom
+    const maxScroll = this.maxScroll || 1;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    if (maxScroll - scrollY < 80) {
+      foundIndex = this.chapterSections.length - 1;
+    } else if (scrollY < 60) {
+      foundIndex = 0;
+    }
+
+    if (foundIndex !== -1 && foundIndex !== this.currentChapterIndex) {
+      this.currentChapterIndex = foundIndex;
+      this.onChapterChange(foundIndex);
+    }
+  }
+
+  update() {
+    // 1. Inertial dampening towards target progress (responsive & smooth)
+    this.currentProgress += (this.targetProgress - this.currentProgress) * 0.18;
+    if (Math.abs(this.targetProgress - this.currentProgress) < 0.002) {
+      this.currentProgress = this.targetProgress;
+    }
+
+    // 2. Drive Camera Rig along full trajectory
     if (this.scene && this.scene.cameraRig) {
       this.scene.cameraRig.setScrollProgress(this.currentProgress);
     }
 
-    // 3. Update top laser progress bar
+    // 3. Update top laser progress bar (0% to 100%)
     if (this.progressBar) {
-      this.progressBar.style.width = `${this.currentProgress * 100}%`;
+      const pct = Math.min(100, Math.max(0, this.currentProgress * 100));
+      this.progressBar.style.width = `${pct.toFixed(2)}%`;
     }
 
-    // 4. Calculate current chapter index (0 to 5)
-    const totalChapters = 6;
-    const activeIndex = Math.min(
-      Math.floor(this.currentProgress * totalChapters + 0.15),
-      totalChapters - 1
-    );
+    // 4. Detect active chapter based on real viewport intersection
+    this.detectActiveChapter();
 
-    if (activeIndex !== this.currentChapterIndex) {
-      this.currentChapterIndex = activeIndex;
-      this.onChapterChange(activeIndex);
-    }
-
-    // 5. Procedural explosion factor on the Core
+    // 5. Procedural explosion & server blade slide across the full story arc
     if (this.scene && this.scene.core) {
-      // Dynamic explosion based on story arc
       let factor = 0.0;
-      if (this.currentProgress > 0.15 && this.currentProgress < 0.45) {
-        factor = (this.currentProgress - 0.15) / 0.3; // Opens up in About
-      } else if (this.currentProgress >= 0.45 && this.currentProgress < 0.75) {
-        factor = 1.0 - (this.currentProgress - 0.45) / 0.3 * 0.4; // Slightly contracts for Skills
-      } else if (this.currentProgress >= 0.75) {
-        factor = 0.2; // Stable orbit for Education & Contact
+      if (this.currentProgress > 0.15 && this.currentProgress < 0.40) {
+        factor = ((this.currentProgress - 0.15) / 0.25) * 0.25; // Opens up in About/Skill
+      } else if (this.currentProgress >= 0.40 && this.currentProgress < 0.80) {
+        // Active server rack inspection during Experience (pulses smoothly through all jobs)
+        const expT = (this.currentProgress - 0.40) / 0.40;
+        factor = 0.25 + Math.sin(expT * Math.PI) * 0.45;
+      } else if (this.currentProgress >= 0.80) {
+        // Settles smoothly for Education & Contact
+        const restT = (this.currentProgress - 0.80) / 0.20;
+        factor = 0.2 * (1.0 - restT * 0.8);
       }
       this.scene.core.setExplosionFactor(factor);
     }
@@ -136,6 +236,8 @@ export class StoryEngine {
 
   destroy() {
     window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('pageHeightChanged', this.onResize);
   }
 }
 
