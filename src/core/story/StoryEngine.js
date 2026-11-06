@@ -53,13 +53,18 @@ export class StoryEngine {
     this.maxScroll = maxScroll;
 
     const sectionIds = ['hero', 'about', 'skill', 'experience', 'education', 'contact'];
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+
     this.sectionAnchors = sectionIds.map((id, idx) => {
       if (idx === 0) return 0;
       if (idx === sectionIds.length - 1) return maxScroll;
       const el = document.getElementById(id);
       if (!el) return (maxScroll * idx) / (sectionIds.length - 1);
-      // Anchor when section top is slightly above viewport center
-      return Math.min(Math.max(el.offsetTop - 80, 0), maxScroll);
+      
+      const rect = el.getBoundingClientRect();
+      const absoluteTop = scrollY + rect.top;
+      // Focal anchor: when section is comfortably positioned in viewport
+      return Math.min(Math.max(absoluteTop - 60, 0), maxScroll);
     });
   }
 
@@ -74,13 +79,8 @@ export class StoryEngine {
     );
     const clamped = Math.min(Math.max(scrollY, 0), maxScroll);
 
-    // If within 25px of the very bottom, snap to 1.0 so animation fully finishes
-    if (maxScroll - clamped <= 25) {
-      return 1.0;
-    }
-    if (clamped <= 10) {
-      return 0.0;
-    }
+    if (clamped <= 0) return 0.0;
+    if (clamped >= maxScroll) return 1.0;
 
     const anchors = this.sectionAnchors;
     const n = anchors.length; // 6
@@ -160,11 +160,9 @@ export class StoryEngine {
   }
 
   update() {
-    // 1. Inertial dampening towards target progress (responsive & smooth)
-    this.currentProgress += (this.targetProgress - this.currentProgress) * 0.18;
-    if (Math.abs(this.targetProgress - this.currentProgress) < 0.002) {
-      this.currentProgress = this.targetProgress;
-    }
+    // 1. Direct progress binding (Lenis already provides smooth interpolated scrolling,
+    // avoiding sluggish double-inertial lag so CameraRig tracks sections instantly)
+    this.currentProgress = this.targetProgress;
 
     // 2. Drive Camera Rig along full trajectory
     if (this.scene && this.scene.cameraRig) {

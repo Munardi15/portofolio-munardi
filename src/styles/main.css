@@ -1105,8 +1105,11 @@ body.orbit-mode-active .spatial-story-flow {
 /* ==========================================================================
  * CHAPTER 05: EDUCATION
  * ========================================================================== */
+.chapter-section#education {
+  justify-content: flex-end;
+}
 .education-panel {
-  max-width: 960px;
+  max-width: 680px;
 }
 .education-matrix-grid {
   display: grid;
@@ -1174,6 +1177,9 @@ body.orbit-mode-active .spatial-story-flow {
 /* ==========================================================================
  * CHAPTER 06: CONTACT & COLLABORATION
  * ========================================================================== */
+.chapter-section#contact {
+  padding-bottom: 240px;
+}
 .contact-panel {
   max-width: 1040px;
   border-color: var(--border-cyan);

@@ -14,14 +14,15 @@ export class CameraRig {
     this.mode = 'CINEMATIC';
 
     // Current & Target Vectors (Inertial Lerp)
-    this.currentPos = new THREE.Vector3(2.2, 4.2, 6.8);
-    this.targetPos = new THREE.Vector3(2.2, 4.2, 6.8);
+    // Starts close to the developer computer terminal (cockpit view)
+    this.currentPos = new THREE.Vector3(1.2, 2.25, 1.2);
+    this.targetPos = new THREE.Vector3(1.2, 2.25, 1.2);
 
-    this.currentLookAt = new THREE.Vector3(1.4, 1.8, -0.8);
-    this.targetLookAt = new THREE.Vector3(1.4, 1.8, -0.8);
+    this.currentLookAt = new THREE.Vector3(1.2, 2.15, -0.6);
+    this.targetLookAt = new THREE.Vector3(1.2, 2.15, -0.6);
 
-    this.currentFov = 44;
-    this.targetFov = 44;
+    this.currentFov = 38;
+    this.targetFov = 38;
 
     // Mouse Parallax Offset
     this.mouse = { x: 0, y: 0 };
@@ -32,43 +33,43 @@ export class CameraRig {
     this.previousMousePosition = { x: 0, y: 0 };
     this.orbitAngles = { theta: 0.3, phi: Math.PI / 2.6, radius: 9.5 };
 
-    // 6 Canonical Chapter Waypoints (Studio & Server Room Choreography)
+    // 6 Canonical Chapter Waypoints (Dynamic 3D Spatial Choreography)
     this.waypoints = [
-      // 0: Hero / Developer Studio Isometric Overview
+      // 0: Hero / Developer Workstation & Terminal (Zoomed IN on Computer Screens)
       {
-        pos: new THREE.Vector3(2.2, 4.2, 6.8),
-        lookAt: new THREE.Vector3(1.4, 1.8, -0.8),
-        fov: 44
-      },
-      // 1: About / The Engineer's Workstation & Human Space
-      {
-        pos: new THREE.Vector3(1.2, 2.4, 2.8),
-        lookAt: new THREE.Vector3(1.2, 1.7, -0.6),
-        fov: 45
-      },
-      // 2: Skill / Dual Monitors & Live Terminal Stacks
-      {
-        pos: new THREE.Vector3(1.2, 2.1, 1.3),
-        lookAt: new THREE.Vector3(1.2, 2.0, -0.6),
-        fov: 46
-      },
-      // 3: Experience / 42U Enterprise Server Rack
-      {
-        pos: new THREE.Vector3(4.8, 2.8, 2.2),
-        lookAt: new THREE.Vector3(4.8, 2.4, -0.8),
-        fov: 45
-      },
-      // 4: Education / Academic Diploma & Foundations
-      {
-        pos: new THREE.Vector3(0.4, 4.2, -1.2),
-        lookAt: new THREE.Vector3(0.4, 4.2, -4.9),
+        pos: new THREE.Vector3(1.2, 2.25, 1.2),
+        lookAt: new THREE.Vector3(1.2, 2.15, -0.6),
         fov: 38
       },
-      // 5: Contact / Transmission Array & Complete Studio
+      // 1: About / The Engineer's Workspace (Zoomed OUT diagonally to reveal full desk & human space)
       {
-        pos: new THREE.Vector3(3.0, 4.6, 7.2),
-        lookAt: new THREE.Vector3(2.0, 1.8, -0.4),
+        pos: new THREE.Vector3(2.2, 3.2, 4.2),
+        lookAt: new THREE.Vector3(1.2, 1.8, -0.6),
+        fov: 46
+      },
+      // 2: Skill / Dual-Screen Toolkit (Angled Close-Up on Terminal & AS400 screens)
+      {
+        pos: new THREE.Vector3(0.2, 2.25, 0.95),
+        lookAt: new THREE.Vector3(0.6, 2.15, -0.75),
+        fov: 38
+      },
+      // 3: Experience / 42U Enterprise Server Rack (Tracks down the server blades)
+      {
+        pos: new THREE.Vector3(3.2, 3.4, 2.0),
+        lookAt: new THREE.Vector3(4.8, 3.0, -1.4),
         fov: 44
+      },
+      // 4: Education / Academic Diploma (Pulls back, zooms into Ijazah framed on left)
+      {
+        pos: new THREE.Vector3(-0.8, 4.15, -1.3),
+        lookAt: new THREE.Vector3(0.8, 4.15, -4.9),
+        fov: 37
+      },
+      // 5: Contact / Transmission Array & Complete Illuminated Studio
+      {
+        pos: new THREE.Vector3(2.8, 5.2, 7.8),
+        lookAt: new THREE.Vector3(1.2, 1.8, -0.6),
+        fov: 48
       }
     ];
 
@@ -162,26 +163,24 @@ export class CameraRig {
 
     // Special choreography for Chapter 4: Experience (index === 3)
     // Allows the camera to glide down the 42U rack cabinet during the first 65% of Experience,
-    // and then smoothly transition across the studio towards Education
+    // and then smoothly transition across the studio towards Education (pulling back into room and zooming to diploma)
     if (index === 3) {
+      const topRackPos = this.waypoints[3].pos;
+      const bottomRackPos = new THREE.Vector3(3.2, 1.8, 2.0);
+      const topRackLookAt = this.waypoints[3].lookAt;
+      const bottomRackLookAt = new THREE.Vector3(4.8, 1.6, -1.4);
+
       if (frac < 0.65) {
         const subFrac = frac / 0.65;
-        const upperRackPos = new THREE.Vector3(4.8, 3.2, 2.4);
-        const lowerRackPos = new THREE.Vector3(4.5, 2.1, 2.0);
-        const upperLookAt = new THREE.Vector3(4.8, 2.8, -0.8);
-        const lowerLookAt = new THREE.Vector3(4.5, 1.8, -0.8);
-
-        interpolatedPos.lerpVectors(upperRackPos, lowerRackPos, subFrac);
-        interpolatedLookAt.lerpVectors(upperLookAt, lowerLookAt, subFrac);
-        interpolatedFov = 45;
+        interpolatedPos.lerpVectors(topRackPos, bottomRackPos, subFrac);
+        interpolatedLookAt.lerpVectors(topRackLookAt, bottomRackLookAt, subFrac);
+        interpolatedFov = 44;
       } else {
         const subFrac = (frac - 0.65) / 0.35;
-        const lowerRackPos = new THREE.Vector3(4.5, 2.1, 2.0);
-        const lowerLookAt = new THREE.Vector3(4.5, 1.8, -0.8);
-
-        interpolatedPos.lerpVectors(lowerRackPos, wpB.pos, subFrac);
-        interpolatedLookAt.lerpVectors(lowerLookAt, wpB.lookAt, subFrac);
-        interpolatedFov = 45 + (wpB.fov - 45) * subFrac;
+        // User explicit: "terus pas bagian pendidikan bergerak mundur lalu zoom ke ijazah"
+        interpolatedPos.lerpVectors(bottomRackPos, wpB.pos, subFrac);
+        interpolatedLookAt.lerpVectors(bottomRackLookAt, wpB.lookAt, subFrac);
+        interpolatedFov = 44 + (wpB.fov - 44) * subFrac;
       }
     } else {
       interpolatedPos.lerpVectors(wpA.pos, wpB.pos, frac);
@@ -212,10 +211,10 @@ export class CameraRig {
     this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.05;
 
     if (this.mode === 'CINEMATIC') {
-      // 1. Inertial lerp camera towards target waypoint
-      this.currentPos.lerp(this.targetPos, 0.08);
-      this.currentLookAt.lerp(this.targetLookAt, 0.08);
-      this.currentFov += (this.targetFov - this.currentFov) * 0.08;
+      // 1. Inertial lerp camera towards target waypoint (responsive 0.14 lerp prevents sluggish lag)
+      this.currentPos.lerp(this.targetPos, 0.14);
+      this.currentLookAt.lerp(this.targetLookAt, 0.14);
+      this.currentFov += (this.targetFov - this.currentFov) * 0.14;
 
       // 2. Add organic ambient breathing drift (ensures 3D world is always alive, never statically dead)
       this.ambientTimer = (this.ambientTimer || 0) + delta;
