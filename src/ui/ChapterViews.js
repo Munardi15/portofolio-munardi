@@ -44,8 +44,7 @@ export class ChapterViews {
 
         <div class="hero-role-headline">
           <span class="role-primary">${personal.rolePrimary}</span>
-          <span class="role-separator">&bull;</span>
-          <span class="role-sub">${personal.roleBadge}</span>
+          ${personal.roleBadge ? `<span class="role-separator">&bull;</span><span class="role-sub">${personal.roleBadge}</span>` : ''}
         </div>
 
         <p class="hero-pitch">

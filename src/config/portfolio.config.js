@@ -16,14 +16,14 @@ export const portfolioConfig = {
     "name": "Munardi",
     "surnameDot": ".",
     "rolePrimary": "Software Engineer",
-    "roleBadge": "Core Banking & Pipelines",
+    "roleBadge": "",
     "status": {
-      "en": "SOFTWARE ENGINEER • BANKING & PIPELINES • AVAILABLE",
-      "id": "SOFTWARE ENGINEER • SISTEM PERBANKAN & PIPELINE • TERSEDIA"
+      "en": "SOFTWARE ENGINEER • AVAILABLE",
+      "id": "SOFTWARE ENGINEER • TERSEDIA"
     },
-        "pitch": {
-      "en": "Software Engineer with <b>6+ years of experience</b> in banking and financial systems, specializing in Go, distributed schedulers, and high-reliability data processing. Proven track record across 5 institutions adapting rapidly to diverse tech stacks, optimizing database workflows, and modernizing mission-critical legacy architectures.",
-      "id": "Software Engineer dengan pengalaman <b>6+ tahun</b> di industri perbankan dan finansial, dengan spesialisasi pada Golang, distributed scheduler, dan pemrosesan data bervolume tinggi. Teruji di 5 institusi dengan kecepatan adaptasi tinggi pada berbagai tech stack, optimasi basis data, dan modernisasi sistem legacy berskala kritikal."
+    "pitch": {
+      "en": "Software Engineer with <b>6+ years of experience</b> building reliable backend systems, automating workflows, and optimizing database performance. Highly adaptable across diverse tech stacks in banking and enterprise environments to deliver dependable, production-ready solutions.",
+      "id": "Software Engineer dengan pengalaman <b>6+ tahun</b> dalam membangun sistem backend yang andal, integrasi workflow, dan optimasi basis data. Terbiasa beradaptasi cepat lintas berbagai tech stack di lingkungan perbankan dan enterprise untuk menghadirkan solusi software yang stabil dan siap produksi."
     },
     "location": {
       "en": "JAKARTA, ID • REMOTE / HYBRID READY",
@@ -113,16 +113,16 @@ export const portfolioConfig = {
       "id": "Tentang"
     },
     "title": {
-      "en": "Engineering Philosophy.",
-      "id": "Filosofi Rekayasa."
+      "en": "Engineering Approach.",
+      "id": "Pendekatan Rekayasa."
     },
     "description": {
-      "en": "Solving core infrastructural problems with precision, rapid technical adaptability, and uncompromising accountability.",
-      "id": "Memecahkan masalah infrastruktur inti dengan presisi teknis, adaptasi kilat, dan akuntabilitas penuh."
+      "en": "Building dependable backend systems, modernizing workflows, and solving core technical problems across diverse stacks.",
+      "id": "Membangun sistem backend yang andal, memodernisasi alur kerja, dan menyelesaikan masalah teknis inti di berbagai tech stack."
     },
     "narrative": {
-      "en": "As a <b>Software Engineer</b>, my defining edge goes beyond writing code — <span class=\"highlight\">I adapt rapidly.</span> Proven across 5 premier financial institutions, I excel at stepping into complex, high-stakes environments and executing mission-critical systems across <b>Golang, Python, PHP, Node.js, and Java</b>.<br><br>My greatest asset isn't loyalty to a single stack — it's the speed and precision with which I master new architectures and ship production-grade solutions in any ecosystem. From modernizing rigid legacy SSIS pipelines into high-throughput Go microservices to untangling deep database bottlenecks, my focus is always engineering robust answers to fundamental problems, not just pushing syntax.",
-      "id": "Sebagai seorang <b>Software Engineer</b>, kekuatan utama saya bukan hanya menulis kode — <span class=\"highlight\">saya cepat beradaptasi.</span> Teruji di 5 institusi finansial terkemuka, saya terbiasa masuk ke ekosistem kompleks dan langsung mengeksekusi sistem kritikal melintasi berbagai teknologi: <b>Golang, Python, PHP, Node.js, hingga Java</b>.<br><br>Keunggulan terbesar saya bukan keterikatan pada satu framework, melainkan kecepatan dan ketepatan dalam menguasai arsitektur baru serta menghadirkan solusi siap-produksi di lingkungan mana pun. Mulai dari merombak pipeline data warisan (legacy SSIS) menjadi arsitektur cloud Go berkecepatan tinggi hingga mengurai bottleneck database level dalam, fokus saya adalah menyelesaikan akar permasalahan sistem secara tuntas, bukan sekadar mengetik baris sintaks."
+      "en": "As a <b>Software Engineer</b>, my primary strength is technical adaptability and practical problem-solving. Having worked across diverse banking and enterprise environments, I adapt quickly to new codebases and deliver robust systems using the right tools for the job—including <b>Golang, Python, PHP, Node.js, and Java</b>.<br><br>To me, technology is a tool to solve real operational and business challenges. From modernizing legacy workflows and automating data pipelines to optimizing database performance, my focus is always on engineering stable, efficient, and maintainable software in production.",
+      "id": "Sebagai <b>Software Engineer</b>, kekuatan utama saya terletak pada kemampuan adaptasi dan pemecahan masalah praktis. Berpengalaman di berbagai institusi perbankan dan enterprise, saya terbiasa cepat mempelajari codebase baru serta mengeksekusi kebutuhan sistem menggunakan teknologi yang paling sesuai—baik <b>Golang, Python, PHP, Node.js, maupun Java</b>.<br><br>Bagi saya, teknologi adalah sarana untuk menyelesaikan kebutuhan bisnis dan operasional. Mulai dari modernisasi proses legacy, otomasi data pipeline, hingga optimasi query database, fokus saya adalah memastikan sistem berjalan stabil, efisien, dan mudah dirawat di lingkungan produksi."
     },
     "badges": [
       "⚡ Rapid Technical Adaptability",
