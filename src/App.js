@@ -163,29 +163,19 @@ export class App {
         const newMode = this.scene.cameraRig.toggleMode();
         if (newMode === 'FREE_ORBIT') {
           btnMode.classList.add('active');
-          if (labelMode) labelMode.textContent = 'RESUME STORY';
+          if (labelMode) labelMode.textContent = 'EXIT 3D';
           document.body.classList.add('orbit-mode-active');
         } else {
           btnMode.classList.remove('active');
-          if (labelMode) labelMode.textContent = '3D FREE INSPECT';
+          if (labelMode) labelMode.textContent = '3D VIEW';
           document.body.classList.remove('orbit-mode-active');
         }
         if (this.audioSynth) this.audioSynth.playSelect();
       });
     }
 
-    // 2. Teardown / Explode Slider Control
-    const slider = document.getElementById('sliderExplodeCore');
-    if (slider && this.scene && this.scene.core) {
-      slider.addEventListener('input', (e) => {
-        const val = parseFloat(e.target.value) / 100;
-        this.scene.core.setExplosionFactor(val);
-      });
-    }
-
-    // 3. Audio SFX Toggle
+    // 2. Audio SFX Toggle
     const btnAudio = document.getElementById('btnToggleAudio');
-    const labelAudio = document.getElementById('labelAudioToggle');
     const iconOff = document.getElementById('iconAudioOff');
     const iconOn = document.getElementById('iconAudioOn');
 
@@ -194,12 +184,10 @@ export class App {
         const enabled = this.audioSynth.toggle();
         if (enabled) {
           btnAudio.classList.add('active');
-          if (labelAudio) labelAudio.textContent = 'SFX ON';
           if (iconOff) iconOff.style.display = 'none';
           if (iconOn) iconOn.style.display = 'inline-block';
         } else {
           btnAudio.classList.remove('active');
-          if (labelAudio) labelAudio.textContent = 'SFX OFF';
           if (iconOff) iconOff.style.display = 'inline-block';
           if (iconOn) iconOn.style.display = 'none';
         }

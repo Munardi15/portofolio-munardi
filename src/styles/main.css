@@ -111,104 +111,28 @@ body.orbit-mode-active .spatial-story-flow {
 }
 
 /* ==========================================================================
- * SPATIAL HUD COMMAND DOCK
+ * TOP NAVBAR ACTION PILL (3D MODE)
  * ========================================================================== */
-.hud-telemetry-dock {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 8px 18px;
-  background: var(--bg-panel);
-  border: 1px solid var(--border-cyan);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(16px);
-  z-index: 800;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-}
-
-.hud-dock-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.hud-sector-pill {
-  color: var(--accent-cyan);
-  letter-spacing: 0.08em;
-  font-weight: 600;
-}
-.hud-fps-pill {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--accent-emerald);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.72rem;
-}
-
-.hud-dock-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-left: 1px solid var(--border-subtle);
-  padding-left: 14px;
-}
-
-.hud-control-btn {
+.nav-action-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 6px 12px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid var(--border-cyan);
+  color: var(--accent-cyan);
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
-.hud-control-btn:hover {
-  background: rgba(6, 182, 212, 0.15);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-}
-.hud-control-btn.active {
+.nav-action-pill:hover, .nav-action-pill.active {
   background: var(--accent-cyan);
-  color: #000;
-  border-color: var(--accent-cyan);
-}
-
-.hud-teardown-control {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.hud-control-label {
-  color: var(--text-dim);
-  font-size: 0.72rem;
-}
-.hud-range-slider {
-  -webkit-appearance: none;
-  width: 70px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 2px;
-  outline: none;
-}
-.hud-range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent-amber);
-  cursor: pointer;
-  box-shadow: 0 0 6px var(--accent-amber);
+  color: #06090e;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.5);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================

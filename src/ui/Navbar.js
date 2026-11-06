@@ -1,7 +1,7 @@
 /**
  * Navbar (Spatial Glass Command Header)
  * Renders the top navigation bar with live status badge, quick section links,
- * language toggle (EN/ID), and mobile navigation drawer.
+ * 3D Orbit inspect toggle, Audio SFX toggle, language toggle (EN/ID), and CV CTA.
  */
 export class Navbar {
   static render(config) {
@@ -46,8 +46,31 @@ export class Navbar {
             </a>
           </nav>
 
-          <!-- Right: Actions Deck -->
+          <!-- Right: Actions Deck (Clean & Minimalist) -->
           <div class="navbar-actions">
+            <!-- 3D Free Orbit Toggle Button -->
+            <button class="nav-action-pill" id="btnToggle3DMode" title="Toggle 3D Orbit View (HotKey: I)" aria-label="Toggle 3D View">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span id="labelModeToggle">3D VIEW</span>
+            </button>
+
+            <!-- Audio SFX Toggle Button -->
+            <button class="nav-btn-icon" id="btnToggleAudio" title="Toggle Audio FX (HotKey: M)" aria-label="Toggle Audio">
+              <svg id="iconAudioOff" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg id="iconAudioOn" style="display:none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
+
             <!-- Language Switcher -->
             <button class="nav-btn-icon" id="langToggleBtn" title="Switch Language (EN / ID)" aria-label="Switch Language">
               <span class="lang-label" id="currentLangLabel">ID</span>

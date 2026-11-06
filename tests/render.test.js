@@ -10,16 +10,15 @@ test('UI Components Render Integrity', async (t) => {
     const html = Navbar.render(portfolioConfig);
     assert.ok(html.includes('id="navbarHeader"'));
     assert.ok(html.includes('id="langToggleBtn"'));
+    assert.ok(html.includes('id="btnToggle3DMode"'));
+    assert.ok(html.includes('id="btnToggleAudio"'));
     assert.ok(html.includes('href="#about"'));
     assert.ok(html.includes('href="#experience"'));
   });
 
-  await t.test('UniverseHUD renders 3D controls and progress line', () => {
+  await t.test('UniverseHUD renders progress line and waypoint rail', () => {
     const html = UniverseHUD.render(portfolioConfig);
     assert.ok(html.includes('id="scrollLaserBar"'));
-    assert.ok(html.includes('id="btnToggle3DMode"'));
-    assert.ok(html.includes('id="sliderExplodeCore"'));
-    assert.ok(html.includes('id="btnToggleAudio"'));
     assert.ok(html.includes('id="hudWaypointRail"'));
   });
 
