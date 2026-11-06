@@ -205,7 +205,7 @@ export class App {
       });
 
       // Close mobile drawer on link click
-      mobileDrawer.querySelectorAll('.mobile-link').forEach((link) => {
+      mobileDrawer.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           mobileDrawer.classList.remove('open');
           mobileBtn.setAttribute('aria-expanded', 'false');

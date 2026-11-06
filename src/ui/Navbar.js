@@ -76,8 +76,8 @@ export class Navbar {
               <span class="lang-label" id="currentLangLabel">ID</span>
             </button>
 
-            <!-- Download CV CTA -->
-            <a href="${cvPrimary.file}" download="MUNARDI-CV_SoftwareEngineer.pdf" class="nav-btn-primary" id="navDownloadCvBtn">
+            <!-- Download CV CTA (Desktop) -->
+            <a href="${cvPrimary.file}" download="MUNARDI-CV_SoftwareEngineer.pdf" class="nav-btn-primary nav-cv-desktop" id="navDownloadCvBtn">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
@@ -98,13 +98,23 @@ export class Navbar {
         <!-- Mobile Drawer Menu -->
         <div class="mobile-drawer" id="mobileDrawer">
           <nav class="mobile-drawer-links">
-            <a href="#hero" class="mobile-link"><span class="lang-en">Hero</span><span class="lang-id">Awal</span></a>
+            <a href="#hero" class="mobile-link"><span class="lang-en">Home</span><span class="lang-id">Beranda</span></a>
             <a href="#about" class="mobile-link"><span class="lang-en">About</span><span class="lang-id">Tentang</span></a>
             <a href="#skill" class="mobile-link"><span class="lang-en">Skills</span><span class="lang-id">Keahlian</span></a>
             <a href="#experience" class="mobile-link"><span class="lang-en">Experience</span><span class="lang-id">Pengalaman</span></a>
             <a href="#education" class="mobile-link"><span class="lang-en">Education</span><span class="lang-id">Pendidikan</span></a>
             <a href="#contact" class="mobile-link"><span class="lang-en">Contact</span><span class="lang-id">Kontak</span></a>
           </nav>
+          <div class="mobile-drawer-footer">
+            <a href="${cvPrimary.file}" download="MUNARDI-CV_SoftwareEngineer.pdf" class="mobile-drawer-cv-btn" id="mobileDrawerCvBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download CV (PDF)</span>
+            </a>
+          </div>
         </div>
       </header>
     `;

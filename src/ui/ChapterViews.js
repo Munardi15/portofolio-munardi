@@ -295,14 +295,27 @@ export class ChapterViews {
             <!-- Expandable Drawer Toggle -->
             <div class="drawer-container">
               <button class="drawer-toggle-btn" aria-expanded="false" aria-controls="drawer-${exp.id}">
-                <div class="drawer-btn-title">
-                  <span>
+                <div class="drawer-toggle-main">
+                  <div class="drawer-meta-row">
+                    <span class="project-count-badge">
+                      <span class="badge-dot"></span>
+                      <span>${exp.projectCount} ${exp.projectCount === 1 ? 'Project' : 'Projects'}</span>
+                    </span>
+                    <span class="drawer-action-hint">
+                      <span class="action-hint-open lang-en">View Case Studies</span>
+                      <span class="action-hint-open lang-id">Lihat Studi Kasus</span>
+                      <span class="action-hint-close lang-en">Hide Case Studies</span>
+                      <span class="action-hint-close lang-id">Tutup Studi Kasus</span>
+                    </span>
+                  </div>
+                  <div class="drawer-btn-title">
                     <span class="lang-en">${exp.drawerTitle.en}</span>
                     <span class="lang-id">${exp.drawerTitle.id}</span>
-                  </span>
-                  <span class="project-count-badge">${exp.projectCount} ${exp.projectCount === 1 ? 'Project' : 'Projects'}</span>
+                  </div>
                 </div>
-                <svg class="drawer-chevron" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                <div class="drawer-chevron-box">
+                  <svg class="drawer-chevron" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </div>
               </button>
 
               <div class="drawer-body" id="drawer-${exp.id}">
