@@ -48,8 +48,8 @@ export class Navbar {
 
           <!-- Right: Actions Deck (Clean & Minimalist) -->
           <div class="navbar-actions">
-            <!-- 3D View Toggle Button (Aktif: Full 3D Cinematic / Non-Aktif: Maju Mundur Linear) -->
-            <button class="nav-action-pill active" id="btnToggle3DMode" title="3D View: Aktif (Full Cinematic) / Non-Aktif (Maju Mundur Linear)" aria-label="Toggle 3D View">
+            <!-- 3D Free Orbit Toggle Button -->
+            <button class="nav-action-pill" id="btnToggle3DMode" title="Toggle 3D Orbit View (HotKey: I)" aria-label="Toggle 3D View">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="2" y1="12" x2="22" y2="12"></line>

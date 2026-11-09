@@ -166,24 +166,20 @@ export class App {
   }
 
   bindHUDControls() {
-    // 1. 3D Mode Toggle (Cinematic 3D vs Simple Forward/Backward Zoom)
+    // 1. 3D Mode Toggle (Cinematic vs Free Orbit)
     const btnMode = document.getElementById('btnToggle3DMode');
     const labelMode = document.getElementById('labelModeToggle');
     if (btnMode && this.scene && this.scene.cameraRig) {
       btnMode.addEventListener('click', () => {
         const newMode = this.scene.cameraRig.toggleMode();
-        if (newMode === 'CINEMATIC') {
+        if (newMode === 'FREE_ORBIT') {
           btnMode.classList.add('active');
-          if (labelMode) labelMode.textContent = '3D VIEW';
-          btnMode.setAttribute('title', '3D View Aktif: Full Cinematic Scrollytelling');
+          if (labelMode) labelMode.textContent = 'EXIT 3D';
+          document.body.classList.add('orbit-mode-active');
         } else {
           btnMode.classList.remove('active');
-          if (labelMode) labelMode.textContent = '3D OFF';
-          btnMode.setAttribute('title', '3D View Non-Aktif: Maju Mundur Linear');
-        }
-        // Immediately synchronize progress to camera target
-        if (this.storyEngine) {
-          this.scene.cameraRig.setScrollProgress(this.storyEngine.currentProgress);
+          if (labelMode) labelMode.textContent = '3D VIEW';
+          document.body.classList.remove('orbit-mode-active');
         }
         if (this.audioSynth) this.audioSynth.playSelect();
       });
