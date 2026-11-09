@@ -27,12 +27,12 @@ export class DeveloperWorkstation {
 
     this.terminalLines = [
       'munardi@core-infra:~$ go run cmd/scheduler/main.go',
-      '[INIT] High-throughput worker pool initialized (16 routines)',
-      '[BRIVA] sch-parse-file-merah-putih: S3 MinIO file downloaded',
-      '[CRYPTO] AES-256 decryption verified for batch #8291',
-      '[DB] SQL Server bulk load executed: 142,000 rows in 1.4s',
-      '[K8s] Health check probe: HTTP 200 OK (Pod replica 3/3)',
-      '[METRICS] Memory footprint steady: 42MB RSS',
+      '[INIT] sch-log-activity-briva: central logging hub active',
+      '[BRIVA] sch-parse-file-merah-putih: MinIO parameter synced',
+      '[ETL] Clean Architecture: ZIP archive extracted & parsed',
+      '[DB] SQL Server batch workflow: transaction committed OK',
+      '[K8s] Health check probe: HTTP 200 OK (Pod replica ready)',
+      '[AUDIT] File reconciliation verified • Status flagged DONE',
       '[INFO] Waiting next cron tick (interval: 300s)...'
     ];
     this.currentTermLine = 0;

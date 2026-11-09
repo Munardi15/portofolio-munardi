@@ -92,7 +92,7 @@ export class ServerRackStation {
       {
         id: 'job-01',
         company: 'Bank Rakyat Indonesia (BRI)',
-        title: 'BRIVA Modular Schedulers & SSIS Modernization Cluster',
+        title: 'BRIVA Modular Schedulers & SSIS Migration (Golang)',
         yPos: 3.4,
         accentColor: 0x10b981,
         ledCount: 5,
@@ -101,7 +101,7 @@ export class ServerRackStation {
       {
         id: 'job-02',
         company: 'Hitachi Channel Solutions',
-        title: 'IMHOTS ATM Fleet Telemetry & DB Optimization Engine',
+        title: 'IMHOTS ATM Monitoring & EJ Dashboard (Laravel)',
         yPos: 2.7,
         accentColor: 0x06b6d4,
         ledCount: 5,
@@ -110,7 +110,7 @@ export class ServerRackStation {
       {
         id: 'job-03',
         company: 'PT Bank OCBC NISP Tbk',
-        title: 'ProrRekonATM Gateway & AS400 Query Check Node',
+        title: 'ProrRekonATM Desktop-to-Web Migration (React & Go)',
         yPos: 2.0,
         accentColor: 0xf59e0b,
         ledCount: 4,
@@ -119,7 +119,7 @@ export class ServerRackStation {
       {
         id: 'job-04',
         company: 'PT Knusantara Semesta Madani',
-        title: 'Enterprise Matrix ERP Core System Blade',
+        title: 'Backend API & System Analysis (Laravel)',
         yPos: 1.3,
         accentColor: 0xa855f7,
         ledCount: 4,
