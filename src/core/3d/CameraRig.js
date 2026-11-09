@@ -10,7 +10,7 @@ export class CameraRig {
     this.camera = camera;
     this.domElement = domElement;
 
-    // Modes: 'CINEMATIC' | 'FREE_ORBIT'
+    // Modes: 'CINEMATIC' (3D View Aktif: Full Scrollytelling) | 'SIMPLE' (3D View Non-Aktif: Maju Mundur Linear)
     this.mode = 'CINEMATIC';
 
     // Current & Target Vectors (Inertial Lerp)
@@ -162,51 +162,74 @@ export class CameraRig {
   }
 
   toggleMode() {
-    this.setMode(this.mode === 'CINEMATIC' ? 'FREE_ORBIT' : 'CINEMATIC');
+    // Toggles between 3D View Aktif (CINEMATIC) and 3D View Non-Aktif (SIMPLE)
+    this.setMode(this.mode === 'CINEMATIC' ? 'SIMPLE' : 'CINEMATIC');
     return this.mode;
   }
 
   /**
    * Smoothly interpolate waypoint along scroll progress (0.0 to 1.0)
-   * Using multi-keyframe trajectory with cubic smoothstep easing
+   * In CINEMATIC mode: Multi-keyframe 3D flight trajectory with section plateaus
+   * In SIMPLE mode: Linear dolly along Z axis ("cuma maju mundur aja sesuai arah scroll")
    * @param {number} progress
    */
   setScrollProgress(progress) {
-    if (this.mode !== 'CINEMATIC') return;
-
     const clamped = Math.max(0, Math.min(1, progress));
-    const kfs = this.storyKeyframes;
-    const n = kfs.length;
 
-    let kfA = kfs[0];
-    let kfB = kfs[1];
+    if (this.mode === 'SIMPLE') {
+      // 3D View Non-Aktif: "cuma maju mundur aja sesuai arah scroll"
+      // Camera stays aligned with developer workstation and smoothly dollys along Z axis
+      const startPos = new THREE.Vector3(1.2, 2.25, 1.15);
+      const endPos = new THREE.Vector3(1.2, 3.4, 6.2);
+      const fixedLookAt = new THREE.Vector3(1.2, 2.0, -0.6);
 
-    for (let i = 0; i < n - 1; i++) {
-      if (clamped >= kfs[i].t && clamped <= kfs[i + 1].t) {
-        kfA = kfs[i];
-        kfB = kfs[i + 1];
-        break;
+      const interpolatedPos = new THREE.Vector3().lerpVectors(startPos, endPos, clamped);
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        interpolatedPos.y += 0.4;
+        interpolatedPos.z += 1.0;
       }
+
+      this.targetPos.copy(interpolatedPos);
+      this.targetLookAt.copy(fixedLookAt);
+      this.targetFov = 38 + clamped * 8;
+      return;
     }
 
-    const span = kfB.t - kfA.t;
-    const rawFrac = span > 0 ? (clamped - kfA.t) / span : 0;
-    // Cubic smoothstep (3x^2 - 2x^3) gives organic ease-in-out flight acceleration
-    const frac = rawFrac * rawFrac * (3 - 2 * rawFrac);
+    if (this.mode === 'CINEMATIC') {
+      const kfs = this.storyKeyframes;
+      const n = kfs.length;
 
-    const interpolatedPos = new THREE.Vector3().lerpVectors(kfA.pos, kfB.pos, frac);
-    const interpolatedLookAt = new THREE.Vector3().lerpVectors(kfA.lookAt, kfB.lookAt, frac);
-    const interpolatedFov = kfA.fov + (kfB.fov - kfA.fov) * frac;
+      let kfA = kfs[0];
+      let kfB = kfs[1];
 
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      interpolatedPos.y += 0.8;
-      interpolatedPos.z += 1.8;
+      for (let i = 0; i < n - 1; i++) {
+        if (clamped >= kfs[i].t && clamped <= kfs[i + 1].t) {
+          kfA = kfs[i];
+          kfB = kfs[i + 1];
+          break;
+        }
+      }
+
+      const span = kfB.t - kfA.t;
+      const rawFrac = span > 0 ? (clamped - kfA.t) / span : 0;
+      // Cubic smoothstep (3x^2 - 2x^3) gives organic ease-in-out flight acceleration
+      const frac = rawFrac * rawFrac * (3 - 2 * rawFrac);
+
+      const interpolatedPos = new THREE.Vector3().lerpVectors(kfA.pos, kfB.pos, frac);
+      const interpolatedLookAt = new THREE.Vector3().lerpVectors(kfA.lookAt, kfB.lookAt, frac);
+      const interpolatedFov = kfA.fov + (kfB.fov - kfA.fov) * frac;
+
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        interpolatedPos.y += 0.4;
+        interpolatedPos.z += 1.2;
+      }
+
+      this.targetPos.copy(interpolatedPos);
+      this.targetLookAt.copy(interpolatedLookAt);
+      this.targetFov = interpolatedFov;
     }
-
-    this.targetPos.copy(interpolatedPos);
-    this.targetLookAt.copy(interpolatedLookAt);
-    this.targetFov = interpolatedFov;
   }
 
   focusOnTarget(position, lookAt = new THREE.Vector3(0, 0, 0), fov = 35) {
@@ -220,7 +243,7 @@ export class CameraRig {
     this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.05;
     this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.05;
 
-    if (this.mode === 'CINEMATIC') {
+    if (this.mode === 'CINEMATIC' || this.mode === 'SIMPLE') {
       // 1. Inertial lerp camera towards target waypoint (responsive 0.16 lerp prevents sluggish lag)
       this.currentPos.lerp(this.targetPos, 0.16);
       this.currentLookAt.lerp(this.targetLookAt, 0.16);
