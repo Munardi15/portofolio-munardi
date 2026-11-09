@@ -100,7 +100,12 @@ export class UniverseScene {
       this.studio = new StudioEnvironment(this.scene);
 
       // 5. Camera Rig & Raycast Controller
-      this.cameraRig = new CameraRig(this.camera, this.renderer.domElement);
+      this.cameraRig = new CameraRig(
+        this.camera,
+        this.renderer.domElement,
+        this.scene,
+        this.audioSynth
+      );
       this.raycaster = new RaycastController(
         this.camera,
         this.renderer.domElement,

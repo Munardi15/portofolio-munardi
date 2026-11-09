@@ -1,7 +1,7 @@
 /**
  * UniverseHUD (Minimalist Ambient Spatial Indicators)
- * Renders the top laser progress rail and subtle right-side waypoint rail.
- * All actions are cleanly integrated into the top navbar, keeping the viewport 100% unobstructed.
+ * Renders the top laser progress rail, subtle right-side waypoint rail,
+ * and floating interactive 3D navigation guide pill.
  */
 export class UniverseHUD {
   static render(config) {
@@ -39,6 +39,17 @@ export class UniverseHUD {
           <span class="dot-tooltip">Sector 06: Contact</span>
         </button>
       </nav>
+
+      <!-- 3D Room Exploration Guide Pill (Appears in Orbit Mode) -->
+      <div class="hud-3d-guide-banner" id="hud3DGuide" aria-live="polite">
+        <span class="guide-item"><span class="guide-key">🖱️ Drag</span> <span class="lang-en">Orbit 360°</span><span class="lang-id">Putar 360°</span></span>
+        <span class="guide-sep">&bull;</span>
+        <span class="guide-item"><span class="guide-key">WASD / Right Drag</span> <span class="lang-en">Walk Room</span><span class="lang-id">Keliling Kamar</span></span>
+        <span class="guide-sep">&bull;</span>
+        <span class="guide-item"><span class="guide-key">Scroll</span> <span class="lang-en">Zoom</span><span class="lang-id">Zoom</span></span>
+        <span class="guide-sep">&bull;</span>
+        <span class="guide-item"><span class="guide-key">🎯 Double-Click</span> <span class="lang-en">Focus Point</span><span class="lang-id">Fokus Titik</span></span>
+      </div>
     `;
   }
 }
