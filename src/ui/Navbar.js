@@ -13,11 +13,11 @@ export class Navbar {
     return `
       <header class="navbar-header" id="navbarHeader">
         <div class="navbar-container">
-          <!-- Left: Identity & Beacon -->
+          <!-- Left: Identity & Status Indicator -->
           <a href="#hero" class="navbar-brand" aria-label="Munardi Home">
             <span class="brand-name">Munardi<span class="accent-cyan">.</span></span>
             <span class="brand-badge">
-              <span class="beacon-dot"></span>
+              <span class="status-indicator-dot"></span>
               <span>SR ENG</span>
             </span>
           </a>

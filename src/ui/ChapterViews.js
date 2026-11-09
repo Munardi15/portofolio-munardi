@@ -33,7 +33,7 @@ export class ChapterViews {
     <section class="chapter-section chapter-hero" id="hero" data-chapter="0">
       <div class="holographic-panel hero-panel">
         <div class="panel-eyebrow">
-          <span class="status-pulse-dot"></span>
+          <span class="status-indicator-dot"></span>
           <span class="lang-en">${personal.status.en}</span>
           <span class="lang-id">${personal.status.id}</span>
         </div>
@@ -79,8 +79,8 @@ export class ChapterViews {
             <span class="scroll-wheel"></span>
           </span>
           <span class="scroll-text">
-            <span class="lang-en">Scroll to traverse the engineering universe</span>
-            <span class="lang-id">Gulir untuk menjelajahi semesta rekayasa</span>
+            <span class="lang-en">Scroll to traverse technical systems &amp; experience</span>
+            <span class="lang-id">Gulir untuk menelusuri sistem teknis &amp; pengalaman</span>
           </span>
         </div>
       </div>
@@ -179,16 +179,16 @@ export class ChapterViews {
       <div class="holographic-panel skills-panel">
         <div class="section-topline">
           <div class="section-tag">
-            <span class="lang-en">Skills &amp; Capabilities</span>
+            <span class="lang-en">Technical Toolkit</span>
             <span class="lang-id">Keahlian &amp; Kapabilitas</span>
           </div>
           <h2 class="section-heading">
-            <span class="lang-en">Technical Architecture Toolkit.</span>
-            <span class="lang-id">Gudang Senjata Arsitektur Teknis.</span>
+            <span class="lang-en">Architecture &amp; Tech Stack.</span>
+            <span class="lang-id">Arsitektur &amp; Stack Teknologi.</span>
           </h2>
           <p class="section-subtitle">
-            <span class="lang-en">Production-hardened across high-concurrency batch schedulers, relational database optimization, and cloud containerization.</span>
-            <span class="lang-id">Teruji di produksi untuk scheduler batch berkonkurensi tinggi, optimasi basis data relasional, dan kontainerisasi cloud.</span>
+            <span class="lang-en">Production-hardened across full-stack applications, database optimization, and high-reliability systems.</span>
+            <span class="lang-id">Teruji di produksi untuk aplikasi full-stack, optimasi basis data, dan sistem dengan keandalan tinggi.</span>
           </p>
         </div>
 
@@ -449,21 +449,21 @@ export class ChapterViews {
         <div class="contact-deck-grid">
           <div class="contact-statement-col">
             <div class="section-tag">
-              <span class="lang-en">Initiate Collaboration</span>
-              <span class="lang-id">Inisiasi Kolaborasi</span>
+              <span class="lang-en">Direct Contact &amp; Roles</span>
+              <span class="lang-id">Kontak &amp; Peluang Kerja</span>
             </div>
             <h2 class="contact-hero-heading">
-              <span class="lang-en">Ready for the Next <span class="accent-cyan">Mission.</span></span>
-              <span class="lang-id">Siap untuk Misi <span class="accent-cyan">Berikutnya.</span></span>
+              <span class="lang-en">Open for Software <span class="accent-cyan">Engineering Roles.</span></span>
+              <span class="lang-id">Terbuka untuk Peran <span class="accent-cyan">Software Engineer.</span></span>
             </h2>
             <p class="contact-subtext">
-              <span class="lang-en">Available for Senior Software Engineer roles, high-concurrency backend systems, and financial engineering opportunities in Jakarta (Hybrid/Remote).</span>
-              <span class="lang-id">Tersedia untuk peran Senior Software Engineer, sistem backend konkurensi tinggi, dan rekayasa finansial di Jakarta (Hybrid/Remote).</span>
+              <span class="lang-en">Available for Software Engineer roles, web &amp; API development, and system integration initiatives in Jakarta (Hybrid/Remote).</span>
+              <span class="lang-id">Tersedia untuk peran Software Engineer, pengembangan web &amp; API, serta integrasi sistem di Jakarta (Hybrid/Remote).</span>
             </p>
 
             <div class="direct-beacon-box">
               <div class="beacon-row">
-                <span class="status-pulse-dot"></span>
+                <span class="status-indicator-dot"></span>
                 <span>STATUS: AVAILABLE FOR IMMEDIATE INTERVIEW</span>
               </div>
               <div class="beacon-row-sub">

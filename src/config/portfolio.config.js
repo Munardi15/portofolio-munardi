@@ -18,12 +18,12 @@ export const portfolioConfig = {
     "rolePrimary": "Software Engineer",
     "roleBadge": "",
     "status": {
-      "en": "SOFTWARE ENGINEER • AVAILABLE",
-      "id": "SOFTWARE ENGINEER • TERSEDIA"
+      "en": "SOFTWARE ENGINEER • AVAILABLE FOR ROLES",
+      "id": "SOFTWARE ENGINEER • SIAP REKRUTMEN"
     },
     "pitch": {
-      "en": "Software Engineer with <b>6+ years of experience</b> building reliable backend systems, automating workflows, and optimizing database performance. Highly adaptable across diverse tech stacks in banking and enterprise environments to deliver dependable, production-ready solutions.",
-      "id": "Software Engineer dengan pengalaman <b>6+ tahun</b> dalam membangun sistem backend yang andal, integrasi workflow, dan optimasi basis data. Terbiasa beradaptasi cepat lintas berbagai tech stack di lingkungan perbankan dan enterprise untuk menghadirkan solusi software yang stabil dan siap produksi."
+      "en": "Software Engineer with <b>6+ years of experience</b> developing reliable applications, automating workflows, and optimizing database performance. Proven background delivering software solutions across diverse tech stacks (Golang, PHP, Node.js, React, and Python) in banking and enterprise environments.",
+      "id": "Software Engineer dengan pengalaman <b>6+ tahun</b> dalam mengembangkan aplikasi yang andal, otomasi workflow, dan optimasi performa database. Berpengalaman menghadirkan solusi perangkat lunak lintas berbagai tech stack (Golang, PHP, Node.js, React, dan Python) di lingkungan perbankan dan enterprise."
     },
     "location": {
       "en": "JAKARTA, ID • REMOTE / HYBRID READY",
@@ -125,10 +125,10 @@ export const portfolioConfig = {
       "id": "Sebagai <b>Software Engineer</b>, kekuatan utama saya terletak pada kemampuan adaptasi dan pemecahan masalah praktis. Berpengalaman di berbagai institusi perbankan dan enterprise, saya terbiasa cepat mempelajari codebase baru serta mengeksekusi kebutuhan sistem menggunakan teknologi yang paling sesuai—baik <b>Golang, Python, PHP, Node.js, maupun Java</b>.<br><br>Bagi saya, teknologi adalah sarana untuk menyelesaikan kebutuhan bisnis dan operasional. Mulai dari modernisasi proses legacy, otomasi data pipeline, hingga optimasi query database, fokus saya adalah memastikan sistem berjalan stabil, efisien, dan mudah dirawat di lingkungan produksi."
     },
     "badges": [
-      "⚡ Rapid Technical Adaptability",
-      "🛡️ High Transaction Volume",
-      "⚙️ Clean Architecture",
-      "📦 Cloud & Containers"
+      "End-to-End Software Development",
+      "API & System Integration",
+      "Database Optimization",
+      "Clean Architecture"
     ]
   },
   "stats": [

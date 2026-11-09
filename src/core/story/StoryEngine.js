@@ -287,17 +287,20 @@ export class StoryEngine {
       }
     });
 
-    // Update telemetry sector name in HUD
-    if (this.hudSectorPill) {
-      const sectorNames = [
-        'SECTOR 01 // DEVELOPER STUDIO & MISSION CONTROL',
-        'SECTOR 02 // WORKSPACE ARCHIVE (ABOUT)',
-        'SECTOR 03 // DUAL-SCREEN TOOLKIT (SKILLS)',
-        'SECTOR 04 // 42U SERVER RACK (EXPERIENCE)',
-        'SECTOR 05 // ACADEMIC SPIRE (EDUCATION)',
-        'SECTOR 06 // TRANSMISSION ARRAY (CONTACT)'
-      ];
-      this.hudSectorPill.textContent = sectorNames[index] || `SECTOR 0${index + 1}`;
+    // Update telemetry 3D focus target in HUD
+    const targetEl = document.getElementById('hudFocusTarget');
+    const focusNames = [
+      'TERMINAL COCKPIT // DEV WORKSTATION',
+      'WORKSPACE ARCHIVE // DESK & HARDWARE',
+      'DUAL-SCREEN TOOLKIT // GO & LINUX',
+      '42U SERVER RACK // BRI BRIVA & BLADES',
+      'ACADEMIC CREDENTIAL // MERCU BUANA CUM LAUDE',
+      'STUDIO OVERVIEW // COMPLETE 3D PANORAMA'
+    ];
+    if (targetEl) {
+      targetEl.textContent = focusNames[index] || `STATION 0${index + 1}`;
+    } else if (this.hudSectorPill) {
+      this.hudSectorPill.textContent = focusNames[index] || `STATION 0${index + 1}`;
     }
   }
 
