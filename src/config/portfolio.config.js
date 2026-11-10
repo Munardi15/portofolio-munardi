@@ -140,10 +140,10 @@ export const portfolioConfig = {
       }
     },
     {
-      "value": "13+",
+      "value": "16+",
       "label": {
-        "en": "Schedulers & Pipelines at BRI",
-        "id": "Pipeline & Scheduler di BRI"
+        "en": "Schedulers & Banking Portals at BRI",
+        "id": "Scheduler & Portal Perbankan di BRI"
       }
     },
     {
@@ -244,10 +244,10 @@ export const portfolioConfig = {
         "id": "Okt 2025 – Sekarang"
       },
       "drawerTitle": {
-        "en": "BRIVA Modular Schedulers, SSIS Modernization & Encryption Pipelines",
-        "id": "Scheduler Modular BRIVA, Modernisasi SSIS & Pipeline Enkripsi"
+        "en": "BRIVA Schedulers, Nostro SWIFT Reconciliations, Rekon Enterprise & Encryption Pipelines",
+        "id": "Scheduler BRIVA, Rekonsiliasi Nostro SWIFT, Rekon Enterprise & Pipeline Enkripsi"
       },
-      "projectCount": 13,
+      "projectCount": 16,
       "projects": [
         {
           "codeName": "sch-parse-file-merah-putih",
@@ -513,6 +513,84 @@ export const portfolioConfig = {
           "role": {
             "en": "Engineered automated snapshot microservice maintaining audit trail compliance.",
             "id": "Membangun dari awal service snapshot untuk memastikan integritas data audit dan kepatuhan sistem."
+          }
+        },
+        {
+          "codeName": "nostro-web & parsingnostro.py",
+          "tags": [
+            "PHP",
+            "CodeIgniter",
+            "Python",
+            "SWIFT MT940/950",
+            "SQL Server",
+            "Reconciliation"
+          ],
+          "problem": {
+            "en": "Manual foreign exchange reconciliation between internal bank ledger records (BRINET) and foreign correspondent bank statements (SWIFT MT940/MT950) was slow and prone to unresolved transactions (unmatched/OPEN) and duplicate records.",
+            "id": "Rekonsiliasi manual mutasi valuta asing antara catatan internal bank (BRINET) dan rekening koran bank koresponden luar negeri (SWIFT MT940/MT950) lambat dan berisiko tinggi terhadap transaksi menggantung (unmatched/OPEN) serta mutasi ganda (duplicate suspect)."
+          },
+          "flow": [
+            "SFTP MT File Retrieval",
+            "Python SWIFT MT Parser",
+            "Tag & Balance Extraction",
+            "Auto-Matching Engine",
+            "Settlement & Nota Dinas Portal"
+          ],
+          "role": {
+            "en": "Maintained and enhanced the web reconciliation portal using CodeIgniter PHP and a dedicated Python SWIFT parser engine (<b>parsingnostro.py</b>). Handled MT940/MT950 tag & balance extraction, suspect/duplicate detection, auto-matching between debit/credit legs, and automated daily official memo (nota dinas) & balance sheet reporting on SQL Server.",
+            "id": "Memelihara dan mengembangkan modul web rekonsiliasi berbasis CodeIgniter PHP serta engine parser SWIFT berbasis Python (<b>parsingnostro.py</b>). Mengimplementasikan validasi tag saldo/mutasi MT940/MT950, pendeteksian transaksi suspect, auto-matching berbasis kriteria polaritas debit/kredit, serta fitur pelaporan nota dinas dan neraca di database SQL Server."
+          }
+        },
+        {
+          "codeName": "mt940-gen & mt940-api",
+          "tags": [
+            "Node.js",
+            "Express.js",
+            "PHP",
+            "CodeIgniter 4",
+            "SFTP/FTP",
+            "SQL Server"
+          ],
+          "problem": {
+            "en": "Corporate clients (such as Coca-Cola and partner enterprises) required scheduled generation and direct delivery of electronic bank statements formatted in global SWIFT MT940 standard via secure SFTP/FTP integration.",
+            "id": "Kebutuhan nasabah korporat (seperti Coca-Cola dan korporasi mitra) untuk mendapatkan statement rekening koran format standar perbankan global (SWIFT MT940) secara terjadwal dan terintegrasi langsung via SFTP/FTP."
+          },
+          "flow": [
+            "Corporate Client Config",
+            "Transaction Query on DB",
+            "MT940 Syntax Generator",
+            "SFTP/FTP Distribution",
+            "Generation Log Tracking"
+          ],
+          "role": {
+            "en": "Enhanced and maintained the CodeIgniter 4 web interface (<b>mt940-gen</b>) and Node.js Express REST API microservice (<b>mt940-api</b>). Handled corporate client Virtual Account mapping, MT940 statement formatting, automated SFTP distribution pipeline, and database log tracking on SQL Server.",
+            "id": "Mengembangkan dan memelihara modul portal CodeIgniter 4 (<b>mt940-gen</b>) dan backend Node.js Express REST API (<b>mt940-api</b>). Mengimplementasikan mapping Virtual Account/rekening nasabah korporat, orkestrasi pembuatan statement MT940, transfer file aman via SFTP, dan pemantauan status generate log di SQL Server."
+          }
+        },
+        {
+          "codeName": "rekonenterprise4 & re-api",
+          "tags": [
+            "CodeIgniter 4",
+            "Node.js",
+            "Express.js",
+            "RTGS Reconciliation",
+            "SAST Hardening",
+            "CSV Stream"
+          ],
+          "problem": {
+            "en": "The multi-channel enterprise transaction reconciliation portal required new endpoint integration (RTGS incoming/outgoing), reliable large-scale export streaming without memory exhaustion, standardized response envelopes, and remediation of Checkmarx SAST security findings.",
+            "id": "Sistem rekonsiliasi transaksi enterprise multi-kanal (termasuk RTGS) membutuhkan integrasi endpoint baru, stabilitas stream ekspor laporan berkapasitas besar, standarisasi respons API, serta pemenuhan standar keamanan aplikasi ketat dari audit SAST Checkmarx."
+          },
+          "flow": [
+            "RTGS MT Data Stream",
+            "Node.js Re-API Processing",
+            "Stream CSV/Excel Export",
+            "CI4 Portal Frontend",
+            "Checkmarx SAST Hardening"
+          ],
+          "role": {
+            "en": "Delivered feature enhancements and security remediations across CodeIgniter 4 (<b>rekonenterprise4</b>) and Node.js microservice (<b>re-api</b>). Integrated RTGS reconciliation endpoints, standardized API response envelopes (<code>RESPONSE_CODE</code> & <code>RESPONSE_DATA</code>), resolved HTTP stream header errors on large CSV exports, and remediated Checkmarx SAST security vulnerabilities (disabling debug error leaks, input sanitization, and config hardening).",
+            "id": "Mengembangkan enhancement fitur pada portal CodeIgniter 4 (<b>rekonenterprise4</b>) dan microservice Node.js (<b>re-api</b>). Mengintegrasikan endpoint rekonsiliasi RTGS (incoming/outgoing), merefaktor dan menstandarisasi response envelope API (<code>RESPONSE_CODE</code> & <code>RESPONSE_DATA</code>), memperbaiki isu stream headers pada ekspor CSV berukuran masif, serta menyelesaikan remediasi celah keamanan audit SAST Checkmarx (error suppression, sanitasi input, dan penguatan konfigurasi server)."
           }
         },
         {
